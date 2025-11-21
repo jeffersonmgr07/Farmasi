@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yeliber Castro | Beautiful Influencer Farmasi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Landing page de presentación de Yeliber Castro, Beautiful Influencer Farmasi."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      /* 🎨 Paleta inspirada en Farmasi (puedes ajustar hex si tienes los exactos) */
+      --bg: #fff9fb;
+      --bg-alt: #ffffff;
+      --primary: #e91e63;      /* Rosa principal */
+      --primary-soft: #fde4ee; /* Rosa muy suave */
+      --accent: #f8b4c6;       /* Detalles */
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #f3e5ef;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.06);
+      --radius-lg: 18px;
+      --transition-fast: 180ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #ffeef5 0, #fff9fb 40%, #ffffff 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 20px 16px 48px;
+    }
+
+    /* HEADER */
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: conic-gradient(
+        from 200deg,
+        #fce4ec,
+        #f8bbd0,
+        #ec407a,
+        #ad1457,
+        #fce4ec
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 12px 28px rgba(233, 30, 99, 0.45);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .brand-text strong {
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-text span {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-link {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: background var(--transition-fast), border var(--transition-fast),
+        color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      background: #fdf2f8;
+      border-color: #f9a8d4;
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .nav-link.primary {
+      background: linear-gradient(135deg, #ec407a, #f472b6);
+      color: #ffffff;
+      border-color: transparent;
+      font-weight: 500;
+      box-shadow: 0 10px 30px rgba(236, 64, 122, 0.45);
+    }
+
+    .nav-link.primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .hero-kicker {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 2.5vw + 1rem, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(120deg, #ec407a, #f9739b, #fbb8d1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+      max-width: 520px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid #fbcfe8;
+      font-size: 0.78rem;
+      color: #9f1239;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      cursor: pointer;
+      background: #ffffff;
+      color: var(--text);
+      transition: background var(--transition-fast), border var(--transition-fast),
+        transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ec407a, #f9739b);
+      color: #ffffff;
+      border-color: transparent;
+      font-weight: 500;
+      box-shadow: 0 12px 32px rgba(244, 114, 182, 0.55);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(236, 64, 122, 0.6);
+    }
+
+    .btn-outline {
+      border-color: #fecdd3;
+      background: #fff;
+      color: #9f1239;
+    }
+
+    .btn-outline:hover {
+      background: #fff1f2;
+      transform: translateY(-1px);
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* HERO RIGHT CARD */
+
+    .hero-card {
+      background: var(--bg-alt);
+      border-radius: 24px;
+      padding: 18px 18px 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background:
+        radial-gradient(circle at 0 0, rgba(248, 187, 208, 0.7), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(244, 114, 182, 0.45), transparent 55%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .hero-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-avatar {
+      width: 92px;
+      height: 92px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #fce7f3, #f9a8d4);
+      border: 4px solid #ffffff;
+      box-shadow: 0 15px 35px rgba(236, 72, 153, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .hero-avatar span {
+      font-size: 0.75rem;
+      color: #9f1239;
+      text-align: center;
+      padding: 0 8px;
+    }
+
+    .hero-name {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .hero-role {
+      font-size: 0.86rem;
+      color: #9f1239;
+      margin-bottom: 6px;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 0.8rem;
+    }
+
+    .stat-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #fff1f2;
+      color: #9f1239;
+      border: 1px solid #fecdd3;
+    }
+
+    /* SECTIONS */
+
+    section {
+      margin-top: 42px;
+    }
+
+    .section-header {
+      margin-bottom: 16px;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    /* BENEFICIOS / CARDS */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 16px 16px 14px;
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        border var(--transition-fast);
+      font-size: 0.9rem;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #f9a8d4;
+      box-shadow: 0 20px 40px rgba(244, 114, 182, 0.25);
+    }
+
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 0.98rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    /* SOBRE YELIBER + BLOQUE DERECHO */
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .about-text p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .about-list {
+      list-style: none;
+      margin-top: 8px;
+      padding-left: 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .about-list li {
+      margin-bottom: 6px;
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    .about-list li::before {
+      content: "✦";
+      color: #ec407a;
+      font-size: 0.85rem;
+      margin-top: 2px;
+    }
+
+    .cta-panel {
+      background: var(--primary-soft);
+      border-radius: var(--radius-lg);
+      border: 1px dashed #f9a8d4;
+      padding: 14px 16px;
+      font-size: 0.86rem;
+      color: #9f1239;
+    }
+
+    .cta-panel strong {
+      font-weight: 600;
+    }
+
+    .cta-panel .small-note {
+      font-size: 0.78rem;
+      color: #be123c;
+      margin-top: 8px;
+    }
+
+    /* CONTACTO */
+
+    .contact-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 0.9rem;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .contact-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .social-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #fecdd3;
+      font-size: 0.82rem;
+      background: #fff1f2;
+      color: #9f1239;
+      transition: background var(--transition-fast), transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+    }
+
+    .social-pill:hover {
+      background: #fce7f3;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(244, 114, 182, 0.3);
+    }
+
+    footer {
+      margin-top: 40px;
+      border-top: 1px solid #fce7f3;
+      padding-top: 14px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 880px) {
+      .page {
+        padding-inline: 14px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 1.9rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        gap: 6px;
+      }
+
+      .nav-link {
+        font-size: 0.8rem;
+        padding-inline: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
+        <div class="brand-mark">YC</div>
+        <div class="brand-text">
+          <strong>Yeliber Castro</strong>
+          <span>Beautiful Influencer · Farmasi</span>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#sobre-yeliber" class="nav-link">Sobre mí</a>
+        <a href="#beneficios" class="nav-link">Beneficios</a>
+        <a href="#productos" class="nav-link">Productos</a>
+        <a href="#contacto" class="nav-link primary">Contacto</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <p class="hero-kicker">Farmasi · Belleza & Emprendimiento</p>
+          <h1 class="hero-title">
+            Hola, soy <span class="highlight">Yeliber Castro</span> 💄
+          </h1>
+          <p class="hero-subtitle">
+            Beautiful Influencer Farmasi. Te ayudo a elegir los mejores productos de
+            belleza y también a construir tu propio emprendimiento con una marca
+            internacional que amo y recomiendo.
+          </p>
+
+          <div class="hero-tags">
+            <span class="tag">Maquillaje profesional</span>
+            <span class="tag">Cuidado de la piel</span>
+            <span class="tag">Emprendimiento femenino</span>
+            <span class="tag">Asesoría personalizada</span>
+          </div>
+
+          <div class="hero-actions">
+            <!-- 🔁 Reemplaza el enlace con el WhatsApp real de Yeliber -->
+            <a
+              href="https://wa.me/51XXXXXXXXX?text=Hola%20Yeliber,%20quiero%20información%20sobre%20los%20productos%20Farmasi"
+              class="btn btn-primary"
+              target="_blank"
+            >
+              💬 Quiero productos
+            </a>
+            <a
+              href="https://wa.me/51XXXXXXXXX?text=Hola%20Yeliber,%20me%20interesa%20ser%20Beauty%20Influencer%20Farmasi"
+              class="btn btn-outline"
+              target="_blank"
+            >
+              ⭐ Quiero ser Beautiful Influencer
+            </a>
+          </div>
+
+          <p class="hero-note">
+            Asesoría personalizada según tu tipo de piel, estilo de maquillaje y metas
+            de ingresos. Te acompaño en cada paso del proceso.
+          </p>
+        </div>
+
+        <!-- HERO CARD DERECHA -->
+        <aside class="hero-card" aria-label="Presentación de Yeliber">
+          <div class="hero-card-inner">
+            <div class="hero-avatar">
+              <!-- Cuando tengas la foto de Yeliber, reemplaza este span por:
+                   <img src="ruta-de-la-foto.jpg" alt="Foto de Yeliber Castro" /> -->
+              <span>Aquí va tu foto ✨</span>
+            </div>
+            <div class="hero-name">Yeliber Castro</div>
+            <div class="hero-role">Beautiful Influencer · Farmasi</div>
+            <p style="font-size: 0.86rem; color: var(--muted);">
+              Te muestro cómo brillar con productos que cuidan tu piel y, si lo deseas,
+              cómo convertir esa pasión en un negocio rentable desde casa.
+            </p>
+
+            <div class="hero-stats">
+              <div class="stat-pill">Rutinas de skincare</div>
+              <div class="stat-pill">Looks de maquillaje</div>
+              <div class="stat-pill">Formación para tu equipo</div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- BENEFICIOS -->
+      <section id="beneficios">
+        <div class="section-header">
+          <p class="section-kicker">Oportunidad Farmasi</p>
+          <h2 class="section-title">¿Por qué trabajar con Yeliber?</h2>
+          <p class="section-subtitle">
+            Más que vender productos, construimos una comunidad de mujeres que se apoyan,
+            se forman y crecen juntas en el mundo de la belleza y el emprendimiento.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3 class="card-title">Acompañamiento 1 a 1</h3>
+            <p>
+              No estarás sola. Desde tu registro hasta tus primeras ventas y tu crecimiento
+              como líder, te acompaño con tips, guías y seguimiento.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Marca internacional</h3>
+            <p>
+              Farmasi es una marca global con productos de alta calidad, amplia variedad
+              y una imagen moderna que enamora a tus clientas.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Ingresos a tu ritmo</h3>
+            <p>
+              Puedes empezar como extra de ingresos, y si lo deseas, convertirlo en tu
+              principal fuente. Tú decides cuánto crecer y hasta dónde llegar.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- PRODUCTOS / SERVICIOS -->
+      <section id="productos">
+        <div class="section-header">
+          <p class="section-kicker">Belleza con propósito</p>
+          <h2 class="section-title">¿Qué puedo hacer por ti?</h2>
+          <p class="section-subtitle">
+            Ya sea que quieras probar los productos Farmasi o unirte como Beautiful
+            Influencer, tengo algo preparado para ti.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3 class="card-title">Asesoría de productos</h3>
+            <p>
+              Analizamos juntas tu tipo de piel, tus gustos y tu rutina diaria para
+              recomendarte una rutina Farmasi que realmente funcione para ti.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Rutinas & looks personalizados</h3>
+            <p>
+              Te propongo looks de maquillaje para el día a día, eventos especiales o
+              contenido para redes, utilizando tus productos favoritos de Farmasi.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Formación para tu negocio</h3>
+            <p>
+              Te enseño cómo empezar a recomendar, crear contenido sencillo, gestionar
+              pedidos y fidelizar clientas para que tu negocio crezca.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- SOBRE YELIBER / CTA UNIRSE -->
+      <section id="sobre-yeliber">
+        <div class="section-header">
+          <p class="section-kicker">Conociéndonos</p>
+          <h2 class="section-title">Sobre Yeliber Castro</h2>
+        </div>
+
+        <div class="about-layout">
+          <div class="about-text">
+            <p>
+              Yeliber es una amante de la belleza que encontró en Farmasi una forma de
+              unir su pasión por el maquillaje con una oportunidad real de emprendimiento.
+            </p>
+            <p>
+              Hoy acompaña a otras mujeres a descubrir productos que se sienten bien en la
+              piel y un modelo de negocio flexible que se adapta a su estilo de vida.
+            </p>
+
+            <ul class="about-list">
+              <li>Enfoque en belleza real, práctica y alcanzable para todas.</li>
+              <li>Acompañamiento cercano para nuevas influencers y consultoras.</li>
+              <li>Contenido educativo sobre productos, rutinas y mindset emprendedor.</li>
+            </ul>
+          </div>
+
+          <aside class="cta-panel">
+            <strong>¿Te imaginas generar ingresos hablando de belleza?</strong>
+            <p style="margin-top: 6px;">
+              Si te gusta probar maquillajes, compartir recomendaciones y ayudar a otras
+              mujeres a sentirse seguras, Farmasi puede ser una gran oportunidad para ti.
+            </p>
+            <p class="small-note">
+              Escríbeme por WhatsApp y te explico cómo empezar paso a paso, sin presión y
+              con total transparencia.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto">
+        <div class="section-header">
+          <p class="section-kicker">Hablemos</p>
+          <h2 class="section-title">Contacto & redes</h2>
+          <p class="section-subtitle">
+            Si quieres productos, asesoría o conocer el plan de negocio Farmasi, este es
+            el mejor lugar para empezar.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-row">
+            <div>
+              <div class="contact-label">WhatsApp</div>
+              <!-- Reemplaza por el número real de Yeliber -->
+              <a
+                href="https://wa.me/51XXXXXXXXX"
+                target="_blank"
+                style="color: #9f1239; font-weight: 500;"
+                >Escríbeme por WhatsApp</a
+              >
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div>
+              <div class="contact-label">Redes sociales</div>
+              <div class="social-links">
+                <!-- Reemplaza estos enlaces por las redes reales de Yeliber -->
+                <a href="https://www.instagram.com/" target="_blank" class="social-pill">
+                  Instagram
+                </a>
+                <a href="https://www.facebook.com/" target="_blank" class="social-pill">
+                  Facebook
+                </a>
+                <a href="https://tiktok.com/" target="_blank" class="social-pill">
+                  TikTok
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size: 0.8rem; color: var(--muted); margin-top: 8px;">
+            Respondo lo antes posible ✨ Cuéntame si buscas productos, asesoría de
+            belleza o información para ser parte de Farmasi.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>
+        © <span id="year"></span> Yeliber Castro · Beautiful Influencer Farmasi
+      </span>
+      <span style="font-size: 0.78rem;">Landing creada con amor y mucho glitter ✨</span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Scroll suave para enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener("click", (e) => {
+        const targetId = a.getAttribute("href").substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({
+            top: target.offsetTop - 20,
+            behavior: "smooth",
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
