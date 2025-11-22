@@ -477,7 +477,7 @@
 
     .whatsapp-number {
       margin-top: 6px;
-      display: inline-flex;
+      display: flex;          /* antes inline-flex */
       align-items: center;
       gap: 6px;
       font-size: 0.86rem;
@@ -486,9 +486,10 @@
       text-decoration: none;
     }
 
+
     .whatsapp-icon {
-      width: 18px;
-      height: 18px;
+      width: 24px;
+      height: 24px;
       object-fit: contain;
     }
 
@@ -629,6 +630,13 @@
         position: fixed !important;
       }
     }
+    /* Forzar UNA sola línea SOLO en PC */
+    @media (min-width: 1024px) {
+      #contacto .section-subtitle {
+        white-space: nowrap;
+      }
+    }
+
   </style>
 </head>
 <body>
