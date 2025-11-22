@@ -117,6 +117,7 @@
       gap: 8px;
       flex-wrap: wrap;
       justify-content: flex-end;
+      align-items: center;
     }
 
     .nav-link {
@@ -149,6 +150,41 @@
     .nav-link.primary:hover {
       filter: brightness(1.05);
       transform: translateY(-1px);
+    }
+
+    /* Botón burbuja WhatsApp en cabecera */
+
+    .whatsapp-bubble {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #f9a8d4, #ec4899);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.6);
+      animation: whatsapp-pulse 1.4s infinite;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+    }
+
+    .whatsapp-bubble-inner {
+      font-size: 1rem;
+      color: #ffffff;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    @keyframes whatsapp-pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.6);
+      }
+      100% {
+        transform: scale(1.08);
+        box-shadow: 0 0 0 8px rgba(236, 72, 153, 0);
+      }
     }
 
     /* HERO */
@@ -366,7 +402,7 @@
       font-size: 0.86rem;
     }
 
-    /* SOBRE YELIBER + BLOQUE DERECHO */
+    /* SOBRE YELIBER + VIDEO */
 
     .about-layout {
       display: grid;
@@ -403,23 +439,27 @@
       margin-top: 2px;
     }
 
-    .cta-panel {
-      background: var(--primary-soft);
+    .video-panel {
+      background: var(--bg-alt);
       border-radius: var(--radius-lg);
-      border: 1px dashed #f9a8d4;
-      padding: 14px 16px;
-      font-size: 0.86rem;
-      color: #9f1239;
+      border: 1px solid var(--border);
+      padding: 0;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
     }
 
-    .cta-panel strong {
-      font-weight: 600;
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
     }
 
-    .cta-panel .small-note {
-      font-size: 0.78rem;
-      color: #be123c;
-      margin-top: 8px;
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
 
     /* CONTACTO */
@@ -446,6 +486,29 @@
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.14em;
+    }
+
+    .whatsapp-number {
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.86rem;
+      color: #16a34a;
+    }
+
+    .whatsapp-logo-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #22c55e;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      color: #ffffff;
+      font-weight: 700;
+      line-height: 1;
     }
 
     .social-links {
@@ -565,8 +628,19 @@
       <nav>
         <a href="#sobre-yeliber" class="nav-link">Sobre mí</a>
         <a href="#beneficios" class="nav-link">Beneficios</a>
-        <a href="#productos" class="nav-link">Productos</a>
+        <a href="https://www.farmasi.pe/yeliberyeli" class="nav-link" target="_blank" rel="noopener">
+          Productos
+        </a>
         <a href="#contacto" class="nav-link primary">Contacto</a>
+        <!-- Botón WhatsApp rosado animado -->
+        <a
+          href="https://wa.me/51922740544"
+          class="whatsapp-bubble"
+          target="_blank"
+          aria-label="Escríbeme por WhatsApp"
+        >
+          <span class="whatsapp-bubble-inner">W</span>
+        </a>
       </nav>
     </header>
 
@@ -581,7 +655,7 @@
           <p class="hero-subtitle">
             Sé la protagonista de tu propio brillo
           </p>
-            <p class="hero-note" style="text-align: justify;">
+          <p class="hero-note" style="text-align: justify;">
             Soy Beautiful Influencer Farmasi y te ayudo a elegir los mejores productos de belleza para cuidar tu piel y resaltar tu confianza. También te muestro cómo convertir esta pasión en un emprendimiento rentable desde casa, respaldado por una marca internacional que uso y recomiendo.
             Ofrezco asesoría personalizada según tu tipo de piel, tu estilo y tus metas. Y si deseas emprender, te acompaño paso a paso para que construyas ingresos reales y desarrolles tu propio camino.
             Este es un espacio para mujeres decididas a crecer, superar sus límites y cumplir sus objetivos. Si estás lista para avanzar, aquí encontrarás el apoyo para lograrlo.
@@ -599,16 +673,15 @@
           </div>
 
           <div class="hero-actions">
-            <!-- 🔁 Reemplaza el enlace con el WhatsApp real de Yeliber -->
             <a
-              href="https://wa.me/51XXXXXXXXX?text=Hola%20Yeliber,%20quiero%20información%20sobre%20los%20productos%20Farmasi"
+              href="https://www.farmasi.pe/yeliberyeli"
               class="btn btn-primary"
               target="_blank"
             >
               🛒 Quiero comprar productos
             </a>
             <a
-              href="https://wa.me/51XXXXXXXXX?text=Hola%20Yeliber,%20me%20interesa%20ser%20Beauty%20Influencer%20Farmasi"
+              href="https://www.farmasi.pe/yeliberyeli/register/beautyinfluencer"
               class="btn btn-outline"
               target="_blank"
             >
@@ -702,7 +775,7 @@
         </div>
       </section>
 
-      <!-- SOBRE YELIBER / CTA UNIRSE -->
+      <!-- SOBRE YELIBER / VIDEO -->
       <section id="sobre-yeliber">
         <div class="section-header">
           <p class="section-kicker">Conociéndonos</p>
@@ -727,16 +800,17 @@
             </ul>
           </div>
 
-          <aside class="cta-panel">
-            <strong>¿Te imaginas generar ingresos hablando de belleza?</strong>
-            <p style="margin-top: 6px;">
-              Si te gusta probar maquillajes, compartir recomendaciones y ayudar a otras
-              mujeres a sentirse seguras, Farmasi puede ser una gran oportunidad para ti.
-            </p>
-            <p class="small-note">
-              Escríbeme por WhatsApp y te explico cómo empezar paso a paso, sin presión y
-              con total transparencia.
-            </p>
+          <!-- Video de YouTube -->
+          <aside class="video-panel">
+            <div class="video-wrapper">
+              <iframe
+                src="https://www.youtube.com/embed/Ov3-8N4CBCc"
+                title="Video de presentación de Yeliber Castro"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
           </aside>
         </div>
       </section>
@@ -755,13 +829,15 @@
           <div class="contact-row">
             <div>
               <div class="contact-label">WhatsApp</div>
-              <!-- Reemplaza por el número real de Yeliber -->
               <a
                 href="https://wa.me/51922740544"
                 target="_blank"
                 style="color: #9f1239; font-weight: 500;"
-                >Escríbeme por WhatsApp</a
-              >
+              >Escríbeme por WhatsApp</a>
+              <div class="whatsapp-number">
+                <span class="whatsapp-logo-circle">W</span>
+                <span>+51 922 740 544</span>
+              </div>
             </div>
           </div>
 
@@ -769,15 +845,14 @@
             <div>
               <div class="contact-label">Redes sociales</div>
               <div class="social-links">
-                <!-- Reemplaza estos enlaces por las redes reales de Yeliber -->
                 <a href="https://www.instagram.com/" target="_blank" class="social-pill">
-                  Instagram
+                  📸 Instagram
                 </a>
                 <a href="https://www.facebook.com/" target="_blank" class="social-pill">
-                  Facebook
+                  📘 Facebook
                 </a>
                 <a href="https://tiktok.com/" target="_blank" class="social-pill">
-                  TikTok
+                  🎵 TikTok
                 </a>
               </div>
             </div>
