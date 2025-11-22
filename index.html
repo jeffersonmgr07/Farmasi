@@ -10,10 +10,14 @@
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Fuentes separadas y correctas -->
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap"
+    rel="stylesheet"
   />
 
   <style>
@@ -103,38 +107,45 @@
       gap: 1px;
     }
 
+    /* NOMBRE YELIBER: Cinzel + degradado + sombra + destello */
     .brand-text strong {
       font-family: 'Cinzel', serif;
       font-weight: 700;
       font-size: 1.8rem;
       letter-spacing: 0.03em;
-    
-      /* 🎨 Degradado base del texto */
+
+      /* Degradado base + capa del destello */
       background-image:
         linear-gradient(120deg, #ec407a, #f9739b, #fbb8d1),
         linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.9) 50%, transparent 100%);
       background-size: 100% 100%, 50% 100%;
       background-repeat: no-repeat;
-      background-position: 0 0, -150% 0; /* el destello empieza fuera de escena */
-    
+      background-position: 0 0, -150% 0;
+
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-    
-      text-shadow: 0 0 12px rgba(236, 72, 153, 0.6);
-    
-      /* ✨ Animación de destello */
-      animation: shine-text 3s ease-in-out infinite;
-    }
 
-    .brand-text strong {
-      font-weight: 600;
-      letter-spacing: 0.02em;
+      text-shadow: 0 0 12px rgba(236, 72, 153, 0.6);
+
+      animation: shine-text 3s ease-in-out infinite;
     }
 
     .brand-text span {
       font-size: 0.8rem;
       color: var(--muted);
+    }
+
+    @keyframes shine-text {
+      0% {
+        background-position: 0 0, -150% 0;
+      }
+      60% {
+        background-position: 0 0, 250% 0;
+      }
+      100% {
+        background-position: 0 0, 250% 0;
+      }
     }
 
     nav {
@@ -212,17 +223,6 @@
       100% {
         transform: scale(1.08);
         box-shadow: 0 0 0 8px rgba(236, 72, 153, 0);
-      }
-    }
-    @keyframes shine-text {
-      0% {
-        background-position: 0 0, -150% 0;
-      }
-      60% {
-        background-position: 0 0, 250% 0; /* el destello cruza el texto */
-      }
-      100% {
-        background-position: 0 0, 250% 0;
       }
     }
 
@@ -513,7 +513,7 @@
 
     .whatsapp-number {
       margin-top: 6px;
-      display: flex;          /* antes inline-flex */
+      display: flex;
       align-items: center;
       gap: 6px;
       font-size: 0.86rem;
@@ -521,7 +521,6 @@
       font-weight: 500;
       text-decoration: none;
     }
-
 
     .whatsapp-icon {
       width: 24px;
@@ -590,7 +589,6 @@
         justify-content: flex-start;
       }
 
-      /* HERO en una sola columna, foto encima del texto */
       .hero {
         display: flex;
         flex-direction: column;
@@ -646,7 +644,7 @@
         padding-inline: 10px;
       }
 
-      /* WhatsApp cabecera más grande y fijo arriba a la derecha */
+      /* WhatsApp cabecera flotante en móvil (si ya te gusta así, lo dejamos) */
       .whatsapp-bubble {
         width: 50px !important;
         height: 50px !important;
@@ -666,13 +664,13 @@
         position: fixed !important;
       }
     }
-    /* Forzar UNA sola línea SOLO en PC */
+
+    /* Forzar UNA sola línea SOLO en PC para el subtítulo de contacto (si quieres así) */
     @media (min-width: 1024px) {
       #contacto .section-subtitle {
         white-space: nowrap;
       }
     }
-
   </style>
 </head>
 <body>
@@ -882,7 +880,7 @@
         <div class="section-header">
           <p class="section-kicker">Hablemos</p>
           <h2 class="section-title">Contacto & redes</h2>
-          <p class="section-subtitle" style="text-align: justify;">
+          <p class="section-subtitle">
             Si quieres productos, asesoría o conocer el plan de negocio Farmasi, este es el mejor lugar para empezar.
           </p>
         </div>
@@ -943,8 +941,7 @@
       <span>
         © <span id="year"></span> Yeliber Castro · Beautiful Influencer Farmasi
       </span>
-      <span style="font-size: 0.78rem;">⚠️ Esta NO es una página web oficial de Farmasi, está web fue diseñada por una Beauty Influencer con el fin de educar, reclutar y vender. 
-✨</span>
+      <span style="font-size: 0.78rem;">⚠️ Esta NO es una página web oficial de Farmasi, está web fue diseñada por una Beauty Influencer con el fin de educar, reclutar y vender. ✨</span>
     </footer>
   </div>
 
