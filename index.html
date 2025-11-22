@@ -554,39 +554,26 @@
     /* RESPONSIVE TABLET / MOBILE GENERAL */
 
     @media (max-width: 880px) {
-      .page {
-        padding-inline: 14px;
-      }
-
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav {
-        justify-content: flex-start;
-      }
-
-      /* En móvil/tablet el hero se vuelve columna
-         y movemos la foto arriba del texto */
       .hero {
         display: flex;
         flex-direction: column;
       }
-
+    
       .hero-photo {
         order: -1;
         margin-bottom: 18px;
+        display: flex;
+        justify-content: center;
       }
-
+    
       .hero-photo img {
-        max-width: 75%;
+        max-width: 95%;      /* antes 75%, ahora casi todo el ancho */
       }
-
+    
       .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
+    
       .about-layout {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -598,46 +585,46 @@
       .hero-title {
         font-size: 1.9rem;
       }
-
+    
       .hero-actions {
         flex-direction: column;
         align-items: stretch;
       }
-
+    
       .grid {
         grid-template-columns: minmax(0, 1fr);
       }
-
+    
       .contact-row {
         flex-direction: column;
         align-items: flex-start;
       }
-
+    
       nav {
         gap: 6px;
       }
-
+    
       .nav-link {
         font-size: 0.8rem;
         padding-inline: 10px;
       }
-
+    
       /* WhatsApp cabecera más grande y fijo arriba a la derecha */
       .whatsapp-bubble {
-        width: 46px !important;
-        height: 46px !important;
+        width: 50px !important;      /* un poco más grande */
+        height: 50px !important;
         padding: 8px !important;
         position: fixed !important;
-        top: 12px;
-        right: 12px;
+        top: 8px;                    /* más pegado al borde superior */
+        right: 10px;
         z-index: 9999;
       }
-
+    
       .whatsapp-bubble-icon {
-        width: 28px !important;
-        height: 28px !important;
+        width: 30px !important;      /* icono más grande */
+        height: 30px !important;
       }
-
+    
       header nav .whatsapp-bubble {
         position: fixed !important;
       }
