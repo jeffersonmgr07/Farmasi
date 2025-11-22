@@ -172,8 +172,8 @@
     }
 
     .whatsapp-bubble-icon {
-      width: 24px;
-      height: 24px;
+      width: 18px;
+      height: 18px;
       object-fit: contain;
     }
 
@@ -192,7 +192,7 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); /* 👉 2 columnas */
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); /* 2 columnas en desktop */
       gap: 24px;
       margin-bottom: 40px;
       align-items: center;
@@ -497,11 +497,12 @@
       font-size: 0.86rem;
       color: #9f1239;       /* mismo color que el texto Escríbeme por WhatsApp */
       font-weight: 500;     /* negrita */
+      text-decoration: none;
     }
 
     .whatsapp-icon {
-      width: 24px;
-      height: 24px;
+      width: 18px;
+      height: 18px;
       object-fit: contain;
     }
 
@@ -550,7 +551,7 @@
       flex-wrap: wrap;
     }
 
-    /* RESPONSIVE */
+    /* RESPONSIVE TABLET / MOBILE GENERAL */
 
     @media (max-width: 880px) {
       .page {
@@ -566,12 +567,20 @@
         justify-content: flex-start;
       }
 
+      /* En móvil/tablet el hero se vuelve columna
+         y movemos la foto arriba del texto */
       .hero {
-        grid-template-columns: minmax(0, 1fr);  /* en tablet+mobile pasa a 1 columna */
+        display: flex;
+        flex-direction: column;
       }
 
       .hero-photo {
-        margin-top: 10px;
+        order: -1;
+        margin-bottom: 18px;
+      }
+
+      .hero-photo img {
+        max-width: 75%;
       }
 
       .grid {
@@ -582,6 +591,8 @@
         grid-template-columns: minmax(0, 1fr);
       }
     }
+
+    /* RESPONSIVE MOBILE PEQUEÑO */
 
     @media (max-width: 640px) {
       .hero-title {
@@ -609,6 +620,26 @@
       .nav-link {
         font-size: 0.8rem;
         padding-inline: 10px;
+      }
+
+      /* WhatsApp cabecera más grande y fijo arriba a la derecha */
+      .whatsapp-bubble {
+        width: 46px !important;
+        height: 46px !important;
+        padding: 8px !important;
+        position: fixed !important;
+        top: 12px;
+        right: 12px;
+        z-index: 9999;
+      }
+
+      .whatsapp-bubble-icon {
+        width: 28px !important;
+        height: 28px !important;
+      }
+
+      header nav .whatsapp-bubble {
+        position: fixed !important;
       }
     }
   </style>
@@ -642,7 +673,7 @@
           target="_blank"
           aria-label="Escríbeme por WhatsApp"
         >
-          <img src="img/Logo whatsapp 2.png" alt="WhatsApp" class="whatsapp-bubble-icon" />
+          <img src="img/Logo whatsapp 1.png" alt="WhatsApp" class="whatsapp-bubble-icon" />
         </a>
       </nav>
     </header>
@@ -693,7 +724,7 @@
           </div>
         </div>
 
-        <!-- FOTO A LA DERECHA -->
+        <!-- FOTO -->
         <aside class="hero-photo">
           <img
             src="img/Foto Yeliber 1.jpg"
@@ -823,7 +854,7 @@
         <div class="section-header">
           <p class="section-kicker">Hablemos</p>
           <h2 class="section-title">Contacto & redes</h2>
-          <p class="section-subtitle" style="text-align: justify;">
+          <p class="section-subtitle" style="white-space: nowrap;">
             Si quieres productos, asesoría o conocer el plan de negocio Farmasi, este es el mejor lugar para empezar.
           </p>
         </div>
@@ -837,9 +868,13 @@
                 target="_blank"
                 style="color: #9f1239; font-weight: 500;"
               >Escríbeme por WhatsApp</a>
-              <a href="https://wa.me/51922740544" target="_blank" class="whatsapp-number" style="text-decoration:none;">
+              <a
+                href="https://wa.me/51922740544"
+                target="_blank"
+                class="whatsapp-number"
+              >
                 <img src="img/Logo whatsapp 1.png" alt="WhatsApp" class="whatsapp-icon" />
-                <span style="color:#9f1239; font-weight:500;">+51 922 740 544</span>
+                <span>+51 922 740 544</span>
               </a>
             </div>
           </div>
@@ -880,7 +915,7 @@
       <span>
         © <span id="year"></span> Yeliber Castro · Beautiful Influencer Farmasi
       </span>
-      <span style="font-size: 0.78rem;">Esta NO es una página web oficial de Farmasi, está web fue diseñada por una Beauty Influencer con el fin de educar, reclutar y vender. ✨</span>
+      <span style="font-size: 0.78rem;">Landing creada con amor y mucho glitter ✨</span>
     </footer>
   </div>
 
