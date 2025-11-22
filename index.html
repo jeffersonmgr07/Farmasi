@@ -78,23 +78,22 @@
     }
 
     .brand-mark {
-      width: 42px;
-      height: 42px;
+      width: 56px;
+      height: 56px;
       border-radius: 999px;
-      background: conic-gradient(
-        from 200deg,
-        #fce4ec,
-        #f8bbd0,
-        #ec407a,
-        #ad1457,
-        #fce4ec
-      );
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(233, 30, 99, 0.35);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #ffffff;
-      font-weight: 700;
-      box-shadow: 0 12px 28px rgba(233, 30, 99, 0.45);
+      overflow: hidden;
+      padding: 4px;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .brand-text {
@@ -156,9 +155,8 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 28px;
-      align-items: center;
+      grid-template-columns: minmax(0, 1fr); /* 👉 ahora una sola columna */
+      gap: 24px;
       margin-bottom: 40px;
     }
 
@@ -187,8 +185,15 @@
     .hero-subtitle {
       font-size: 0.98rem;
       color: var(--muted);
-      margin-bottom: 16px;
-      max-width: 520px;
+      margin-bottom: 10px;
+      max-width: 620px;
+    }
+
+    .hero-extra {
+      font-size: 0.94rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+      max-width: 620px;
     }
 
     .hero-tags {
@@ -258,73 +263,14 @@
     .hero-note {
       font-size: 0.8rem;
       color: var(--muted);
-    }
-
-    /* HERO RIGHT CARD */
-
-    .hero-card {
-      background: var(--bg-alt);
-      border-radius: 24px;
-      padding: 18px 18px 20px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: -30%;
-      background:
-        radial-gradient(circle at 0 0, rgba(248, 187, 208, 0.7), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(244, 114, 182, 0.45), transparent 55%);
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    .hero-card-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-avatar {
-      width: 92px;
-      height: 92px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #fce7f3, #f9a8d4);
-      border: 4px solid #ffffff;
-      box-shadow: 0 15px 35px rgba(236, 72, 153, 0.45);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       margin-bottom: 10px;
-      overflow: hidden;
-    }
-
-    .hero-avatar span {
-      font-size: 0.75rem;
-      color: #9f1239;
-      text-align: center;
-      padding: 0 8px;
-    }
-
-    .hero-name {
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-
-    .hero-role {
-      font-size: 0.86rem;
-      color: #9f1239;
-      margin-bottom: 6px;
     }
 
     .hero-stats {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 10px;
+      margin-top: 4px;
       font-size: 0.8rem;
     }
 
@@ -536,14 +482,6 @@
         justify-content: flex-start;
       }
 
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-card {
-        order: -1;
-      }
-
       .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -588,7 +526,10 @@
     <!-- HEADER -->
     <header>
       <div class="brand">
-        <div class="brand-mark">YC</div>
+        <div class="brand-mark">
+          <!-- 👇 Aquí va tu logo -->
+          <img src="Farmasi/img/Logo Farmasi by Yeliber Rojo.png" alt="Logo Farmasi by Yeliber" />
+        </div>
         <div class="brand-text">
           <strong>Yeliber Castro</strong>
           <span>Beautiful Influencer · Farmasi</span>
@@ -604,7 +545,7 @@
     </header>
 
     <main>
-      <!-- HERO -->
+      <!-- HERO (solo columna izquierda, todo unido) -->
       <section class="hero">
         <div>
           <p class="hero-kicker">Farmasi · Belleza & Emprendimiento</p>
@@ -615,6 +556,10 @@
             Beautiful Influencer Farmasi. Te ayudo a elegir los mejores productos de
             belleza y también a construir tu propio emprendimiento con una marca
             internacional que amo y recomiendo.
+          </p>
+          <p class="hero-extra">
+            Te muestro cómo brillar con productos que cuidan tu piel y, si lo deseas,
+            cómo convertir esa pasión en un negocio rentable desde casa.
           </p>
 
           <div class="hero-tags">
@@ -646,30 +591,13 @@
             Asesoría personalizada según tu tipo de piel, estilo de maquillaje y metas
             de ingresos. Te acompaño en cada paso del proceso.
           </p>
-        </div>
 
-        <!-- HERO CARD DERECHA -->
-        <aside class="hero-card" aria-label="Presentación de Yeliber">
-          <div class="hero-card-inner">
-            <div class="hero-avatar">
-              <!-- Cuando tengas la foto de Yeliber, reemplaza este span por:
-                   <img src="ruta-de-la-foto.jpg" alt="Foto de Yeliber Castro" /> -->
-              <span>Aquí va tu foto ✨</span>
-            </div>
-            <div class="hero-name">Yeliber Castro</div>
-            <div class="hero-role">Beautiful Influencer · Farmasi</div>
-            <p style="font-size: 0.86rem; color: var(--muted);">
-              Te muestro cómo brillar con productos que cuidan tu piel y, si lo deseas,
-              cómo convertir esa pasión en un negocio rentable desde casa.
-            </p>
-
-            <div class="hero-stats">
-              <div class="stat-pill">Rutinas de skincare</div>
-              <div class="stat-pill">Looks de maquillaje</div>
-              <div class="stat-pill">Formación para tu equipo</div>
-            </div>
+          <div class="hero-stats">
+            <div class="stat-pill">Rutinas de skincare</div>
+            <div class="stat-pill">Looks de maquillaje</div>
+            <div class="stat-pill">Formación para tu equipo</div>
           </div>
-        </aside>
+        </div>
       </section>
 
       <!-- BENEFICIOS -->
