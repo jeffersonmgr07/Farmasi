@@ -17,12 +17,11 @@
 
   <style>
     :root {
-      /* 🎨 Paleta inspirada en Farmasi (puedes ajustar hex si tienes los exactos) */
       --bg: #fff9fb;
       --bg-alt: #ffffff;
-      --primary: #e91e63;      /* Rosa principal */
-      --primary-soft: #fde4ee; /* Rosa muy suave */
-      --accent: #f8b4c6;       /* Detalles */
+      --primary: #e91e63;
+      --primary-soft: #fde4ee;
+      --accent: #f8b4c6;
       --text: #111827;
       --muted: #6b7280;
       --border: #f3e5ef;
@@ -75,6 +74,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      flex-shrink: 0;
     }
 
     .brand-mark {
@@ -118,6 +118,7 @@
       flex-wrap: wrap;
       justify-content: flex-end;
       align-items: center;
+      flex: 1;
     }
 
     .nav-link {
@@ -169,6 +170,7 @@
       border: none;
       padding: 6px;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .whatsapp-bubble-icon {
@@ -192,7 +194,7 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); /* 2 columnas en desktop */
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
       gap: 24px;
       margin-bottom: 40px;
       align-items: center;
@@ -304,22 +306,6 @@
       margin-bottom: 10px;
     }
 
-    .hero-stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 4px;
-      font-size: 0.8rem;
-    }
-
-    .stat-pill {
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: #fff1f2;
-      color: #9f1239;
-      border: 1px solid #fecdd3;
-    }
-
     /* FOTO HERO DERECHA */
 
     .hero-photo {
@@ -332,8 +318,8 @@
       width: 100%;
       max-width: 380px;
       border-radius: 24px;
-      border: 6px solid #ffffff;              /* marco blanco */
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18); /* sombra suave */
+      border: 6px solid #ffffff;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
       object-fit: cover;
     }
 
@@ -452,7 +438,7 @@
     .video-wrapper {
       position: relative;
       width: 100%;
-      padding-top: 56.25%; /* 16:9 */
+      padding-top: 56.25%;
     }
 
     .video-wrapper iframe {
@@ -491,12 +477,12 @@
 
     .whatsapp-number {
       margin-top: 6px;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
       font-size: 0.86rem;
-      color: #9f1239;       /* mismo color que el texto Escríbeme por WhatsApp */
-      font-weight: 500;     /* negrita */
+      color: #9f1239;
+      font-weight: 500;
       text-decoration: none;
     }
 
@@ -551,80 +537,94 @@
       flex-wrap: wrap;
     }
 
-    /* RESPONSIVE TABLET / MOBILE GENERAL */
+    /* TABLET / MOBILE GENERAL */
 
     @media (max-width: 880px) {
+      .page {
+        padding-inline: 14px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+
+      /* HERO en una sola columna, foto encima del texto */
       .hero {
         display: flex;
         flex-direction: column;
       }
-    
+
       .hero-photo {
         order: -1;
         margin-bottom: 18px;
         display: flex;
         justify-content: center;
       }
-    
+
       .hero-photo img {
-        max-width: 95%;      /* antes 75%, ahora casi todo el ancho */
+        max-width: 95%;
       }
-    
+
       .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-    
+
       .about-layout {
         grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    /* RESPONSIVE MOBILE PEQUEÑO */
+    /* MOBILE PEQUEÑO */
 
     @media (max-width: 640px) {
       .hero-title {
         font-size: 1.9rem;
       }
-    
+
       .hero-actions {
         flex-direction: column;
         align-items: stretch;
       }
-    
+
       .grid {
         grid-template-columns: minmax(0, 1fr);
       }
-    
+
       .contact-row {
         flex-direction: column;
         align-items: flex-start;
       }
-    
+
       nav {
         gap: 6px;
       }
-    
+
       .nav-link {
         font-size: 0.8rem;
         padding-inline: 10px;
       }
-    
+
       /* WhatsApp cabecera más grande y fijo arriba a la derecha */
       .whatsapp-bubble {
-        width: 50px !important;      /* un poco más grande */
+        width: 50px !important;
         height: 50px !important;
         padding: 8px !important;
         position: fixed !important;
-        top: 8px;                    /* más pegado al borde superior */
+        top: 8px;
         right: 10px;
         z-index: 9999;
       }
-    
+
       .whatsapp-bubble-icon {
-        width: 30px !important;      /* icono más grande */
+        width: 30px !important;
         height: 30px !important;
       }
-    
+
       header nav .whatsapp-bubble {
         position: fixed !important;
       }
@@ -637,7 +637,6 @@
     <header>
       <div class="brand">
         <div class="brand-mark">
-          <!-- 👇 Aquí va tu logo -->
           <img src="img/farmasi-logo-redondo.jpg" alt="Logo Farmasi by Yeliber" />
         </div>
         <div class="brand-text">
@@ -653,7 +652,6 @@
           Productos
         </a>
         <a href="#contacto" class="nav-link primary">Contacto</a>
-        <!-- Botón WhatsApp rosado animado con imagen -->
         <a
           href="https://wa.me/51922740544"
           class="whatsapp-bubble"
@@ -821,7 +819,6 @@
             </ul>
           </div>
 
-          <!-- Video de YouTube -->
           <aside class="video-panel">
             <div class="video-wrapper">
               <iframe
