@@ -82,7 +82,7 @@
     }
 
     .header-logo img {
-      height: 80px; /* puedes ajustar este valor para agrandar o achicar el logo */
+      height: 80px; /* ajusta este valor para agrandar o achicar el logo */
       max-width: 100%;
       object-fit: contain;
     }
@@ -364,7 +364,35 @@
       font-size: 0.86rem;
     }
 
-    /* ABOUT (eliminado el texto + video en esta versión) */
+    /* VIDEO / CONOCIÉNDONOS */
+
+    #sobre-yeliber .section-subtitle {
+      max-width: 640px;
+    }
+
+    .video-panel {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 0;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
 
     /* CONTACTO */
 
@@ -678,6 +706,67 @@
         </div>
       </section>
 
+      <!-- BELLEZA CON PROPÓSITO (PRODUCTOS / SERVICIOS) -->
+      <section id="productos">
+        <div class="section-header">
+          <p class="section-kicker">Belleza con propósito</p>
+          <h2 class="section-title">¿Qué puedo hacer por ti?</h2>
+          <p class="section-subtitle">
+            Ya sea que quieras probar los productos Farmasi o unirte como Beautiful
+            Influencer, tengo algo preparado para ti.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3 class="card-title">Asesoría de productos</h3>
+            <p>
+              Analizamos juntas tu tipo de piel, tus gustos y tu rutina diaria para
+              recomendarte una rutina Farmasi que realmente funcione para ti.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Rutinas & looks personalizados</h3>
+            <p>
+              Te propongo looks de maquillaje para el día a día, eventos especiales o
+              contenido para redes, utilizando tus productos favoritos de Farmasi.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Formación para tu negocio</h3>
+            <p>
+              Te enseño cómo empezar a recomendar, crear contenido sencillo, gestionar
+              pedidos y fidelizar clientas para que tu negocio crezca.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONOCIÉNDONOS / VIDEO -->
+      <section id="sobre-yeliber">
+        <div class="section-header">
+          <p class="section-kicker">Conociéndonos</p>
+          <h2 class="section-title">Sobre Yeliber Castro</h2>
+          <p class="section-subtitle">
+            Conoce un poco más de mi historia, mi pasión por la belleza y cómo Farmasi se convirtió en parte de mi proyecto de vida.
+          </p>
+        </div>
+
+        <div class="video-panel">
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/Ov3-8N4CBCc"
+              title="Video de presentación de Yeliber Castro"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
       <!-- CONTACTO -->
       <section id="contacto">
         <div class="section-header">
@@ -751,7 +840,7 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Scroll suave para enlaces internos (beneficios / contacto)
+    // Scroll suave para enlaces internos (beneficios / contacto / sobre-yeliber)
     document.querySelectorAll('a[href^="#"]').forEach((a) => {
       a.addEventListener("click", (e) => {
         const targetId = a.getAttribute("href").substring(1);
