@@ -10,7 +10,7 @@
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Fuentes separadas y correctas -->
+  <!-- Fuentes -->
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
@@ -82,78 +82,9 @@
     }
 
     .header-logo img {
-      height: 72px;
+      height: 80px; /* puedes ajustar este valor para agrandar o achicar el logo */
       max-width: 100%;
       object-fit: contain;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
-    .brand-mark {
-      width: 56px;
-      height: 56px;
-      border-radius: 999px;
-      background: #ffffff;
-      box-shadow: 0 12px 28px rgba(233, 30, 99, 0.35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      padding: 4px;
-    }
-
-    .brand-mark img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    /* (ya no se usa, pero lo dejamos por si luego quieres volver a texto animado)
-    .brand-text strong {
-      font-family: 'Alan Sans', sans-serif;
-      font-weight: 700;
-      font-size: 2.1rem;
-      letter-spacing: 0.03em;
-      background-image:
-        linear-gradient(120deg, #ec407a, #f9739b, #fbb8d1),
-        linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.9) 50%, transparent 100%);
-      background-size: 100% 100%, 50% 100%;
-      background-repeat: no-repeat;
-      background-position: 0 0, -150% 0;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 2px 5px rgba(236, 72, 153, 0.35);
-      animation: shine-text 3s ease-in-out infinite;
-    }
-    */
-
-    .brand-text span {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    @keyframes shine-text {
-      0% {
-        background-position: 0 0, -150% 0;
-      }
-      60% {
-        background-position: 0 0, 250% 0;
-      }
-      100% {
-        background-position: 0 0, 250% 0;
-      }
     }
 
     nav {
@@ -433,65 +364,7 @@
       font-size: 0.86rem;
     }
 
-    /* SOBRE YELIBER + VIDEO */
-
-    .about-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 24px;
-      align-items: flex-start;
-    }
-
-    .about-text p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .about-list {
-      list-style: none;
-      margin-top: 8px;
-      padding-left: 0;
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
-
-    .about-list li {
-      margin-bottom: 6px;
-      display: flex;
-      gap: 6px;
-      align-items: flex-start;
-    }
-
-    .about-list li::before {
-      content: "✦";
-      color: #ec407a;
-      font-size: 0.85rem;
-      margin-top: 2px;
-    }
-
-    .video-panel {
-      background: var(--bg-alt);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      padding: 0;
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-    }
-
-    .video-wrapper {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%;
-    }
-
-    .video-wrapper iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
+    /* ABOUT (eliminado el texto + video en esta versión) */
 
     /* CONTACTO */
 
@@ -616,10 +489,6 @@
       .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
-      .about-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
     }
 
     /* MOBILE PEQUEÑO */
@@ -688,12 +557,23 @@
       </div>
 
       <nav>
-        <a href="#sobre-yeliber" class="nav-link">Sobre mí</a>
+        <!-- Eliminado Sobre mí -->
         <a href="#beneficios" class="nav-link">Beneficios</a>
-        <a href="https://www.farmasi.pe/yeliberyeli" class="nav-link" target="_blank" rel="noopener">
-          Productos
+        <a
+          href="docs/Catalogo-Peru-2025-web (12).pdf"
+          class="nav-link"
+          download
+        >
+          Catálogo virtual
         </a>
-        <a href="#contacto" class="nav-link primary">Contacto</a>
+        <a
+          href="https://www.farmasi.pe/yeliberyeli"
+          class="nav-link primary"
+          target="_blank"
+          rel="noopener"
+        >
+          Comprar online
+        </a>
         <a
           href="https://wa.me/51922740544"
           class="whatsapp-bubble"
@@ -798,83 +678,6 @@
         </div>
       </section>
 
-      <!-- PRODUCTOS / SERVICIOS -->
-      <section id="productos">
-        <div class="section-header">
-          <p class="section-kicker">Belleza con propósito</p>
-          <h2 class="section-title">¿Qué puedo hacer por ti?</h2>
-          <p class="section-subtitle">
-            Ya sea que quieras probar los productos Farmasi o unirte como Beautiful
-            Influencer, tengo algo preparado para ti.
-          </p>
-        </div>
-
-        <div class="grid">
-          <article class="card">
-            <h3 class="card-title">Asesoría de productos</h3>
-            <p>
-              Analizamos juntas tu tipo de piel, tus gustos y tu rutina diaria para
-              recomendarte una rutina Farmasi que realmente funcione para ti.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">Rutinas & looks personalizados</h3>
-            <p>
-              Te propongo looks de maquillaje para el día a día, eventos especiales o
-              contenido para redes, utilizando tus productos favoritos de Farmasi.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">Formación para tu negocio</h3>
-            <p>
-              Te enseño cómo empezar a recomendar, crear contenido sencillo, gestionar
-              pedidos y fidelizar clientas para que tu negocio crezca.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- SOBRE YELIBER / VIDEO -->
-      <section id="sobre-yeliber">
-        <div class="section-header">
-          <p class="section-kicker">Conociéndonos</p>
-          <h2 class="section-title">Sobre Yeliber Castro</h2>
-        </div>
-
-        <div class="about-layout">
-          <div class="about-text">
-            <p class="hero-note" style="text-align: justify;">
-              Yeliber es una amante de la belleza que encontró en Farmasi una forma de
-              unir su pasión por el maquillaje con una oportunidad real de emprendimiento.
-            </p>
-            <p class="hero-note" style="text-align: justify;">
-              Hoy acompaña a otras mujeres a descubrir productos que se sienten bien en la
-              piel y un modelo de negocio flexible que se adapta a su estilo de vida.
-            </p>
-
-            <ul class="about-list">
-              <li>Enfoque en belleza real, práctica y alcanzable para todas.</li>
-              <li>Acompañamiento cercano para nuevas influencers y consultoras.</li>
-              <li>Contenido educativo sobre productos, rutinas y mindset emprendedor.</li>
-            </ul>
-          </div>
-
-          <aside class="video-panel">
-            <div class="video-wrapper">
-              <iframe
-                src="https://www.youtube.com/embed/Ov3-8N4CBCc"
-                title="Video de presentación de Yeliber Castro"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
-            </div>
-          </aside>
-        </div>
-      </section>
-
       <!-- CONTACTO -->
       <section id="contacto">
         <div class="section-header">
@@ -948,7 +751,7 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Scroll suave para enlaces internos
+    // Scroll suave para enlaces internos (beneficios / contacto)
     document.querySelectorAll('a[href^="#"]').forEach((a) => {
       a.addEventListener("click", (e) => {
         const targetId = a.getAttribute("href").substring(1);
