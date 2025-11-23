@@ -75,6 +75,18 @@
       margin-bottom: 28px;
     }
 
+    .header-logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .header-logo img {
+      height: 64px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
     .brand {
       display: flex;
       align-items: center;
@@ -107,34 +119,25 @@
       gap: 1px;
     }
 
-    /* NOMBRE YELIBER: Cinzel + degradado + sombra + destello */
+    /* (ya no se usa, pero lo dejamos por si luego quieres volver a texto animado)
     .brand-text strong {
       font-family: 'Alan Sans', sans-serif;
       font-weight: 700;
-      font-size: 2.1rem;           /* ajusta si lo quieres más grande o más chico */
+      font-size: 2.1rem;
       letter-spacing: 0.03em;
-    
-      /* Degradado + destello */
       background-image:
         linear-gradient(120deg, #ec407a, #f9739b, #fbb8d1),
         linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.9) 50%, transparent 100%);
       background-size: 100% 100%, 50% 100%;
       background-repeat: no-repeat;
       background-position: 0 0, -150% 0;
-    
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-    
-      /* Sombra suave glam */
       text-shadow: 0 2px 5px rgba(236, 72, 153, 0.35);
-    
-      /* Animación del destello */
       animation: shine-text 3s ease-in-out infinite;
     }
-
-
-
+    */
 
     .brand-text span {
       font-size: 0.8rem;
@@ -649,7 +652,6 @@
         padding-inline: 10px;
       }
 
-      /* WhatsApp cabecera flotante en móvil (si ya te gusta así, lo dejamos) */
       .whatsapp-bubble {
         width: 50px !important;
         height: 50px !important;
@@ -670,7 +672,6 @@
       }
     }
 
-    /* Forzar UNA sola línea SOLO en PC para el subtítulo de contacto (si quieres así) */
     @media (min-width: 1024px) {
       #contacto .section-subtitle {
         white-space: nowrap;
@@ -682,14 +683,8 @@
   <div class="page">
     <!-- HEADER -->
     <header>
-      <div class="brand">
-        <div class="brand-mark">
-          <img src="img/farmasi-logo-redondo.jpg" alt="Logo Farmasi by Yeliber" />
-        </div>
-        <div class="brand-text">
-          <strong>Yeliber Castro</strong>
-          <span>Beautiful Influencer · Farmasi Perú</span>
-        </div>
+      <div class="header-logo">
+        <img src="img/Logo Farmasi by Yeliber 2.png" alt="Logo Farmasi by Yeliber" />
       </div>
 
       <nav>
@@ -897,7 +892,7 @@
               <a
                 href="https://wa.me/51922740544"
                 target="_blank"
-                style="color: #9f1239; font-weight: 500;"
+                style="color: #9f1239; font-weight: 500; display:block;"
               >Escríbeme por WhatsApp</a>
               <a
                 href="https://wa.me/51922740544"
@@ -946,7 +941,7 @@
       <span>
         © <span id="year"></span> Yeliber Castro · Beautiful Influencer Farmasi
       </span>
-      <span style="font-size: 0.78rem;">⚠️ Esta NO es una página web oficial de Farmasi, está web fue diseñada por una Beauty Influencer con el fin de educar, reclutar y vender. ✨</span>
+      <span style="font-size: 0.78rem;">⚠️ Esta NO es una página web oficial de Farmasi, esta web fue diseñada por una Beauty Influencer con el fin de educar, reclutar y vender. ✨</span>
     </footer>
   </div>
 
