@@ -37,7 +37,7 @@
       padding: 20px 16px 40px;
     }
 
-    /* HEADER SIMPLE */
+    /* HEADER */
 
     header {
       display: flex;
@@ -126,7 +126,7 @@
     /* TITULO */
 
     .page-title {
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .page-title h1 {
@@ -135,6 +135,76 @@
     }
 
     .page-title p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* FILTROS: CATEGORÍAS + BUSCADOR */
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 18px;
+      align-items: center;
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .category-chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #fecdd3;
+      background: #fff;
+      font-size: 0.8rem;
+      color: #9f1239;
+      cursor: pointer;
+      transition: 0.18s ease-out;
+    }
+
+    .category-chip:hover {
+      background: #ffe4ef;
+      transform: translateY(-1px);
+    }
+
+    .category-chip.active {
+      background: linear-gradient(135deg, #ec407a, #f9739b);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 8px 20px rgba(236,64,122,0.4);
+    }
+
+    .search-box {
+      max-width: 260px;
+      width: 100%;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 8px 28px 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      outline: none;
+      transition: 0.18s ease-out;
+    }
+
+    .search-input:focus {
+      border-color: #f9a8d4;
+      box-shadow: 0 0 0 2px #ffe4ef;
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 9px;
+      top: 50%;
+      transform: translateY(-50%);
       font-size: 0.9rem;
       color: var(--muted);
     }
@@ -160,6 +230,13 @@
       }
       .products-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .filters {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search-box {
+        max-width: 100%;
       }
     }
 
@@ -442,12 +519,28 @@
     <!-- TÍTULO -->
     <section class="page-title">
       <h1>Productos destacados Farmasi</h1>
-      <p>Agrega tus favoritos al carrito y luego coordinamos el pago y entrega por WhatsApp.</p>
+      <p>Filtra por categoría, busca por nombre y agrega al carrito para coordinar tu pedido por WhatsApp.</p>
+    </section>
+
+    <!-- FILTROS -->
+    <section class="filters">
+      <div class="categories" id="categories">
+        <!-- chips de categorías por JS -->
+      </div>
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Buscar producto..."
+        />
+        <span class="search-icon">🔍</span>
+      </div>
     </section>
 
     <!-- GRID PRODUCTOS -->
     <section class="products-grid" id="productsGrid">
-      <!-- Los productos se insertan por JavaScript -->
+      <!-- productos por JS -->
     </section>
   </div>
 
@@ -478,41 +571,183 @@
   </div>
 
   <script>
-    // 1) Catálogo de productos (puedes editar / ampliar)
+    // 1) Catálogo de productos (20 con categorías)
     const products = [
+      // Maquillaje
       {
         id: 1,
         name: "Base líquida Stay Matte",
         description: "Control de brillo y acabado natural para todo el día.",
         price: 59.90,
-        image: "img/prod-base-stay-matte.jpg"
+        image: "img/prod-base-stay-matte.jpg",
+        category: "Maquillaje",
       },
       {
         id: 2,
-        name: "Labial líquido Matte",
-        description: "Colores intensos, larga duración y sensación ligera.",
+        name: "Labial líquido Matte Rouge",
+        description: "Color intenso, larga duración y sensación ligera.",
         price: 39.90,
-        image: "img/prod-labial-matte.jpg"
+        image: "img/prod-labial-matte-rouge.jpg",
+        category: "Maquillaje",
       },
       {
         id: 3,
-        name: "Máscara de pestañas Optimal Style",
-        description: "Volumen y definición sin grumos.",
-        price: 49.90,
-        image: "img/prod-mascara.jpg"
+        name: "Paleta de sombras Nude Glam",
+        description: "Tonos neutros para looks de día y noche.",
+        price: 89.90,
+        image: "img/prod-paleta-nude.jpg",
+        category: "Maquillaje",
       },
       {
         id: 4,
-        name: "Serum de Vitamina C",
-        description: "Ilumina tu piel y unifica el tono.",
-        price: 79.90,
-        image: "img/prod-serum-vitc.jpg"
+        name: "Máscara de pestañas Optimal Style",
+        description: "Volumen y definición sin grumos.",
+        price: 49.90,
+        image: "img/prod-mascara.jpg",
+        category: "Maquillaje",
       },
-      // Agrega más productos repitiendo este formato
+      {
+        id: 5,
+        name: "Rubor en polvo Blush Touch",
+        description: "Toque de color saludable para tus mejillas.",
+        price: 44.90,
+        image: "img/prod-blush.jpg",
+        category: "Maquillaje",
+      },
+
+      // Cuidado de la piel
+      {
+        id: 6,
+        name: "Serum de Vitamina C",
+        description: "Ilumina la piel y ayuda a unificar el tono.",
+        price: 79.90,
+        image: "img/prod-serum-vitc.jpg",
+        category: "Cuidado de la piel",
+      },
+      {
+        id: 7,
+        name: "Crema hidratante Aqua",
+        description: "Hidratación ligera para uso diario.",
+        price: 69.90,
+        image: "img/prod-crema-aqua.jpg",
+        category: "Cuidado de la piel",
+      },
+      {
+        id: 8,
+        name: "Gel limpiador facial Pure Skin",
+        description: "Limpia sin resecar, ideal para piel mixta.",
+        price: 49.90,
+        image: "img/prod-gel-limpiador.jpg",
+        category: "Cuidado de la piel",
+      },
+      {
+        id: 9,
+        name: "Contorno de ojos Revitalizing",
+        description: "Ayuda a disminuir la apariencia de ojeras.",
+        price: 74.90,
+        image: "img/prod-contorno-ojos.jpg",
+        category: "Cuidado de la piel",
+      },
+      {
+        id: 10,
+        name: "Protector solar facial SPF50",
+        description: "Protección diaria contra rayos UV.",
+        price: 59.90,
+        image: "img/prod-protector-solar.jpg",
+        category: "Cuidado de la piel",
+      },
+
+      // Fragancias
+      {
+        id: 11,
+        name: "Perfume Femme Elegance",
+        description: "Aroma floral con toques frutales.",
+        price: 119.90,
+        image: "img/prod-perfume-femme.jpg",
+        category: "Fragancias",
+      },
+      {
+        id: 12,
+        name: "Perfume Homme Intense",
+        description: "Fragancia masculina intensa y sofisticada.",
+        price: 129.90,
+        image: "img/prod-perfume-homme.jpg",
+        category: "Fragancias",
+      },
+      {
+        id: 13,
+        name: "Body Mist Fresh Blossom",
+        description: "Rocío corporal fresco para uso diario.",
+        price: 39.90,
+        image: "img/prod-body-mist.jpg",
+        category: "Fragancias",
+      },
+
+      // Cuidado personal
+      {
+        id: 14,
+        name: "Shampoo Revitalizante",
+        description: "Fortalece y da brillo al cabello.",
+        price: 34.90,
+        image: "img/prod-shampoo.jpg",
+        category: "Cuidado personal",
+      },
+      {
+        id: 15,
+        name: "Acondicionador Nutritivo",
+        description: "Suaviza y desenreda sin dejar pesado.",
+        price: 34.90,
+        image: "img/prod-acondicionador.jpg",
+        category: "Cuidado personal",
+      },
+      {
+        id: 16,
+        name: "Crema corporal NutriCare",
+        description: "Hidratación profunda para todo el cuerpo.",
+        price: 44.90,
+        image: "img/prod-crema-corporal.jpg",
+        category: "Cuidado personal",
+      },
+      {
+        id: 17,
+        name: "Jabón líquido Soft Touch",
+        description: "Limpieza suave con aroma delicado.",
+        price: 24.90,
+        image: "img/prod-jabon-liquido.jpg",
+        category: "Cuidado personal",
+      },
+
+      // Sets especiales
+      {
+        id: 18,
+        name: "Set Maquillaje Día Perfecto",
+        description: "Base + labial + máscara de pestañas.",
+        price: 149.90,
+        image: "img/prod-set-dia.jpg",
+        category: "Sets especiales",
+      },
+      {
+        id: 19,
+        name: "Set Skincare Rutina Básica",
+        description: "Limpiador + crema hidratante + protector solar.",
+        price: 159.90,
+        image: "img/prod-set-skincare.jpg",
+        category: "Sets especiales",
+      },
+      {
+        id: 20,
+        name: "Set Regalo Fragancias",
+        description: "Mini perfumes para sorprender.",
+        price: 99.90,
+        image: "img/prod-set-fragancias.jpg",
+        category: "Sets especiales",
+      },
     ];
 
-    // 2) Estado del carrito (se guarda en localStorage)
+    // Estado del carrito
     let cart = [];
+    let selectedCategory = "Todos";
+    let searchTerm = "";
 
     const productsGrid = document.getElementById("productsGrid");
     const cartCountEl = document.getElementById("cartCount");
@@ -522,8 +757,10 @@
     const openCartBtn = document.getElementById("openCartBtn");
     const closeCartBtn = document.getElementById("closeCartBtn");
     const checkoutBtn = document.getElementById("checkoutBtn");
+    const categoriesContainer = document.getElementById("categories");
+    const searchInput = document.getElementById("searchInput");
 
-    // Cargar carrito de localStorage si existe
+    // LocalStorage
     function loadCart() {
       const saved = localStorage.getItem("farmasi_cart");
       if (saved) {
@@ -538,10 +775,58 @@
       localStorage.setItem("farmasi_cart", JSON.stringify(cart));
     }
 
-    // Renderizar productos
+    // Construir chips de categorías
+    function renderCategories() {
+      const cats = Array.from(new Set(products.map(p => p.category))).sort();
+      categoriesContainer.innerHTML = "";
+
+      const allChip = document.createElement("button");
+      allChip.className = "category-chip active";
+      allChip.textContent = "Todos";
+      allChip.dataset.category = "Todos";
+      categoriesContainer.appendChild(allChip);
+
+      cats.forEach(cat => {
+        const chip = document.createElement("button");
+        chip.className = "category-chip";
+        chip.textContent = cat;
+        chip.dataset.category = cat;
+        categoriesContainer.appendChild(chip);
+      });
+
+      categoriesContainer.querySelectorAll(".category-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          selectedCategory = chip.dataset.category;
+          // actualizar clase activa
+          categoriesContainer.querySelectorAll(".category-chip").forEach(c => c.classList.remove("active"));
+          chip.classList.add("active");
+          renderProducts();
+        });
+      });
+    }
+
+    // Render productos con filtros
     function renderProducts() {
       productsGrid.innerHTML = "";
-      products.forEach((p) => {
+
+      const filtered = products.filter(p => {
+        const matchCategory =
+          selectedCategory === "Todos" || p.category === selectedCategory;
+        const term = searchTerm.trim().toLowerCase();
+        const matchSearch =
+          term === "" ||
+          p.name.toLowerCase().includes(term) ||
+          p.description.toLowerCase().includes(term);
+        return matchCategory && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        productsGrid.innerHTML =
+          "<p style='font-size:0.9rem;color:#6b7280;'>No se encontraron productos con esos filtros.</p>";
+        return;
+      }
+
+      filtered.forEach((p) => {
         const card = document.createElement("article");
         card.className = "product-card";
         card.innerHTML = `
@@ -560,7 +845,6 @@
         productsGrid.appendChild(card);
       });
 
-      // Listeners para botones "Agregar"
       document.querySelectorAll(".btn-add").forEach((btn) => {
         btn.addEventListener("click", () => {
           const id = parseInt(btn.getAttribute("data-id"), 10);
@@ -569,7 +853,6 @@
       });
     }
 
-    // Agregar al carrito
     function addToCart(productId) {
       const existing = cart.find((item) => item.id === productId);
       if (existing) {
@@ -589,13 +872,10 @@
       updateCartUI();
     }
 
-    // Actualizar interfaz del carrito
     function updateCartUI() {
-      // Cantidad total
       const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
       cartCountEl.textContent = totalItems;
 
-      // Lista de items
       cartItemsEl.innerHTML = "";
       if (cart.length === 0) {
         cartItemsEl.innerHTML = "<p style='font-size:0.86rem;color:#6b7280;'>Tu carrito está vacío por ahora.</p>";
@@ -621,7 +901,6 @@
           cartItemsEl.appendChild(row);
         });
 
-        // Listeners + / - y quitar
         document.querySelectorAll(".qty-btn").forEach((btn) => {
           btn.addEventListener("click", () => {
             const id = parseInt(btn.getAttribute("data-id"), 10);
@@ -638,7 +917,6 @@
         });
       }
 
-      // Total
       const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
       cartTotalEl.textContent = `S/ ${total.toFixed(2)}`;
     }
@@ -689,14 +967,20 @@
       message += `%0ATotal estimado: S/ ${total.toFixed(2)}%0A%0A`;
       message += "¿Me ayudas con las opciones de pago (Mercado Pago / Izipay) y entrega, por favor?";
 
-      // Reemplaza por tu número real de WhatsApp
-      const phone = "51922740544";
+      const phone = "51922740544"; // tu número
       const waUrl = `https://wa.me/${phone}?text=${message}`;
       window.open(waUrl, "_blank");
     });
 
+    // Búsqueda
+    searchInput.addEventListener("input", () => {
+      searchTerm = searchInput.value;
+      renderProducts();
+    });
+
     // Inicializar
     loadCart();
+    renderCategories();
     renderProducts();
   </script>
 </body>
