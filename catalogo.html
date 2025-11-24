@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Catálogo Farmasi | Yeliber Castro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --primary: #e91e63;
+      --primary-soft: #ffe4ef;
+      --bg: #fff9fb;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #f3e5ef;
+      --radius: 14px;
+      --shadow-soft: 0 12px 30px rgba(0,0,0,0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Poppins", system-ui, sans-serif;
+      background: radial-gradient(circle at top, #ffeef5 0, #fff9fb 40%, #ffffff 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    /* HEADER SIMPLE */
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 56px;
+      object-fit: contain;
+    }
+
+    .logo span {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .btn-link {
+      font-size: 0.9rem;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+      cursor: pointer;
+      transition: 0.18s ease-out;
+    }
+
+    .btn-link:hover {
+      border-color: #f9a8d4;
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .cart-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, #ec407a, #f9739b);
+      color: #fff;
+      cursor: pointer;
+      font-size: 0.9rem;
+      box-shadow: 0 10px 24px rgba(236,64,122,0.45);
+      transition: 0.18s ease-out;
+    }
+
+    .cart-button:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .cart-count {
+      min-width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #fff;
+      color: #ec407a;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    /* TITULO */
+
+    .page-title {
+      margin-bottom: 18px;
+    }
+
+    .page-title h1 {
+      font-size: 1.6rem;
+      margin-bottom: 4px;
+    }
+
+    .page-title p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* GRID PRODUCTOS */
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .products-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.86rem;
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--primary-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-name {
+      font-weight: 600;
+      min-height: 38px;
+    }
+
+    .product-desc {
+      color: var(--muted);
+      font-size: 0.8rem;
+      min-height: 32px;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .product-price {
+      font-weight: 600;
+      color: #9f1239;
+      font-size: 0.9rem;
+    }
+
+    .btn-add {
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #ec407a, #f9739b);
+      color: #fff;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 8px 20px rgba(236,64,122,0.35);
+      transition: 0.18s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-add:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    /* CARRITO LATERAL */
+
+    .cart-panel-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      display: none;
+      justify-content: flex-end;
+      z-index: 9998;
+    }
+
+    .cart-panel-backdrop.open {
+      display: flex;
+    }
+
+    .cart-panel {
+      width: 100%;
+      max-width: 360px;
+      background: #fff;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cart-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .cart-header h2 {
+      font-size: 1.1rem;
+    }
+
+    .cart-close {
+      border: none;
+      background: transparent;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 4px;
+      margin-bottom: 8px;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #f3e5ef;
+      font-size: 0.85rem;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item img {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      object-fit: cover;
+      background: var(--primary-soft);
+    }
+
+    .cart-item-main {
+      flex: 1;
+    }
+
+    .cart-item-name {
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .cart-item-price {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .cart-item-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .qty-controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border-radius: 999px;
+      border: 1px solid #fecdd3;
+      padding: 2px 6px;
+      font-size: 0.78rem;
+    }
+
+    .qty-btn {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 0 4px;
+      font-size: 0.85rem;
+      color: #9f1239;
+    }
+
+    .qty-number {
+      min-width: 16px;
+      text-align: center;
+    }
+
+    .remove-btn {
+      border: none;
+      background: transparent;
+      font-size: 0.75rem;
+      color: #b91c1c;
+      cursor: pointer;
+    }
+
+    .cart-footer {
+      border-top: 1px solid #f3e5ef;
+      padding-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-total-label {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .cart-total-amount {
+      font-weight: 600;
+      color: #9f1239;
+    }
+
+    .cart-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .btn-checkout {
+      margin-top: 4px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #ec407a, #f9739b);
+      color: #fff;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(236,64,122,0.45);
+      display: inline-flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .btn-checkout:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <header>
+      <div class="logo">
+        <img src="img/Logo Farmasi by Yeliber 2.png" alt="Farmasi Yeliber" />
+        <span>Catálogo de productos</span>
+      </div>
+      <div class="header-actions">
+        <a href="index.html" class="btn-link">Volver a la página principal</a>
+        <button class="cart-button" id="openCartBtn">
+          🛒 Carrito
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- TÍTULO -->
+    <section class="page-title">
+      <h1>Productos destacados Farmasi</h1>
+      <p>Agrega tus favoritos al carrito y luego coordinamos el pago y entrega por WhatsApp.</p>
+    </section>
+
+    <!-- GRID PRODUCTOS -->
+    <section class="products-grid" id="productsGrid">
+      <!-- Los productos se insertan por JavaScript -->
+    </section>
+  </div>
+
+  <!-- PANEL CARRITO -->
+  <div class="cart-panel-backdrop" id="cartBackdrop">
+    <div class="cart-panel">
+      <div class="cart-header">
+        <h2>Tu carrito</h2>
+        <button class="cart-close" id="closeCartBtn">&times;</button>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <!-- Items del carrito -->
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span class="cart-total-label">Total estimado:</span>
+          <span class="cart-total-amount" id="cartTotal">S/ 0.00</span>
+        </div>
+        <p class="cart-note">
+          Este carrito es una pre-reserva. Al continuar, se abrirá WhatsApp con el detalle
+          para confirmar tu pedido y coordinar el pago (Mercado Pago, Izipay, etc.).
+        </p>
+        <button class="btn-checkout" id="checkoutBtn">
+          Continuar por WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1) Catálogo de productos (puedes editar / ampliar)
+    const products = [
+      {
+        id: 1,
+        name: "Base líquida Stay Matte",
+        description: "Control de brillo y acabado natural para todo el día.",
+        price: 59.90,
+        image: "img/prod-base-stay-matte.jpg"
+      },
+      {
+        id: 2,
+        name: "Labial líquido Matte",
+        description: "Colores intensos, larga duración y sensación ligera.",
+        price: 39.90,
+        image: "img/prod-labial-matte.jpg"
+      },
+      {
+        id: 3,
+        name: "Máscara de pestañas Optimal Style",
+        description: "Volumen y definición sin grumos.",
+        price: 49.90,
+        image: "img/prod-mascara.jpg"
+      },
+      {
+        id: 4,
+        name: "Serum de Vitamina C",
+        description: "Ilumina tu piel y unifica el tono.",
+        price: 79.90,
+        image: "img/prod-serum-vitc.jpg"
+      },
+      // Agrega más productos repitiendo este formato
+    ];
+
+    // 2) Estado del carrito (se guarda en localStorage)
+    let cart = [];
+
+    const productsGrid = document.getElementById("productsGrid");
+    const cartCountEl = document.getElementById("cartCount");
+    const cartBackdrop = document.getElementById("cartBackdrop");
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartTotalEl = document.getElementById("cartTotal");
+    const openCartBtn = document.getElementById("openCartBtn");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+
+    // Cargar carrito de localStorage si existe
+    function loadCart() {
+      const saved = localStorage.getItem("farmasi_cart");
+      if (saved) {
+        cart = JSON.parse(saved);
+      } else {
+        cart = [];
+      }
+      updateCartUI();
+    }
+
+    function saveCart() {
+      localStorage.setItem("farmasi_cart", JSON.stringify(cart));
+    }
+
+    // Renderizar productos
+    function renderProducts() {
+      productsGrid.innerHTML = "";
+      products.forEach((p) => {
+        const card = document.createElement("article");
+        card.className = "product-card";
+        card.innerHTML = `
+          <div class="product-image">
+            <img src="${p.image}" alt="${p.name}" onerror="this.src='img/farmasi-logo-redondo.jpg'" />
+          </div>
+          <h3 class="product-name">${p.name}</h3>
+          <p class="product-desc">${p.description}</p>
+          <div class="product-footer">
+            <span class="product-price">S/ ${p.price.toFixed(2)}</span>
+            <button class="btn-add" data-id="${p.id}">
+              + Agregar
+            </button>
+          </div>
+        `;
+        productsGrid.appendChild(card);
+      });
+
+      // Listeners para botones "Agregar"
+      document.querySelectorAll(".btn-add").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = parseInt(btn.getAttribute("data-id"), 10);
+          addToCart(id);
+        });
+      });
+    }
+
+    // Agregar al carrito
+    function addToCart(productId) {
+      const existing = cart.find((item) => item.id === productId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        const product = products.find((p) => p.id === productId);
+        if (!product) return;
+        cart.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          qty: 1,
+        });
+      }
+      saveCart();
+      updateCartUI();
+    }
+
+    // Actualizar interfaz del carrito
+    function updateCartUI() {
+      // Cantidad total
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountEl.textContent = totalItems;
+
+      // Lista de items
+      cartItemsEl.innerHTML = "";
+      if (cart.length === 0) {
+        cartItemsEl.innerHTML = "<p style='font-size:0.86rem;color:#6b7280;'>Tu carrito está vacío por ahora.</p>";
+      } else {
+        cart.forEach((item) => {
+          const row = document.createElement("div");
+          row.className = "cart-item";
+          row.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" onerror="this.src='img/farmasi-logo-redondo.jpg'" />
+            <div class="cart-item-main">
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">S/ ${item.price.toFixed(2)} c/u</div>
+            </div>
+            <div class="cart-item-actions">
+              <div class="qty-controls">
+                <button class="qty-btn" data-id="${item.id}" data-action="minus">-</button>
+                <span class="qty-number">${item.qty}</span>
+                <button class="qty-btn" data-id="${item.id}" data-action="plus">+</button>
+              </div>
+              <button class="remove-btn" data-id="${item.id}">Quitar</button>
+            </div>
+          `;
+          cartItemsEl.appendChild(row);
+        });
+
+        // Listeners + / - y quitar
+        document.querySelectorAll(".qty-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const id = parseInt(btn.getAttribute("data-id"), 10);
+            const action = btn.getAttribute("data-action");
+            updateQty(id, action === "plus" ? 1 : -1);
+          });
+        });
+
+        document.querySelectorAll(".remove-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const id = parseInt(btn.getAttribute("data-id"), 10);
+            removeFromCart(id);
+          });
+        });
+      }
+
+      // Total
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      cartTotalEl.textContent = `S/ ${total.toFixed(2)}`;
+    }
+
+    function updateQty(productId, diff) {
+      const item = cart.find((i) => i.id === productId);
+      if (!item) return;
+      item.qty += diff;
+      if (item.qty <= 0) {
+        cart = cart.filter((i) => i.id !== productId);
+      }
+      saveCart();
+      updateCartUI();
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter((i) => i.id !== productId);
+      saveCart();
+      updateCartUI();
+    }
+
+    // Abrir / cerrar carrito
+    openCartBtn.addEventListener("click", () => {
+      cartBackdrop.classList.add("open");
+    });
+
+    closeCartBtn.addEventListener("click", () => {
+      cartBackdrop.classList.remove("open");
+    });
+
+    cartBackdrop.addEventListener("click", (e) => {
+      if (e.target === cartBackdrop) {
+        cartBackdrop.classList.remove("open");
+      }
+    });
+
+    // Checkout: enviar detalle por WhatsApp
+    checkoutBtn.addEventListener("click", () => {
+      if (cart.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
+      let message = "Hola Yeliber, quiero hacer este pedido:%0A%0A";
+      cart.forEach((item) => {
+        message += `• ${item.name} (x${item.qty}) - S/ ${item.price.toFixed(2)}%0A`;
+      });
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      message += `%0ATotal estimado: S/ ${total.toFixed(2)}%0A%0A`;
+      message += "¿Me ayudas con las opciones de pago (Mercado Pago / Izipay) y entrega, por favor?";
+
+      // Reemplaza por tu número real de WhatsApp
+      const phone = "51922740544";
+      const waUrl = `https://wa.me/${phone}?text=${message}`;
+      window.open(waUrl, "_blank");
+    });
+
+    // Inicializar
+    loadCart();
+    renderProducts();
+  </script>
+</body>
+</html>
