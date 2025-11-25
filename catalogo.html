@@ -90,24 +90,27 @@
     }
 
     .cart-button {
-      position: relative;
+      position: fixed;          /* 👉 flotante siempre visible */
+      bottom: 20px;
+      right: 16px;
+      z-index: 9999;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 7px 14px;
+      padding: 9px 16px;
       border-radius: 999px;
       border: 1px solid transparent;
       background: linear-gradient(135deg, #ec407a, #f9739b);
       color: #fff;
       cursor: pointer;
       font-size: 0.9rem;
-      box-shadow: 0 10px 24px rgba(236,64,122,0.45);
+      box-shadow: 0 12px 28px rgba(236,64,122,0.55);
       transition: 0.18s ease-out;
     }
 
     .cart-button:hover {
       filter: brightness(1.05);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
     .cart-count {
@@ -238,6 +241,10 @@
       .search-box {
         max-width: 100%;
       }
+      .cart-button {
+        bottom: 16px;
+        right: 12px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -256,6 +263,8 @@
       flex-direction: column;
       gap: 6px;
       font-size: 0.86rem;
+      position: relative;
+      overflow: hidden;
     }
 
     .product-image {
@@ -315,6 +324,8 @@
       box-shadow: 0 8px 20px rgba(236,64,122,0.35);
       transition: 0.18s ease-out;
       white-space: nowrap;
+      position: relative;
+      overflow: visible;
     }
 
     .btn-add:hover {
@@ -497,6 +508,39 @@
       filter: brightness(1.05);
       transform: translateY(-1px);
     }
+
+    /* ✨ ANIMACIÓN DE DESTELLOS / FUEGOS ARTIFICIALES */
+
+    .burst {
+      position: fixed;
+      pointer-events: none;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      z-index: 9998;
+    }
+
+    .burst span {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #fde7f3 0, #ec407a 60%, transparent 100%);
+      animation: particle 0.6s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes particle {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(0.3);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -509,6 +553,7 @@
       </div>
       <div class="header-actions">
         <a href="index.html" class="btn-link">Volver a la página principal</a>
+        <!-- El botón carrito está aquí, pero se posiciona flotante con CSS -->
         <button class="cart-button" id="openCartBtn">
           🛒 Carrito
           <span class="cart-count" id="cartCount">0</span>
@@ -797,7 +842,6 @@
       categoriesContainer.querySelectorAll(".category-chip").forEach(chip => {
         chip.addEventListener("click", () => {
           selectedCategory = chip.dataset.category;
-          // actualizar clase activa
           categoriesContainer.querySelectorAll(".category-chip").forEach(c => c.classList.remove("active"));
           chip.classList.add("active");
           renderProducts();
@@ -846,9 +890,10 @@
       });
 
       document.querySelectorAll(".btn-add").forEach((btn) => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", (e) => {
           const id = parseInt(btn.getAttribute("data-id"), 10);
           addToCart(id);
+          createBurst(e.clientX, e.clientY); // ✨ animación de destello
         });
       });
     }
@@ -977,6 +1022,31 @@
       searchTerm = searchInput.value;
       renderProducts();
     });
+
+    // ✨ Función para crear destellos tipo fuegos artificiales
+    function createBurst(x, y) {
+      const burst = document.createElement("div");
+      burst.className = "burst";
+      burst.style.left = x + "px";
+      burst.style.top = y + "px";
+
+      const particles = 10;
+      for (let i = 0; i < particles; i++) {
+        const p = document.createElement("span");
+        const angle = (2 * Math.PI / particles) * i;
+        const distance = 40 + Math.random() * 30;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+        p.style.setProperty("--tx", tx + "px");
+        p.style.setProperty("--ty", ty + "px");
+        burst.appendChild(p);
+      }
+
+      document.body.appendChild(burst);
+      setTimeout(() => {
+        burst.remove();
+      }, 650);
+    }
 
     // Inicializar
     loadCart();
