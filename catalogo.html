@@ -1099,10 +1099,16 @@
       // Maquillaje
       {
         id: 1,
-        name: "Base líquida Stay Matte",
-        shortDescription: "Control de brillo y acabado natural para todo el día.",
-        descriptionLong:
-          "Base líquida de alta cobertura con acabado mate, ideal para piel mixta o grasa. Ayuda a controlar el brillo durante el día sin resecar la piel. Se difumina fácilmente y deja un acabado suave y uniforme.",
+        name: "Age Reversist Limpiador Exfoliante",
+        shortDescription: "¡Prevención de arrugas y líneas finas! El limpiador exfoliante de Age Reversist limpia suavemente la piel sin dañarla, gracias a sus micro partículas de exfoliación.",
+        descriptionLong:  `
+          <strong>PASO 1 DE LA COLECCIÓN AGE REVERSIST : LIMPIADOR EXFOLIANTE</strong>
+          
+          Limpia y exfolia suavemente la piel, preparando el rostro para los siguientes pasos de tu rutina anti-edad.
+          
+          <strong>Modo de uso:</strong>
+          Aplicar sobre la piel húmeda con masajes circulares.
+          `,
         usage:
           "Aplicar una pequeña cantidad en el rostro con brocha, esponja o dedos, difuminando desde el centro hacia afuera. Usar sobre piel limpia e hidratada.",
         price: 49.90,           // oferta
@@ -1758,7 +1764,7 @@
     // MODAL DETALLES
     function openProductModal(product) {
       modalTitle.textContent = product.name;
-      modalLongDesc.textContent = product.descriptionLong || "";
+      modalLongDesc.innerHTML = (product.descriptionLong || "").replace(/\n/g, "<br>");
       modalUsage.textContent = product.usage || "";
       modalImage.src = product.image;
       modalImage.onerror = () => {
