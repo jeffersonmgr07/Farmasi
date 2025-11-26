@@ -2,39 +2,81 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Catálogo Farmasi | Yeliber Castro</title>
+  <title>Yeliber Castro | Beautiful Influencer Farmasi Perú</title>
+  <!-- Vista previa para redes sociales (Open Graph) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Yeliber Castro | Beautiful Influencer Farmasi Perú">
+  <meta property="og:description" content="Asesoría de belleza, productos Farmasi, emprendimiento femenino y más.">
+  <meta property="og:image" content="https://jeffersonmgr07.github.io/Farmasi/img/preview.jpg">
+  <meta property="og:url" content="https://jeffersonmgr07.github.io/Farmasi/">
+  <meta property="og:site_name" content="Farmasi Perú con Yeliber Castro">
+  
+  <!-- Para vista previa en teléfonos (WhatsApp y Messenger) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jeffersonmgr07.github.io/Farmasi/img/preview.jpg">
+  <meta name="twitter:title" content="Yeliber Castro | Beautiful Influencer Farmasi Perú">
+  <meta name="twitter:description" content="Asesoría de belleza, productos Farmasi y oportunidades de negocio.">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Landing page de presentación de Yeliber Castro, Beautiful Influencer Farmasi."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Fuentes -->
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
   />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
     :root {
-      --primary: #e91e63;
-      --primary-soft: #ffe4ef;
       --bg: #fff9fb;
+      --bg-alt: #ffffff;
+      --primary: #e91e63;
+      --primary-soft: #fde4ee;
+      --accent: #f8b4c6;
       --text: #111827;
       --muted: #6b7280;
       --border: #f3e5ef;
-      --radius: 14px;
-      --shadow-soft: 0 12px 30px rgba(0,0,0,0.06);
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.06);
+      --radius-lg: 18px;
+      --transition-fast: 180ms ease-out;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      font-family: "Poppins", system-ui, sans-serif;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background: radial-gradient(circle at top, #ffeef5 0, #fff9fb 40%, #ffffff 100%);
       color: var(--text);
+      line-height: 1.6;
       min-height: 100vh;
     }
 
-    a { text-decoration: none; color: inherit; }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .page {
-      max-width: 1100px;
+      max-width: 1040px;
       margin: 0 auto;
-      padding: 20px 16px 40px;
+      padding: 20px 16px 48px;
     }
 
     /* HEADER */
@@ -44,784 +86,506 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
-    .logo {
+    .header-logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      flex-shrink: 0;
     }
 
-    .logo img {
-      height: 56px;
+    .header-logo img {
+      height: 80px; /* ajusta este valor para agrandar o achicar el logo */
+      max-width: 100%;
       object-fit: contain;
     }
 
-    .logo span {
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--muted);
-    }
-
-    .header-actions {
+    nav {
       display: flex;
-      align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
       justify-content: flex-end;
+      align-items: center;
+      flex: 1;
     }
 
-    .btn-link {
-      font-size: 0.9rem;
-      padding: 7px 14px;
+    .nav-link {
+      padding: 6px 14px;
       border-radius: 999px;
-      border: 1px solid var(--border);
-      background: #fff;
+      border: 1px solid transparent;
+      font-size: 0.85rem;
       color: var(--muted);
+      background: transparent;
       cursor: pointer;
-      transition: 0.18s ease-out;
+      transition: background var(--transition-fast), border var(--transition-fast),
+        color var(--transition-fast), transform var(--transition-fast);
     }
 
-    .btn-link:hover {
+    .nav-link:hover {
+      background: #fdf2f8;
       border-color: #f9a8d4;
       color: var(--text);
       transform: translateY(-1px);
     }
 
-    .cart-button {
-      position: fixed;
-      bottom: 20px;
-      right: 16px;
-      z-index: 9999;
+    .nav-link.primary {
+      background: linear-gradient(135deg, #ec407a, #f472b6);
+      color: #ffffff;
+      border-color: transparent;
+      font-weight: 500;
+      box-shadow: 0 10px 30px rgba(236, 64, 122, 0.45);
+    }
+
+    .nav-link.primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    /* Botón burbuja WhatsApp en cabecera */
+
+    .whatsapp-bubble {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #f9a8d4, #ec4899);
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.6);
+      animation: whatsapp-pulse 1.4s infinite;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      padding: 6px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .whatsapp-bubble-icon {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
+
+    @keyframes whatsapp-pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.6);
+      }
+      100% {
+        transform: scale(1.08);
+        box-shadow: 0 0 0 8px rgba(236, 72, 153, 0);
+      }
+    }
+
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 2.5vw + 1rem, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(120deg, #ec407a, #f9739b, #fbb8d1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+      max-width: 620px;
+    }
+
+    .hero-extra {
+      font-size: 0.94rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+      max-width: 620px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid #fbcfe8;
+      font-size: 0.78rem;
+      color: #9f1239;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       gap: 6px;
       padding: 9px 16px;
       border-radius: 999px;
       border: 1px solid transparent;
+      font-size: 0.9rem;
+      cursor: pointer;
+      background: #ffffff;
+      color: var(--text);
+      transition: background var(--transition-fast), border var(--transition-fast),
+        transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .btn-primary {
       background: linear-gradient(135deg, #ec407a, #f9739b);
-      color: #fff;
-      cursor: pointer;
-      font-size: 0.9rem;
-      box-shadow: 0 12px 28px rgba(236,64,122,0.55);
-      transition: 0.18s ease-out;
+      color: #ffffff;
+      border-color: transparent;
+      font-weight: 500;
+      box-shadow: 0 12px 32px rgba(244, 114, 182, 0.55);
     }
 
-    .cart-button:hover {
+    .btn-primary:hover {
       filter: brightness(1.05);
-      transform: translateY(-2px);
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(236, 64, 122, 0.6);
     }
 
-    .cart-button.hidden {
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(10px);
-    }
-
-    .cart-count {
-      min-width: 18px;
-      height: 18px;
-      border-radius: 999px;
+    .btn-outline {
+      border-color: #fecdd3;
       background: #fff;
-      color: #ec407a;
-      font-size: 0.7rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-    }
-
-    /* TITULO */
-
-    .page-title {
-      margin-bottom: 16px;
-    }
-
-    .page-title h1 {
-      font-size: 1.6rem;
-      margin-bottom: 4px;
-    }
-
-    .page-title p {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    /* FILTROS: CATEGORÍAS + BUSCADOR */
-
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 18px;
-      align-items: center;
-    }
-
-    .categories {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .category-chip {
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid #fecdd3;
-      background: #fff;
-      font-size: 0.8rem;
       color: #9f1239;
-      cursor: pointer;
-      transition: 0.18s ease-out;
     }
 
-    .category-chip:hover {
-      background: #ffe4ef;
+    .btn-outline:hover {
+      background: #fff1f2;
       transform: translateY(-1px);
     }
 
-    .category-chip.active {
-      background: linear-gradient(135deg, #ec407a, #f9739b);
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 8px 20px rgba(236,64,122,0.4);
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 10px;
     }
 
-    .search-box {
-      max-width: 260px;
+    /* FOTO HERO DERECHA */
+
+    .hero-photo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-photo img {
       width: 100%;
-      position: relative;
+      max-width: 380px;
+      border-radius: 24px;
+      border: 6px solid #ffffff;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+      object-fit: cover;
     }
 
-    .search-input {
-      width: 100%;
-      padding: 8px 28px 8px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      font-size: 0.85rem;
-      outline: none;
-      transition: 0.18s ease-out;
+    /* SECTIONS */
+
+    section {
+      margin-top: 42px;
     }
 
-    .search-input:focus {
-      border-color: #f9a8d4;
-      box-shadow: 0 0 0 2px #ffe4ef;
+    .section-header {
+      margin-bottom: 16px;
     }
 
-    .search-icon {
-      position: absolute;
-      right: 9px;
-      top: 50%;
-      transform: translateY(-50%);
+    .section-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .section-subtitle {
       font-size: 0.9rem;
       color: var(--muted);
+      max-width: 620px;
     }
 
-    /* GRID PRODUCTOS */
+    /* BENEFICIOS / CARDS */
 
-    .products-grid {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
     }
 
-    @media (max-width: 900px) {
-      .products-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+    .card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 16px 16px 14px;
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        border var(--transition-fast);
+      font-size: 0.9rem;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #f9a8d4;
+      box-shadow: 0 20px 40px rgba(244, 114, 182, 0.25);
+    }
+
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 0.98rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    /* VIDEO / CONOCIÉNDONOS */
+
+    #sobre-yeliber .section-subtitle {
+      max-width: 640px;
+    }
+
+    .video-panel {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 0;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* CONTACTO */
+
+    .contact-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 0.9rem;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .contact-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .whatsapp-number {
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.86rem;
+      color: #9f1239;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .whatsapp-icon {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .social-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #fecdd3;
+      font-size: 0.82rem;
+      background: #fff1f2;
+      color: #9f1239;
+      transition: background var(--transition-fast), transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .social-pill img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
+
+    .social-pill:hover {
+      background: #fce7f3;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(244, 114, 182, 0.3);
+    }
+
+    footer {
+      margin-top: 40px;
+      border-top: 1px solid #fce7f3;
+      padding-top: 14px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* TABLET / MOBILE GENERAL */
+
+    @media (max-width: 880px) {
+      .page {
+        padding-inline: 14px;
       }
-    }
 
-    @media (max-width: 640px) {
       header {
         flex-direction: column;
         align-items: flex-start;
       }
-      .products-grid {
+
+      nav {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero-photo {
+        order: -1;
+        margin-bottom: 18px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .hero-photo img {
+        max-width: 95%;
+      }
+
+      .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      .filters {
+    }
+
+    /* MOBILE PEQUEÑO */
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 1.9rem;
+      }
+
+      .hero-actions {
         flex-direction: column;
         align-items: stretch;
       }
-      .search-box {
-        max-width: 100%;
-      }
-      .cart-button {
-        bottom: 16px;
-        right: 12px;
-      }
-    }
 
-    @media (max-width: 480px) {
-      .products-grid {
+      .grid {
         grid-template-columns: minmax(0, 1fr);
       }
-    }
 
-    .product-card {
-      background: #fff;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-soft);
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-size: 0.86rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product-image {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      border-radius: 10px;
-      overflow: hidden;
-      background: var(--primary-soft);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 4px;
-    }
-
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .product-name {
-      font-weight: 600;
-      min-height: 38px;
-    }
-
-    .product-desc {
-      color: var(--muted);
-      font-size: 0.8rem;
-      min-height: 32px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .price-row {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 2px;
-    }
-
-    .product-price {
-      font-weight: 600;
-      color: #9f1239;
-      font-size: 0.9rem;
-    }
-
-    .product-price.offer {
-      color: #b91c1c;
-    }
-
-    .product-price-normal {
-      font-size: 0.78rem;
-      color: var(--muted);
-      text-decoration: line-through;
-    }
-
-    .product-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-top: 4px;
-    }
-
-    .btn-add {
-      border-radius: 999px;
-      border: none;
-      background: linear-gradient(135deg, #ec407a, #f9739b);
-      color: #fff;
-      padding: 6px 10px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      box-shadow: 0 8px 20px rgba(236,64,122,0.35);
-      transition: 0.18s ease-out;
-      white-space: nowrap;
-      position: relative;
-      overflow: visible;
-    }
-
-    .btn-add:hover {
-      filter: brightness(1.05);
-      transform: translateY(-1px);
-    }
-
-    .btn-more {
-      border-radius: 999px;
-      border: 1px solid #fecdd3;
-      background: #fff;
-      color: #9f1239;
-      padding: 4px 8px;
-      font-size: 0.78rem;
-      cursor: pointer;
-      transition: 0.18s ease-out;
-      white-space: nowrap;
-    }
-
-    .btn-more:hover {
-      background: #fff1f2;
-      transform: translateY(-1px);
-    }
-
-    .product-actions-stack {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 4px;
-    }
-
-    /* CARRITO LATERAL */
-
-    .cart-panel-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-      display: none;
-      justify-content: flex-end;
-      z-index: 9998;
-    }
-
-    .cart-panel-backdrop.open {
-      display: flex;
-    }
-
-    .cart-panel {
-      width: 100%;
-      max-width: 360px;
-      background: #fff;
-      box-shadow: -10px 0 30px rgba(0,0,0,0.2);
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .cart-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 6px;
-    }
-
-    .cart-header h2 {
-      font-size: 1.1rem;
-    }
-
-    .cart-close {
-      border: none;
-      background: transparent;
-      font-size: 1.2rem;
-      cursor: pointer;
-      color: var(--muted);
-    }
-
-    .cart-items {
-      flex: 1;
-      overflow-y: auto;
-      padding-right: 4px;
-      margin-bottom: 8px;
-    }
-
-    .cart-item {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      padding: 8px 0;
-      border-bottom: 1px solid #f3e5ef;
-      font-size: 0.85rem;
-    }
-
-    .cart-item:last-child {
-      border-bottom: none;
-    }
-
-    .cart-item img {
-      width: 52px;
-      height: 52px;
-      border-radius: 10px;
-      object-fit: cover;
-      background: var(--primary-soft);
-    }
-
-    .cart-item-main {
-      flex: 1;
-    }
-
-    .cart-item-name {
-      font-weight: 500;
-      margin-bottom: 2px;
-    }
-
-    .cart-item-variant {
-      font-size: 0.78rem;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 2px;
-    }
-
-    .variant-dot-small {
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      flex-shrink: 0;
-    }
-
-    .cart-item-price {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .cart-item-actions {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 4px;
-    }
-
-    .qty-controls {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      border-radius: 999px;
-      border: 1px solid #fecdd3;
-      padding: 2px 6px;
-      font-size: 0.78rem;
-    }
-
-    .qty-btn {
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      padding: 0 4px;
-      font-size: 0.85rem;
-      color: #9f1239;
-    }
-
-    .qty-number {
-      min-width: 16px;
-      text-align: center;
-    }
-
-    .remove-btn {
-      border: none;
-      background: transparent;
-      font-size: 0.75rem;
-      color: #b91c1c;
-      cursor: pointer;
-    }
-
-    .cart-footer {
-      border-top: 1px solid #f3e5ef;
-      padding-top: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 0.9rem;
-    }
-
-    .cart-total-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .cart-total-label {
-      color: var(--muted);
-      font-size: 0.86rem;
-    }
-
-    .cart-total-amount {
-      font-weight: 600;
-      color: #9f1239;
-    }
-
-    .cart-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .cart-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .btn-checkout,
-    .btn-pay-online {
-      border-radius: 999px;
-      border: none;
-      padding: 8px 12px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      display: inline-flex;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .btn-pay-online {
-      background: linear-gradient(135deg, #ec407a, #f9739b);
-      color: #fff;
-      box-shadow: 0 10px 24px rgba(236,64,122,0.45);
-    }
-
-    .btn-pay-online:hover {
-      filter: brightness(1.05);
-      transform: translateY(-1px);
-    }
-
-    .btn-checkout {
-      background: #fff;
-      color: #9f1239;
-      border: 1px solid #fecdd3;
-      box-shadow: 0 4px 12px rgba(244,114,182,0.2);
-    }
-
-    .btn-checkout:hover {
-      background: #fff1f2;
-      transform: translateY(-1px);
-    }
-
-    /* MODAL DETALLES PRODUCTO */
-
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 10000;
-    }
-
-    .modal-backdrop.open {
-      display: flex;
-    }
-
-    .modal-box {
-      width: 100%;
-      max-width: 420px;
-      background: #fff;
-      border-radius: 18px;
-      padding: 16px 18px 18px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-      position: relative;
-      font-size: 0.9rem;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 8px;
-      right: 10px;
-      border: none;
-      background: transparent;
-      font-size: 1.2rem;
-      cursor: pointer;
-      color: var(--muted);
-    }
-
-    .modal-title {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .modal-image {
-      width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 10px;
-      background: #fdf2f8;
-    }
-
-    .modal-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .modal-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .modal-price-row {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 2px;
-      margin-bottom: 8px;
-    }
-
-    /* MODAL VARIANTES (COLORES) */
-
-    .variant-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 10001;
-    }
-
-    .variant-backdrop.open {
-      display: flex;
-    }
-
-    .variant-box {
-      width: 100%;
-      max-width: 360px;
-      background: #fff;
-      border-radius: 18px;
-      padding: 14px 16px 16px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-      font-size: 0.9rem;
-    }
-
-    .variant-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-    }
-
-    .variant-title {
-      font-weight: 600;
-      font-size: 0.98rem;
-    }
-
-    .variant-close {
-      border: none;
-      background: transparent;
-      font-size: 1.1rem;
-      cursor: pointer;
-      color: var(--muted);
-    }
-
-    .variant-help {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .variant-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-
-    .variant-option {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      background: #fff;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: 0.18s ease-out;
-    }
-
-    .variant-option:hover {
-      border-color: #f9a8d4;
-      background: #fff7fb;
-    }
-
-    .variant-option.selected {
-      border-color: #ec407a;
-      background: #fff1f5;
-      box-shadow: 0 0 0 1px #fecdd3;
-    }
-
-    .variant-dot {
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      flex-shrink: 0;
-    }
-
-    .variant-confirm {
-      width: 100%;
-      border-radius: 999px;
-      border: none;
-      padding: 8px 12px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      background: linear-gradient(135deg, #ec407a, #f9739b);
-      color: #fff;
-      box-shadow: 0 10px 24px rgba(236,64,122,0.45);
-    }
-
-    .variant-confirm:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
-
-    /* ✨ ANIMACIÓN DE DESTELLOS / FUEGOS ARTIFICIALES */
-
-    .burst {
-      position: fixed;
-      pointer-events: none;
-      left: 0;
-      top: 0;
-      width: 0;
-      height: 0;
-      z-index: 9998;
-    }
-
-    .burst span {
-      position: absolute;
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: radial-gradient(circle, #fde7f3 0, #ec407a 60%, transparent 100%);
-      animation: particle 0.7s ease-out forwards;
-      opacity: 0;
-    }
-
-    .burst span.gold {
-      background: radial-gradient(circle, #fef3c7 0, #f59e0b 60%, transparent 100%);
-    }
-
-    .burst span.purple {
-      background: radial-gradient(circle, #ede9fe 0, #8b5cf6 60%, transparent 100%);
-    }
-
-    .burst span.pink {
-      background: radial-gradient(circle, #fce7f3 0, #ec4899 60%, transparent 100%);
-    }
-
-    @keyframes particle {
-      0% {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
+      .contact-row {
+        flex-direction: column;
+        align-items: flex-start;
       }
-      100% {
-        transform: translate(var(--tx), var(--ty)) scale(0.3);
-        opacity: 0;
+
+      nav {
+        gap: 6px;
+      }
+
+      .nav-link {
+        font-size: 0.8rem;
+        padding-inline: 10px;
+      }
+
+      .whatsapp-bubble {
+        width: 50px !important;
+        height: 50px !important;
+        padding: 8px !important;
+        position: fixed !important;
+        top: 20px;
+        right: 12px;
+        z-index: 9999;
+      }
+
+      .whatsapp-bubble-icon {
+        width: 32px !important;
+        height: 32px !important;
+      }
+
+      header nav .whatsapp-bubble {
+        position: fixed !important;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      #contacto .section-subtitle {
+        white-space: nowrap;
       }
     }
   </style>
@@ -830,830 +594,278 @@
   <div class="page">
     <!-- HEADER -->
     <header>
-      <div class="logo">
-        <img src="img/Logo Farmasi by Yeliber 2.png" alt="Farmasi Yeliber" />
-        <span>Catálogo de productos</span>
+      <div class="header-logo">
+        <img src="img/Logo Farmasi by Yeliber 4.png" alt="Logo Farmasi by Yeliber" />
       </div>
-      <div class="header-actions">
-        <a href="index.html" class="btn-link">Volver a la página principal</a>
-        <button class="cart-button" id="openCartBtn">
-          🛒 Carrito
-          <span class="cart-count" id="cartCount">0</span>
-        </button>
-      </div>
+
+      <nav>
+        <!-- Eliminado Sobre mí -->
+        <a href="#beneficios" class="nav-link">Beneficios</a>
+        <a
+          href="docs/Catalogo-Peru-2025-web (12).pdf"
+          class="nav-link"
+          target="_blank"
+          rel="noopener"
+        >
+          Catálogo virtual
+        </a>
+        <a
+          href="https://www.farmasi.pe/yeliberyeli"
+          class="nav-link primary"
+          target="_blank"
+          rel="noopener"
+        >
+          Comprar online
+        </a>
+        <a
+          href="https://wa.me/51922740544"
+          class="whatsapp-bubble"
+          target="_blank"
+          aria-label="Escríbeme por WhatsApp"
+        >
+          <img src="img/Logo whatsapp 2.png" alt="WhatsApp" class="whatsapp-bubble-icon" />
+        </a>
+      </nav>
     </header>
 
-    <!-- TÍTULO -->
-    <section class="page-title">
-      <h1>Productos destacados Farmasi</h1>
-      <p>Filtra por categoría, busca por nombre y agrega al carrito para coordinar tu pedido por WhatsApp.</p>
-    </section>
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <p class="hero-kicker">Farmasi · Belleza & Emprendimiento</p>
+          <h1 class="hero-title">
+            Hola, soy <span class="highlight">Yeliber Castro</span>
+          </h1>
+          <p class="hero-note" style="text-align: justify;">
+            Soy Beautiful Influencer Farmasi y te ayudo a elegir los mejores productos de belleza para cuidar tu piel y resaltar tu confianza. También te muestro cómo convertir esta pasión en un emprendimiento rentable desde casa, respaldado por una marca internacional que uso y recomiendo.
+            Ofrezco asesoría personalizada según tu tipo de piel, tu estilo y tus metas. Y si deseas emprender, te acompaño paso a paso para que construyas ingresos reales y desarrolles tu propio camino.
+            Este es un espacio para mujeres decididas a crecer, superar sus límites y cumplir sus objetivos. Si estás lista para avanzar, aquí encontrarás el apoyo para lograrlo.
+          </p>
+          <p class="hero-subtitle">
+           ✨ Sé la protagonista de tu propio brillo ✨
+          </p>
+          <div class="hero-tags">
+            <span class="tag">Maquillaje profesional</span>
+            <span class="tag">Cuidado de la piel</span>
+            <span class="tag">Emprendimiento femenino</span>
+            <span class="tag">Asesoría personalizada</span>
+            <span class="tag">Rutinas de skincare</span>
+            <span class="tag">Looks de maquillaje</span>
+          </div>
 
-    <!-- FILTROS -->
-    <section class="filters">
-      <div class="categories" id="categories">
-        <!-- chips de categorías por JS -->
-      </div>
-      <div class="search-box">
-        <input
-          type="text"
-          id="searchInput"
-          class="search-input"
-          placeholder="Buscar producto..."
-        />
-        <span class="search-icon">🔍</span>
-      </div>
-    </section>
-
-    <!-- GRID PRODUCTOS -->
-    <section class="products-grid" id="productsGrid">
-      <!-- productos por JS -->
-    </section>
-  </div>
-
-  <!-- PANEL CARRITO -->
-  <div class="cart-panel-backdrop" id="cartBackdrop">
-    <div class="cart-panel">
-      <div class="cart-header">
-        <h2>Tu carrito</h2>
-        <button class="cart-close" id="closeCartBtn">&times;</button>
-      </div>
-      <div class="cart-items" id="cartItems"></div>
-      <div class="cart-footer">
-        <div class="cart-total-row">
-          <span class="cart-total-label">Total estimado:</span>
-          <span class="cart-total-amount" id="cartTotal">S/ 0.00</span>
+          <div class="hero-actions">
+            <a
+              href="https://www.farmasi.pe/yeliberyeli"
+              class="btn btn-primary"
+              target="_blank"
+            >
+              🛒 Quiero comprar productos
+            </a>
+            <a
+              href="https://www.farmasi.pe/yeliberyeli/register/beautyinfluencer"
+              class="btn btn-outline"
+              target="_blank"
+            >
+              ⭐ Quiero ser Beautiful Influencer
+            </a>
+          </div>
         </div>
-        <p class="cart-note">
-          Este carrito es una pre-reserva. Al continuar, se abrirá WhatsApp con el detalle
-          para confirmar tu pedido y coordinar el pago (Mercado Pago, Izipay, etc.).
-        </p>
-        <div class="cart-buttons">
-          <button class="btn-pay-online" id="payOnlineBtn">
-            Pagar online
-          </button>
-          <button class="btn-checkout" id="checkoutBtn">
-            Continuar por WhatsApp
-          </button>
+
+        <!-- FOTO -->
+        <aside class="hero-photo">
+          <img
+            src="img/Foto Yeliber 1.jpg"
+            alt="Foto de Yeliber Castro"
+          />
+        </aside>
+      </section>
+
+      <!-- BENEFICIOS -->
+      <section id="beneficios">
+        <div class="section-header">
+          <p class="section-kicker">Oportunidad Farmasi</p>
+          <h2 class="section-title">¿Por qué trabajar con Yeliber?</h2>
+          <p class="section-subtitle">
+            Más que vender productos, construimos una comunidad de mujeres que se apoyan,
+            se forman y crecen juntas en el mundo de la belleza y el emprendimiento.
+          </p>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- MODAL DETALLES PRODUCTO -->
-  <div class="modal-backdrop" id="productModal">
-    <div class="modal-box">
-      <button class="modal-close" id="modalCloseBtn">&times;</button>
-      <h3 class="modal-title" id="modalTitle"></h3>
-      <div class="modal-image" id="modalImageWrapper">
-        <img id="modalImage" src="" alt="" />
-      </div>
-      <div class="modal-price-row">
-        <span class="product-price offer" id="modalPrice"></span>
-        <span class="product-price-normal" id="modalNormalPrice"></span>
-      </div>
-      <p class="modal-desc" id="modalDescription"></p>
-    </div>
-  </div>
+        <div class="grid">
+          <article class="card">
+            <h3 class="card-title">Acompañamiento 1 a 1</h3>
+            <p>
+              No estarás sola. Desde tu registro hasta tus primeras ventas y tu crecimiento
+              como líder, te acompaño con tips, guías y seguimiento.
+            </p>
+          </article>
 
-  <!-- MODAL VARIANTES (COLORES) -->
-  <div class="variant-backdrop" id="variantBackdrop">
-    <div class="variant-box">
-      <div class="variant-header">
-        <span class="variant-title" id="variantTitle">Elige un color</span>
-        <button class="variant-close" id="variantCloseBtn">&times;</button>
-      </div>
-      <p class="variant-help">
-        Selecciona el tono que deseas y luego agrégalo al carrito.
-      </p>
-      <div class="variant-list" id="variantList"></div>
-      <button class="variant-confirm" id="variantConfirmBtn" disabled>
-        Agregar al carrito
-      </button>
-    </div>
+          <article class="card">
+            <h3 class="card-title">Marca internacional</h3>
+            <p>
+              Farmasi es una marca global con productos de alta calidad, amplia variedad
+              y una imagen moderna que enamora a tus clientas.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Ingresos a tu ritmo</h3>
+            <p>
+              Puedes empezar como extra de ingresos, y si lo deseas, convertirlo en tu
+              principal fuente. Tú decides cuánto crecer y hasta dónde llegar.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- BELLEZA CON PROPÓSITO (PRODUCTOS / SERVICIOS) -->
+      <section id="productos">
+        <div class="section-header">
+          <p class="section-kicker">Belleza con propósito</p>
+          <h2 class="section-title">¿Qué puedo hacer por ti?</h2>
+          <p class="section-subtitle">
+            Ya sea que quieras probar los productos Farmasi o unirte como Beautiful
+            Influencer, tengo algo preparado para ti.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3 class="card-title">Asesoría de productos</h3>
+            <p>
+              Analizamos juntas tu tipo de piel, tus gustos y tu rutina diaria para
+              recomendarte una rutina Farmasi que realmente funcione para ti.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Rutinas & looks personalizados</h3>
+            <p>
+              Te propongo looks de maquillaje para el día a día, eventos especiales o
+              contenido para redes, utilizando tus productos favoritos de Farmasi.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Formación para tu negocio</h3>
+            <p>
+              Te enseño cómo empezar a recomendar, crear contenido sencillo, gestionar
+              pedidos y fidelizar clientas para que tu negocio crezca.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONOCIÉNDONOS / VIDEO -->
+      <section id="sobre-yeliber">
+        <div class="section-header">
+          <p class="section-kicker">Acerca de Farmasi</p>
+          <h2 class="section-title">Conoce más sobre Farmasi</h2>
+          <p class="section-subtitle">
+             En este video te explico todos los detalles de las líneas de productos de Farmasi y del modelo de negocio que puedes emprender.
+          </p>
+        </div>
+
+        <div class="video-panel">
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/Ov3-8N4CBCc"
+              title="Video de presentación de Yeliber Castro"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto">
+        <div class="section-header">
+          <p class="section-kicker">Hablemos</p>
+          <h2 class="section-title">Contacto & redes</h2>
+          <p class="section-subtitle">
+            Si quieres productos, asesoría o conocer el plan de negocio Farmasi, este es el mejor lugar para empezar.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-row">
+            <div>
+              <div class="contact-label">WhatsApp</div>
+              <a
+                href="https://wa.me/51922740544"
+                target="_blank"
+                style="color: #9f1239; font-weight: 500; display:block;"
+              >Escríbeme por WhatsApp</a>
+              <a
+                href="https://wa.me/51922740544"
+                target="_blank"
+                class="whatsapp-number"
+              >
+                <img src="img/Logo whatsapp 1.png" alt="WhatsApp" class="whatsapp-icon" />
+                <span style="font-weight:700;">+51 922 740 544</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div>
+              <div class="contact-label">Redes sociales</div>
+              <div class="social-links">
+                <a href="https://www.instagram.com/" target="_blank" class="social-pill">
+                  <img src="img/Logo Instagram 1.png" alt="Instagram" />
+                  <span>Instagram</span>
+                </a>
+                <a href="https://www.facebook.com/" target="_blank" class="social-pill">
+                  <img src="img/Logo facebook 1.png" alt="Facebook" />
+                  <span>Facebook</span>
+                </a>
+                <a href="https://tiktok.com/" target="_blank" class="social-pill">
+                  <img src="img/Logo tiktok 1.png" alt="TikTok" />
+                  <span>TikTok</span>
+                </a>
+                <a href="https://www.youtube.com/" target="_blank" class="social-pill">
+                  <img src="img/Logo Youtube 1.png" alt="YouTube" />
+                  <span>YouTube</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size: 0.8rem; color: var(--muted); margin-top: 8px;">
+            Respondo lo antes posible ✨ Cuéntame si buscas productos, asesoría de
+            belleza o información para ser parte de Farmasi.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>
+        © <span id="year"></span> Yeliber Castro · Beautiful Influencer Farmasi
+      </span>
+      <span style="font-size: 0.78rem;">⚠️ Esta NO es una página web oficial de Farmasi, esta web fue diseñada por una Beauty Influencer con el fin de educar, reclutar y vender. ✨</span>
+    </footer>
   </div>
 
   <script>
-    // 1) Catálogo de productos con campos extra
-    const products = [
-      // Maquillaje
-      {
-        id: 1,
-        name: "Base líquida Stay Matte",
-        shortDescription: "Control de brillo y acabado natural para todo el día.",
-        fullDescription:
-          "Base líquida de alta cobertura con acabado mate, ideal para piel mixta o grasa. Ayuda a controlar el brillo durante el día sin resecar la piel. Se difumina fácilmente y deja un acabado suave y uniforme.",
-        price: 49.90,           // precio oferta
-        normalPrice: 59.90,     // precio normal (tachado)
-        image: "img/prod-base-stay-matte.jpg",
-        categories: ["Maquillaje", "Rostro"],
-        variants: [
-          { label: "01 Porcelain", color: "#fce0d3" },
-          { label: "02 Natural", color: "#f2c3a0" },
-          { label: "03 Beige", color: "#d79c70" }
-        ],
-      },
-      {
-        id: 2,
-        name: "Labial líquido Matte Rouge",
-        shortDescription: "Color intenso, larga duración y sensación ligera.",
-        fullDescription:
-          "Labial líquido con acabado mate aterciopelado. Fórmula cómoda que no reseca los labios y mantiene el color por horas. Ideal para looks de día y noche.",
-        price: 39.90,
-        normalPrice: 0, // si no hay precio normal, pon 0 o deja este campo y no se mostrará tachado
-        image: "img/prod-labial-matte-rouge.jpg",
-        categories: ["Maquillaje", "Labios"],
-        variants: [
-          { label: "Rojo clásico", color: "#b91c1c" },
-          { label: "Rosa nude", color: "#f4b4b8" },
-          { label: "Vino", color: "#58111a" }
-        ],
-      },
-      {
-        id: 3,
-        name: "Paleta de sombras Nude Glam",
-        shortDescription: "Tonos neutros para looks de día y noche.",
-        fullDescription:
-          "Paleta de sombras con tonos cálidos y fríos en acabado mate y satinado. Perfecta para crear desde un look suave hasta un smokey eye intenso.",
-        price: 89.90,
-        normalPrice: 99.90,
-        image: "img/prod-paleta-nude.jpg",
-        categories: ["Maquillaje", "Ojos"],
-        variants: [], // sin variantes
-      },
-      {
-        id: 4,
-        name: "Máscara de pestañas Optimal Style",
-        shortDescription: "Volumen y definición sin grumos.",
-        fullDescription:
-          "Máscara que aporta volumen, definición y curvatura a las pestañas. Cepillo diseñado para llegar a cada pestaña y dejar un acabado intenso.",
-        price: 49.90,
-        normalPrice: 0,
-        image: "img/prod-mascara.jpg",
-        categories: ["Maquillaje", "Ojos"],
-        variants: [],
-      },
-      {
-        id: 5,
-        name: "Rubor en polvo Blush Touch",
-        shortDescription: "Toque de color saludable para tus mejillas.",
-        fullDescription:
-          "Rubor en polvo de textura sedosa que se difumina fácilmente y aporta un acabado natural a las mejillas.",
-        price: 44.90,
-        normalPrice: 0,
-        image: "img/prod-blush.jpg",
-        categories: ["Maquillaje", "Rostro"],
-        variants: [
-          { label: "Coral suave", color: "#f8b4a0" },
-          { label: "Rosa suave", color: "#f9a8d4" }
-        ],
-      },
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-      // Cuidado de la piel
-      {
-        id: 6,
-        name: "Serum de Vitamina C",
-        shortDescription: "Ilumina la piel y ayuda a unificar el tono.",
-        fullDescription:
-          "Serum concentrado con vitamina C que ayuda a mejorar la luminosidad, reducir la apariencia de manchas y dar uniformidad al tono de la piel.",
-        price: 79.90,
-        normalPrice: 89.90,
-        image: "img/prod-serum-vitc.jpg",
-        categories: ["Cuidado de la piel"],
-        variants: [],
-      },
-      {
-        id: 7,
-        name: "Crema hidratante Aqua",
-        shortDescription: "Hidratación ligera para uso diario.",
-        fullDescription:
-          "Crema de textura ligera con efecto hidratante de larga duración. Ideal para piel normal a mixta.",
-        price: 69.90,
-        normalPrice: 0,
-        image: "img/prod-crema-aqua.jpg",
-        categories: ["Cuidado de la piel"],
-        variants: [],
-      },
-      {
-        id: 8,
-        name: "Gel limpiador facial Pure Skin",
-        shortDescription: "Limpia sin resecar, ideal para piel mixta.",
-        fullDescription:
-          "Gel limpiador suave que elimina impurezas y el exceso de grasa sin resecar la piel. Ideal para uso diario.",
-        price: 49.90,
-        normalPrice: 0,
-        image: "img/prod-gel-limpiador.jpg",
-        categories: ["Cuidado de la piel"],
-        variants: [],
-      },
-      {
-        id: 9,
-        name: "Contorno de ojos Revitalizing",
-        shortDescription: "Ayuda a disminuir la apariencia de ojeras.",
-        fullDescription:
-          "Tratamiento para el contorno de ojos que ayuda a suavizar líneas finas y a mejorar la apariencia de ojeras.",
-        price: 74.90,
-        normalPrice: 0,
-        image: "img/prod-contorno-ojos.jpg",
-        categories: ["Cuidado de la piel"],
-        variants: [],
-      },
-      {
-        id: 10,
-        name: "Protector solar facial SPF50",
-        shortDescription: "Protección diaria contra rayos UV.",
-        fullDescription:
-          "Protector solar facial de amplio espectro con SPF50, ideal para uso diario antes del maquillaje.",
-        price: 59.90,
-        normalPrice: 0,
-        image: "img/prod-protector-solar.jpg",
-        categories: ["Cuidado de la piel"],
-        variants: [],
-      },
-
-      // Fragancias
-      {
-        id: 11,
-        name: "Perfume Femme Elegance",
-        shortDescription: "Aroma floral con toques frutales.",
-        fullDescription:
-          "Fragancia femenina elegante con notas florales y frutales, perfecta para uso diario o eventos especiales.",
-        price: 119.90,
-        normalPrice: 129.90,
-        image: "img/prod-perfume-femme.jpg",
-        categories: ["Fragancias"],
-        variants: [],
-      },
-      {
-        id: 12,
-        name: "Perfume Homme Intense",
-        shortDescription: "Fragancia masculina intensa y sofisticada.",
-        fullDescription:
-          "Fragancia masculina de carácter intenso con notas amaderadas y especiadas.",
-        price: 129.90,
-        normalPrice: 139.90,
-        image: "img/prod-perfume-homme.jpg",
-        categories: ["Fragancias"],
-        variants: [],
-      },
-      {
-        id: 13,
-        name: "Body Mist Fresh Blossom",
-        shortDescription: "Rocío corporal fresco para uso diario.",
-        fullDescription:
-          "Body mist ligero y refrescante con aroma floral suave, ideal para reaplicar durante el día.",
-        price: 39.90,
-        normalPrice: 0,
-        image: "img/prod-body-mist.jpg",
-        categories: ["Fragancias", "Cuidado personal"],
-        variants: [],
-      },
-
-      // Cuidado personal
-      {
-        id: 14,
-        name: "Shampoo Revitalizante",
-        shortDescription: "Fortalece y da brillo al cabello.",
-        fullDescription:
-          "Shampoo de uso frecuente que ayuda a revitalizar el cabello apagado, aportando brillo y suavidad.",
-        price: 34.90,
-        normalPrice: 0,
-        image: "img/prod-shampoo.jpg",
-        categories: ["Cuidado personal"],
-        variants: [],
-      },
-      {
-        id: 15,
-        name: "Acondicionador Nutritivo",
-        shortDescription: "Suaviza y desenreda sin dejar pesado.",
-        fullDescription:
-          "Acondicionador nutritivo que ayuda a desenredar y suavizar el cabello sin aportar peso extra.",
-        price: 34.90,
-        normalPrice: 0,
-        image: "img/prod-acondicionador.jpg",
-        categories: ["Cuidado personal"],
-        variants: [],
-      },
-      {
-        id: 16,
-        name: "Crema corporal NutriCare",
-        shortDescription: "Hidratación profunda para todo el cuerpo.",
-        fullDescription:
-          "Crema corporal de rápida absorción que deja la piel suave, hidratada y con un aroma agradable.",
-        price: 44.90,
-        normalPrice: 0,
-        image: "img/prod-crema-corporal.jpg",
-        categories: ["Cuidado personal"],
-        variants: [],
-      },
-      {
-        id: 17,
-        name: "Jabón líquido Soft Touch",
-        shortDescription: "Limpieza suave con aroma delicado.",
-        fullDescription:
-          "Jabón líquido para manos y cuerpo con espuma suave y aroma delicado.",
-        price: 24.90,
-        normalPrice: 0,
-        image: "img/prod-jabon-liquido.jpg",
-        categories: ["Cuidado personal"],
-        variants: [],
-      },
-
-      // Sets especiales
-      {
-        id: 18,
-        name: "Set Maquillaje Día Perfecto",
-        shortDescription: "Base + labial + máscara de pestañas.",
-        fullDescription:
-          "Set ideal para un look completo de día: base, labial y máscara seleccionados para complementar entre sí.",
-        price: 149.90,
-        normalPrice: 169.90,
-        image: "img/prod-set-dia.jpg",
-        categories: ["Sets especiales", "Maquillaje"],
-        variants: [],
-      },
-      {
-        id: 19,
-        name: "Set Skincare Rutina Básica",
-        shortDescription: "Limpiador + crema hidratante + protector solar.",
-        fullDescription:
-          "Pack básico para una rutina sencilla de cuidado de la piel: limpieza, hidratación y protección.",
-        price: 159.90,
-        normalPrice: 179.90,
-        image: "img/prod-set-skincare.jpg",
-        categories: ["Sets especiales", "Cuidado de la piel"],
-        variants: [],
-      },
-      {
-        id: 20,
-        name: "Set Regalo Fragancias",
-        shortDescription: "Mini perfumes para sorprender.",
-        fullDescription:
-          "Set de mini fragancias perfectas para probar diferentes aromas o para regalar.",
-        price: 99.90,
-        normalPrice: 0,
-        image: "img/prod-set-fragancias.jpg",
-        categories: ["Sets especiales", "Fragancias"],
-        variants: [],
-      },
-    ];
-
-    // Estado del carrito
-    let cart = [];
-    let selectedCategory = "Todos";
-    let searchTerm = "";
-    let currentVariantProduct = null;
-    let currentVariant = null;
-    let lastClickPosition = { x: 0, y: 0 };
-
-    const productsGrid = document.getElementById("productsGrid");
-    const cartCountEl = document.getElementById("cartCount");
-    const cartBackdrop = document.getElementById("cartBackdrop");
-    const cartItemsEl = document.getElementById("cartItems");
-    const cartTotalEl = document.getElementById("cartTotal");
-    const openCartBtn = document.getElementById("openCartBtn");
-    const closeCartBtn = document.getElementById("closeCartBtn");
-    const checkoutBtn = document.getElementById("checkoutBtn");
-    const payOnlineBtn = document.getElementById("payOnlineBtn");
-    const categoriesContainer = document.getElementById("categories");
-    const searchInput = document.getElementById("searchInput");
-
-    const productModal = document.getElementById("productModal");
-    const modalCloseBtn = document.getElementById("modalCloseBtn");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalDescription = document.getElementById("modalDescription");
-    const modalImage = document.getElementById("modalImage");
-    const modalPrice = document.getElementById("modalPrice");
-    const modalNormalPrice = document.getElementById("modalNormalPrice");
-
-    const variantBackdrop = document.getElementById("variantBackdrop");
-    const variantTitle = document.getElementById("variantTitle");
-    const variantList = document.getElementById("variantList");
-    const variantCloseBtn = document.getElementById("variantCloseBtn");
-    const variantConfirmBtn = document.getElementById("variantConfirmBtn");
-
-    // LocalStorage
-    function loadCart() {
-      const saved = localStorage.getItem("farmasi_cart");
-      if (saved) {
-        cart = JSON.parse(saved);
-      } else {
-        cart = [];
-      }
-      updateCartUI();
-    }
-
-    function saveCart() {
-      localStorage.setItem("farmasi_cart", JSON.stringify(cart));
-    }
-
-    // Construir chips de categorías (a partir de todos los arrays 'categories')
-    function renderCategories() {
-      const set = new Set();
-      products.forEach(p => {
-        (p.categories || []).forEach(c => set.add(c));
-      });
-      const cats = Array.from(set).sort();
-      categoriesContainer.innerHTML = "";
-
-      const allChip = document.createElement("button");
-      allChip.className = "category-chip active";
-      allChip.textContent = "Todos";
-      allChip.dataset.category = "Todos";
-      categoriesContainer.appendChild(allChip);
-
-      cats.forEach(cat => {
-        const chip = document.createElement("button");
-        chip.className = "category-chip";
-        chip.textContent = cat;
-        chip.dataset.category = cat;
-        categoriesContainer.appendChild(chip);
-      });
-
-      categoriesContainer.querySelectorAll(".category-chip").forEach(chip => {
-        chip.addEventListener("click", () => {
-          selectedCategory = chip.dataset.category;
-          categoriesContainer.querySelectorAll(".category-chip").forEach(c => c.classList.remove("active"));
-          chip.classList.add("active");
-          renderProducts();
-        });
-      });
-    }
-
-    // Render productos con filtros
-    function renderProducts() {
-      productsGrid.innerHTML = "";
-
-      const filtered = products.filter(p => {
-        const matchCategory =
-          selectedCategory === "Todos" ||
-          (p.categories && p.categories.includes(selectedCategory));
-        const term = searchTerm.trim().toLowerCase();
-        const text = [
-          p.name || "",
-          p.shortDescription || "",
-          p.fullDescription || ""
-        ]
-          .join(" ")
-          .toLowerCase();
-
-        const matchSearch = term === "" || text.includes(term);
-
-        return matchCategory && matchSearch;
-      });
-
-      if (filtered.length === 0) {
-        productsGrid.innerHTML =
-          "<p style='font-size:0.9rem;color:#6b7280;'>No se encontraron productos con esos filtros.</p>";
-        return;
-      }
-
-      filtered.forEach((p) => {
-        const card = document.createElement("article");
-        card.className = "product-card";
-        const hasOffer = p.normalPrice && p.normalPrice > 0 && p.normalPrice > p.price;
-
-        card.innerHTML = `
-          <div class="product-image">
-            <img src="${p.image}" alt="${p.name}" onerror="this.src='img/farmasi-logo-redondo.jpg'" />
-          </div>
-          <h3 class="product-name">${p.name}</h3>
-          <p class="product-desc">${p.shortDescription}</p>
-          <div class="product-footer">
-            <div class="price-row">
-              <span class="product-price ${hasOffer ? "offer" : ""}">
-                S/ ${p.price.toFixed(2)}
-              </span>
-              ${
-                hasOffer
-                  ? `<span class="product-price-normal">S/ ${p.normalPrice.toFixed(2)}</span>`
-                  : ""
-              }
-            </div>
-            <div class="product-actions-stack">
-              <button class="btn-add" data-id="${p.id}">
-                + Agregar
-              </button>
-              <button class="btn-more" data-id="${p.id}">
-                Más detalles
-              </button>
-            </div>
-          </div>
-        `;
-        productsGrid.appendChild(card);
-      });
-
-      // eventos botones
-      document.querySelectorAll(".btn-add").forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          const id = parseInt(btn.getAttribute("data-id"), 10);
-          const product = products.find((p) => p.id === id);
-          if (!product) return;
-
-          lastClickPosition = { x: e.clientX, y: e.clientY };
-
-          if (product.variants && product.variants.length > 0) {
-            openVariantModal(product);
-          } else {
-            addToCart(id, null);
-            createBurst(e.clientX, e.clientY);
-          }
-        });
-      });
-
-      document.querySelectorAll(".btn-more").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const id = parseInt(btn.getAttribute("data-id"), 10);
-          const product = products.find((p) => p.id === id);
-          if (!product) return;
-          openProductModal(product);
-        });
-      });
-    }
-
-    function addToCart(productId, variant) {
-      const product = products.find((p) => p.id === productId);
-      if (!product) return;
-
-      const key = variant ? `${productId}-${variant.label}` : `${productId}-__no_variant`;
-      let existing = cart.find((item) => item.key === key);
-
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        existing = {
-          key,
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          image: product.image,
-          qty: 1,
-          variant: variant || null,
-        };
-        cart.push(existing);
-      }
-
-      saveCart();
-      updateCartUI();
-    }
-
-    function updateCartUI() {
-      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-      cartCountEl.textContent = totalItems;
-
-      cartItemsEl.innerHTML = "";
-      if (cart.length === 0) {
-        cartItemsEl.innerHTML =
-          "<p style='font-size:0.86rem;color:#6b7280;'>Tu carrito está vacío por ahora.</p>";
-      } else {
-        cart.forEach((item) => {
-          const row = document.createElement("div");
-          row.className = "cart-item";
-
-          const variantHtml = item.variant
-            ? `
-              <div class="cart-item-variant">
-                <span class="variant-dot-small" style="background:${item.variant.color};"></span>
-                <span>${item.variant.label}</span>
-              </div>
-            `
-            : "";
-
-          row.innerHTML = `
-            <img src="${item.image}" alt="${item.name}" onerror="this.src='img/farmasi-logo-redondo.jpg'" />
-            <div class="cart-item-main">
-              <div class="cart-item-name">${item.name}</div>
-              ${variantHtml}
-              <div class="cart-item-price">S/ ${item.price.toFixed(2)} c/u</div>
-            </div>
-            <div class="cart-item-actions">
-              <div class="qty-controls">
-                <button class="qty-btn" data-key="${item.key}" data-action="minus">-</button>
-                <span class="qty-number">${item.qty}</span>
-                <button class="qty-btn" data-key="${item.key}" data-action="plus">+</button>
-              </div>
-              <button class="remove-btn" data-key="${item.key}">Quitar</button>
-            </div>
-          `;
-          cartItemsEl.appendChild(row);
-        });
-
-        document.querySelectorAll(".qty-btn").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const key = btn.getAttribute("data-key");
-            const action = btn.getAttribute("data-action");
-            updateQty(key, action === "plus" ? 1 : -1);
+    // Scroll suave para enlaces internos (beneficios / contacto / sobre-yeliber)
+    document.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener("click", (e) => {
+        const targetId = a.getAttribute("href").substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({
+            top: target.offsetTop - 20,
+            behavior: "smooth",
           });
-        });
-
-        document.querySelectorAll(".remove-btn").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const key = btn.getAttribute("data-key");
-            removeFromCart(key);
-          });
-        });
-      }
-
-      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-      cartTotalEl.textContent = `S/ ${total.toFixed(2)}`;
-    }
-
-    function updateQty(key, diff) {
-      const item = cart.find((i) => i.key === key);
-      if (!item) return;
-      item.qty += diff;
-      if (item.qty <= 0) {
-        cart = cart.filter((i) => i.key !== key);
-      }
-      saveCart();
-      updateCartUI();
-    }
-
-    function removeFromCart(key) {
-      cart = cart.filter((i) => i.key !== key);
-      saveCart();
-      updateCartUI();
-    }
-
-    // Abrir / cerrar carrito
-    openCartBtn.addEventListener("click", () => {
-      cartBackdrop.classList.add("open");
-      openCartBtn.classList.add("hidden");
-    });
-
-    closeCartBtn.addEventListener("click", () => {
-      cartBackdrop.classList.remove("open");
-      openCartBtn.classList.remove("hidden");
-    });
-
-    cartBackdrop.addEventListener("click", (e) => {
-      if (e.target === cartBackdrop) {
-        cartBackdrop.classList.remove("open");
-        openCartBtn.classList.remove("hidden");
-      }
-    });
-
-    // Checkout: Continuar por WhatsApp
-    checkoutBtn.addEventListener("click", () => {
-      if (cart.length === 0) {
-        alert("Tu carrito está vacío.");
-        return;
-      }
-      let message = "Hola Yeliber, quiero hacer este pedido:%0A%0A";
-      cart.forEach((item) => {
-        const variantText = item.variant ? ` (${item.variant.label})` : "";
-        message += `• ${item.name}${variantText} (x${item.qty}) - S/ ${item.price.toFixed(2)}%0A`;
-      });
-      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-      message += `%0ATotal estimado: S/ ${total.toFixed(2)}%0A%0A`;
-      message += "¿Me ayudas con las opciones de pago y entrega, por favor?";
-
-      const phone = "51922740544";
-      const waUrl = `https://wa.me/${phone}?text=${message}`;
-      window.open(waUrl, "_blank");
-    });
-
-    // Botón Pagar online
-    payOnlineBtn.addEventListener("click", () => {
-      if (cart.length === 0) {
-        alert("Tu carrito está vacío.");
-        return;
-      }
-      let message = "Hola Yeliber, quiero pagar ONLINE este pedido:%0A%0A";
-      cart.forEach((item) => {
-        const variantText = item.variant ? ` (${item.variant.label})` : "";
-        message += `• ${item.name}${variantText} (x${item.qty}) - S/ ${item.price.toFixed(2)}%0A`;
-      });
-      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-      message += `%0ATotal estimado: S/ ${total.toFixed(2)}%0A%0A`;
-      message += "Por favor envíame el link de pago (Mercado Pago / Izipay).";
-
-      const phone = "51922740544";
-      const waUrl = `https://wa.me/${phone}?text=${message}`;
-      window.open(waUrl, "_blank");
-    });
-
-    // Búsqueda
-    searchInput.addEventListener("input", () => {
-      searchTerm = searchInput.value;
-      renderProducts();
-    });
-
-    // MODAL DETALLES
-    function openProductModal(product) {
-      modalTitle.textContent = product.name;
-      modalDescription.textContent = product.fullDescription || "";
-      modalImage.src = product.image;
-      modalImage.onerror = () => {
-        modalImage.src = "img/farmasi-logo-redondo.jpg";
-      };
-      modalPrice.textContent = `S/ ${product.price.toFixed(2)}`;
-      if (product.normalPrice && product.normalPrice > 0 && product.normalPrice > product.price) {
-        modalNormalPrice.textContent = `S/ ${product.normalPrice.toFixed(2)}`;
-        modalNormalPrice.style.display = "inline";
-      } else {
-        modalNormalPrice.textContent = "";
-        modalNormalPrice.style.display = "none";
-      }
-      productModal.classList.add("open");
-    }
-
-    modalCloseBtn.addEventListener("click", () => {
-      productModal.classList.remove("open");
-    });
-
-    productModal.addEventListener("click", (e) => {
-      if (e.target === productModal) {
-        productModal.classList.remove("open");
-      }
-    });
-
-    // MODAL VARIANTES
-    function openVariantModal(product) {
-      currentVariantProduct = product;
-      currentVariant = null;
-      variantTitle.textContent = `Elige un color (${product.name})`;
-      variantList.innerHTML = "";
-      variantConfirmBtn.disabled = true;
-
-      (product.variants || []).forEach((v, index) => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "variant-option";
-        btn.dataset.index = index;
-        btn.innerHTML = `
-          <span class="variant-dot" style="background:${v.color};"></span>
-          <span>${v.label}</span>
-        `;
-        btn.addEventListener("click", () => {
-          document.querySelectorAll(".variant-option").forEach(o => o.classList.remove("selected"));
-          btn.classList.add("selected");
-          currentVariant = v;
-          variantConfirmBtn.disabled = false;
-        });
-        variantList.appendChild(btn);
-      });
-
-      variantBackdrop.classList.add("open");
-    }
-
-    variantCloseBtn.addEventListener("click", () => {
-      variantBackdrop.classList.remove("open");
-    });
-
-    variantBackdrop.addEventListener("click", (e) => {
-      if (e.target === variantBackdrop) {
-        variantBackdrop.classList.remove("open");
-      }
-    });
-
-    variantConfirmBtn.addEventListener("click", () => {
-      if (!currentVariantProduct || !currentVariant) return;
-      addToCart(currentVariantProduct.id, currentVariant);
-      variantBackdrop.classList.remove("open");
-      // destello al confirmar
-      createBurst(lastClickPosition.x, lastClickPosition.y);
-    });
-
-    // ✨ Función para crear destellos tipo fuegos artificiales
-    function createBurst(x, y) {
-      const burst = document.createElement("div");
-      burst.className = "burst";
-      burst.style.left = x + "px";
-      burst.style.top = y + "px";
-
-      const particles = 22;
-      for (let i = 0; i < particles; i++) {
-        const p = document.createElement("span");
-        const angle = (2 * Math.PI / particles) * i;
-        const distance = 70 + Math.random() * 50; // radio más grande
-        const tx = Math.cos(angle) * distance;
-        const ty = Math.sin(angle) * distance;
-        p.style.setProperty("--tx", tx + "px");
-        p.style.setProperty("--ty", ty + "px");
-
-        const r = Math.random();
-        if (r < 0.33) {
-          p.classList.add("gold");
-        } else if (r < 0.66) {
-          p.classList.add("purple");
-        } else {
-          p.classList.add("pink");
         }
-
-        burst.appendChild(p);
-      }
-
-      document.body.appendChild(burst);
-      setTimeout(() => {
-        burst.remove();
-      }, 750);
-    }
-
-    // Inicializar
-    loadCart();
-    renderCategories();
-    renderProducts();
+      });
+    });
   </script>
 </body>
 </html>
