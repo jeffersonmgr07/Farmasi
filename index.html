@@ -179,6 +179,54 @@
       }
     }
 
+    /* 🛒 BOTÓN CARRITO FLOTANTE EN INDEX */
+
+    .cart-button {
+      position: fixed;
+      bottom: 20px;
+      right: 16px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, #ec407a, #f9739b);
+      color: #fff;
+      cursor: pointer;
+      font-size: 0.9rem;
+      box-shadow: 0 12px 28px rgba(236,64,122,0.55);
+      transition: 0.18s ease-out;
+    }
+
+    .cart-button:hover {
+      filter: brightness(1.05);
+      transform: translateY(-2px);
+    }
+
+    .cart-icon {
+      font-size: 1rem;
+    }
+
+    .cart-amount {
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .cart-count {
+      min-width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #fff;
+      color: #ec407a;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
     /* HERO */
 
     .hero {
@@ -628,6 +676,13 @@
       </nav>
     </header>
 
+    <!-- 🛒 BOTÓN CARRITO FLOTANTE EN INDEX -->
+    <button class="cart-button" id="indexCartBtn">
+      <span class="cart-icon">🛒</span>
+      <span class="cart-amount" id="indexCartAmount">S/ 0.00</span>
+      <span class="cart-count" id="indexCartCount">0</span>
+    </button>
+
     <main>
       <!-- HERO -->
       <section class="hero">
@@ -866,6 +921,37 @@
         }
       });
     });
+
+    // 🛒 Sincronizar carrito flotante en el INDEX con localStorage
+    (function syncCartOnIndex() {
+      const btn = document.getElementById("indexCartBtn");
+      const amountEl = document.getElementById("indexCartAmount");
+      const countEl = document.getElementById("indexCartCount");
+      if (!btn || !amountEl || !countEl) return;
+
+      function updateFromStorage() {
+        const saved = localStorage.getItem("farmasi_cart");
+        let cart = [];
+        if (saved) {
+          try {
+            cart = JSON.parse(saved);
+          } catch (e) {
+            cart = [];
+          }
+        }
+        const totalItems = cart.reduce((s, i) => s + (i.qty || 0), 0);
+        const total = cart.reduce((s, i) => s + (i.price * (i.qty || 0)), 0);
+        countEl.textContent = totalItems;
+        amountEl.textContent = `S/ ${total.toFixed(2)}`;
+      }
+
+      updateFromStorage();
+      window.addEventListener("storage", updateFromStorage);
+
+      btn.addEventListener("click", () => {
+        window.location.href = "catalogo.html";
+      });
+    })();
   </script>
 </body>
 </html>
