@@ -90,7 +90,7 @@
     }
 
     .cart-button {
-      position: fixed;          /* 👉 flotante siempre visible */
+      position: fixed;
       bottom: 20px;
       right: 16px;
       z-index: 9999;
@@ -111,6 +111,12 @@
     .cart-button:hover {
       filter: brightness(1.05);
       transform: translateY(-2px);
+    }
+
+    .cart-button.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
     }
 
     .cart-count {
@@ -489,23 +495,45 @@
       color: var(--muted);
     }
 
-    .btn-checkout {
+    .cart-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
       margin-top: 4px;
+    }
+
+    .btn-checkout,
+    .btn-pay-online {
       border-radius: 999px;
       border: none;
-      background: linear-gradient(135deg, #ec407a, #f9739b);
-      color: #fff;
       padding: 8px 12px;
       font-size: 0.9rem;
       cursor: pointer;
-      box-shadow: 0 10px 24px rgba(236,64,122,0.45);
       display: inline-flex;
       justify-content: center;
       width: 100%;
     }
 
-    .btn-checkout:hover {
+    .btn-pay-online {
+      background: linear-gradient(135deg, #ec407a, #f9739b);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(236,64,122,0.45);
+    }
+
+    .btn-pay-online:hover {
       filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .btn-checkout {
+      background: #fff;
+      color: #9f1239;
+      border: 1px solid #fecdd3;
+      box-shadow: 0 4px 12px rgba(244,114,182,0.2);
+    }
+
+    .btn-checkout:hover {
+      background: #fff1f2;
       transform: translateY(-1px);
     }
 
@@ -531,6 +559,10 @@
       opacity: 0;
     }
 
+    .burst span.purple {
+      background: radial-gradient(circle, #ede9fe 0, #8b5cf6 60%, transparent 100%);
+    }
+
     @keyframes particle {
       0% {
         transform: translate(0, 0) scale(1);
@@ -553,7 +585,7 @@
       </div>
       <div class="header-actions">
         <a href="index.html" class="btn-link">Volver a la página principal</a>
-        <!-- El botón carrito está aquí, pero se posiciona flotante con CSS -->
+        <!-- El botón carrito se posiciona flotante con CSS -->
         <button class="cart-button" id="openCartBtn">
           🛒 Carrito
           <span class="cart-count" id="cartCount">0</span>
@@ -608,9 +640,14 @@
           Este carrito es una pre-reserva. Al continuar, se abrirá WhatsApp con el detalle
           para confirmar tu pedido y coordinar el pago (Mercado Pago, Izipay, etc.).
         </p>
-        <button class="btn-checkout" id="checkoutBtn">
-          Continuar por WhatsApp
-        </button>
+        <div class="cart-buttons">
+          <button class="btn-pay-online" id="payOnlineBtn">
+            Pagar online
+          </button>
+          <button class="btn-checkout" id="checkoutBtn">
+            Continuar por WhatsApp
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -802,6 +839,7 @@
     const openCartBtn = document.getElementById("openCartBtn");
     const closeCartBtn = document.getElementById("closeCartBtn");
     const checkoutBtn = document.getElementById("checkoutBtn");
+    const payOnlineBtn = document.getElementById("payOnlineBtn");
     const categoriesContainer = document.getElementById("categories");
     const searchInput = document.getElementById("searchInput");
 
@@ -986,19 +1024,22 @@
     // Abrir / cerrar carrito
     openCartBtn.addEventListener("click", () => {
       cartBackdrop.classList.add("open");
+      openCartBtn.classList.add("hidden"); // ocultar botón flotante
     });
 
     closeCartBtn.addEventListener("click", () => {
       cartBackdrop.classList.remove("open");
+      openCartBtn.classList.remove("hidden"); // mostrar botón flotante
     });
 
     cartBackdrop.addEventListener("click", (e) => {
       if (e.target === cartBackdrop) {
         cartBackdrop.classList.remove("open");
+        openCartBtn.classList.remove("hidden");
       }
     });
 
-    // Checkout: enviar detalle por WhatsApp
+    // Checkout: Continuar por WhatsApp (igual que antes)
     checkoutBtn.addEventListener("click", () => {
       if (cart.length === 0) {
         alert("Tu carrito está vacío.");
@@ -1010,9 +1051,28 @@
       });
       const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
       message += `%0ATotal estimado: S/ ${total.toFixed(2)}%0A%0A`;
-      message += "¿Me ayudas con las opciones de pago (Mercado Pago / Izipay) y entrega, por favor?";
+      message += "¿Me ayudas con las opciones de pago y entrega, por favor?";
 
-      const phone = "51922740544"; // tu número
+      const phone = "51922740544";
+      const waUrl = `https://wa.me/${phone}?text=${message}`;
+      window.open(waUrl, "_blank");
+    });
+
+    // Botón Pagar online (mensaje enfocado a pago online)
+    payOnlineBtn.addEventListener("click", () => {
+      if (cart.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
+      let message = "Hola Yeliber, quiero pagar ONLINE este pedido:%0A%0A";
+      cart.forEach((item) => {
+        message += `• ${item.name} (x${item.qty}) - S/ ${item.price.toFixed(2)}%0A`;
+      });
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      message += `%0ATotal estimado: S/ ${total.toFixed(2)}%0A%0A`;
+      message += "Por favor envíame el link de pago (Mercado Pago / Izipay).";
+
+      const phone = "51922740544";
       const waUrl = `https://wa.me/${phone}?text=${message}`;
       window.open(waUrl, "_blank");
     });
@@ -1030,7 +1090,7 @@
       burst.style.left = x + "px";
       burst.style.top = y + "px";
 
-      const particles = 10;
+      const particles = 16; // más puntitos
       for (let i = 0; i < particles; i++) {
         const p = document.createElement("span");
         const angle = (2 * Math.PI / particles) * i;
@@ -1039,6 +1099,12 @@
         const ty = Math.sin(angle) * distance;
         p.style.setProperty("--tx", tx + "px");
         p.style.setProperty("--ty", ty + "px");
+
+        // ~40% de puntitos morados
+        if (Math.random() < 0.4) {
+          p.classList.add("purple");
+        }
+
         burst.appendChild(p);
       }
 
