@@ -97,7 +97,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 9px 16px;
+      padding: 9px 14px;
       border-radius: 999px;
       border: 1px solid transparent;
       background: linear-gradient(135deg, #ec407a, #f9739b);
@@ -108,15 +108,13 @@
       transition: 0.18s ease-out;
     }
 
-    .cart-button:hover {
-      filter: brightness(1.05);
-      transform: translateY(-2px);
+    .cart-icon {
+      font-size: 1rem;
     }
 
-    .cart-button.hidden {
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(10px);
+    .cart-amount {
+      font-size: 0.8rem;
+      font-weight: 500;
     }
 
     .cart-count {
@@ -130,6 +128,71 @@
       align-items: center;
       justify-content: center;
       font-weight: 600;
+    }
+
+    .cart-button:hover {
+      filter: brightness(1.05);
+      transform: translateY(-2px);
+    }
+
+    .cart-button.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+    }
+
+    .cart-button.bump {
+      animation: cart-bounce 0.35s ease-out;
+    }
+
+    @keyframes cart-bounce {
+      0% { transform: translateY(0) scale(1); }
+      30% { transform: translateY(-3px) scale(1.06); }
+      60% { transform: translateY(0) scale(0.98); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    /* WhatsApp flotante */
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 90px;
+      right: 16px;
+      z-index: 9998;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #f9a8d4, #ec4899);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 26px rgba(236,72,153,0.6);
+      animation: whatsapp-pulse 1.6s infinite alternate;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .whatsapp-float img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
+    .whatsapp-float.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+    }
+
+    @keyframes whatsapp-pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.6);
+      }
+      100% {
+        transform: scale(1.08);
+        box-shadow: 0 0 0 10px rgba(236, 72, 153, 0);
+      }
     }
 
     /* TITULO */
@@ -251,6 +314,10 @@
         bottom: 16px;
         right: 12px;
       }
+      .whatsapp-float {
+        bottom: 80px;
+        right: 12px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -275,7 +342,7 @@
 
     .product-image {
       width: 100%;
-      aspect-ratio: 3 / 4;
+      height: 160px; /* más pequeñas */
       border-radius: 10px;
       overflow: hidden;
       background: var(--primary-soft);
@@ -657,18 +724,27 @@
       object-fit: cover;
     }
 
-    .modal-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
     .modal-price-row {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 2px;
       margin-bottom: 8px;
+    }
+
+    .modal-section {
+      margin-bottom: 10px;
+    }
+
+    .modal-section h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .modal-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
     }
 
     /* MODAL VARIANTES (COLORES) */
@@ -780,7 +856,7 @@
       box-shadow: none;
     }
 
-    /* ✨ ANIMACIÓN DE DESTELLOS / FUEGOS ARTIFICIALES */
+    /* ✨ ANIMACIÓN DESTELLOS */
 
     .burst {
       position: fixed;
@@ -794,8 +870,8 @@
 
     .burst span {
       position: absolute;
-      width: 7px;
-      height: 7px;
+      width: 9px;
+      height: 9px;
       border-radius: 999px;
       background: radial-gradient(circle, #fde7f3 0, #ec407a 60%, transparent 100%);
       animation: particle 0.7s ease-out forwards;
@@ -824,6 +900,47 @@
         opacity: 0;
       }
     }
+
+    /* FOOTER SIMPLE (puedes luego reemplazar por include desde footer.html) */
+    footer {
+      border-top: 1px solid #fce7f3;
+      padding: 16px;
+      margin-top: 26px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #ec407a;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .footer-social img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
   </style>
 </head>
 <body>
@@ -836,12 +953,26 @@
       </div>
       <div class="header-actions">
         <a href="index.html" class="btn-link">Volver a la página principal</a>
-        <button class="cart-button" id="openCartBtn">
-          🛒 Carrito
-          <span class="cart-count" id="cartCount">0</span>
-        </button>
       </div>
     </header>
+
+    <!-- Botón flotante carrito -->
+    <button class="cart-button" id="openCartBtn">
+      <span class="cart-icon">🛒</span>
+      <span class="cart-amount" id="cartAmount">S/ 0.00</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <!-- WhatsApp flotante -->
+    <a
+      href="https://wa.me/51922740544"
+      class="whatsapp-float"
+      id="whatsappFloat"
+      target="_blank"
+      aria-label="Escríbeme por WhatsApp"
+    >
+      <img src="img/Logo whatsapp 2.png" alt="WhatsApp" />
+    </a>
 
     <!-- TÍTULO -->
     <section class="page-title">
@@ -851,9 +982,7 @@
 
     <!-- FILTROS -->
     <section class="filters">
-      <div class="categories" id="categories">
-        <!-- chips de categorías por JS -->
-      </div>
+      <div class="categories" id="categories"></div>
       <div class="search-box">
         <input
           type="text"
@@ -866,9 +995,32 @@
     </section>
 
     <!-- GRID PRODUCTOS -->
-    <section class="products-grid" id="productsGrid">
-      <!-- productos por JS -->
-    </section>
+    <section class="products-grid" id="productsGrid"></section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-links">
+        <a href="#">Noticias</a>
+        <a href="#">Blog</a>
+        <a href="#">Eventos</a>
+        <a href="#">Novedades</a>
+      </div>
+      <div class="footer-social">
+        <span>Sígueme:</span>
+        <a href="https://www.instagram.com/" target="_blank">
+          <img src="img/Logo Instagram 1.png" alt="Instagram" />
+        </a>
+        <a href="https://www.facebook.com/" target="_blank">
+          <img src="img/Logo facebook 1.png" alt="Facebook" />
+        </a>
+        <a href="https://www.tiktok.com/" target="_blank">
+          <img src="img/Logo tiktok 1.png" alt="TikTok" />
+        </a>
+        <a href="https://www.youtube.com/" target="_blank">
+          <img src="img/Logo Youtube 1.png" alt="YouTube" />
+        </a>
+      </div>
+    </footer>
   </div>
 
   <!-- PANEL CARRITO -->
@@ -885,8 +1037,8 @@
           <span class="cart-total-amount" id="cartTotal">S/ 0.00</span>
         </div>
         <p class="cart-note">
-          Este carrito es una pre-reserva. Al continuar, se abrirá WhatsApp con el detalle
-          para confirmar tu pedido y coordinar el pago (Mercado Pago, Izipay, etc.).
+          Este carrito es una pre-reserva. Para confirmar tu pedido puedes hacerlo pagando online
+          o continuar tu pedido por WhatsApp.
         </p>
         <div class="cart-buttons">
           <button class="btn-pay-online" id="payOnlineBtn">
@@ -905,14 +1057,21 @@
     <div class="modal-box">
       <button class="modal-close" id="modalCloseBtn">&times;</button>
       <h3 class="modal-title" id="modalTitle"></h3>
-      <div class="modal-image" id="modalImageWrapper">
+      <div class="modal-image">
         <img id="modalImage" src="" alt="" />
       </div>
       <div class="modal-price-row">
         <span class="product-price offer" id="modalPrice"></span>
         <span class="product-price-normal" id="modalNormalPrice"></span>
       </div>
-      <p class="modal-desc" id="modalDescription"></p>
+      <div class="modal-section">
+        <h4>Descripción del producto</h4>
+        <p class="modal-desc" id="modalLongDesc"></p>
+      </div>
+      <div class="modal-section">
+        <h4>Modo de uso</h4>
+        <p class="modal-desc" id="modalUsage"></p>
+      </div>
     </div>
   </div>
 
@@ -934,35 +1093,38 @@
   </div>
 
   <script>
-    // 1) Catálogo de productos con campos extra
+    // 1) Catálogo de productos con campos extra:
+    // shortDescription, descriptionLong, usage, price (oferta), normalPrice, categories, variants
     const products = [
       // Maquillaje
       {
         id: 1,
-        name: "Eye Pencil Delineador para Ojos",
-        shortDescription: "Un espectro completo de colores para realzar y definir los ojos. Esta fórmula resistente al agua es de larga duración, no se emborrona y se desliza sin esfuerzo para crear efectos sorprendentes. Envasado automático que no deja residuos.",
-        fullDescription:
-          "Un espectro completo de colores para realzar y definir los ojos. Esta fórmula resistente al agua es de larga duración, no se emborrona y se desliza sin esfuerzo para crear efectos sorprendentes. Envasado automático que no deja residuos.",
-        price: 37.50,           // precio oferta
-        normalPrice: 45.00,     // precio normal (tachado)
-        image: "products-img/Eye Pencil Delineador para Ojos.jpeg",
+        name: "Base líquida Stay Matte",
+        shortDescription: "Control de brillo y acabado natural para todo el día.",
+        descriptionLong:
+          "Base líquida de alta cobertura con acabado mate, ideal para piel mixta o grasa. Ayuda a controlar el brillo durante el día sin resecar la piel. Se difumina fácilmente y deja un acabado suave y uniforme.",
+        usage:
+          "Aplicar una pequeña cantidad en el rostro con brocha, esponja o dedos, difuminando desde el centro hacia afuera. Usar sobre piel limpia e hidratada.",
+        price: 49.90,           // oferta
+        normalPrice: 59.90,     // precio normal
+        image: "img/prod-base-stay-matte.jpg",
         categories: ["Maquillaje", "Rostro"],
         variants: [
-          { label: "Black", color: "#000000" },
-          { label: "Deep Brown", color: "#5a544d" },
-          { label: "Dark Blue", color: "#2b406a" },
-          { label: "Burgundy", color: "#643247" },
-          { label: "Glitz Grey", color: "#643247" }
+          { label: "01 Porcelain", color: "#fce0d3" },
+          { label: "02 Natural", color: "#f2c3a0" },
+          { label: "03 Beige", color: "#d79c70" }
         ],
       },
       {
         id: 2,
         name: "Labial líquido Matte Rouge",
         shortDescription: "Color intenso, larga duración y sensación ligera.",
-        fullDescription:
-          "Labial líquido con acabado mate aterciopelado. Fórmula cómoda que no reseca los labios y mantiene el color por horas. Ideal para looks de día y noche.",
+        descriptionLong:
+          "Labial líquido con acabado mate aterciopelado. Fórmula cómoda que no reseca los labios y mantiene el color por horas.",
+        usage:
+          "Aplicar sobre los labios limpios, comenzando por el centro y difuminando hacia las comisuras. Dejar secar unos segundos.",
         price: 39.90,
-        normalPrice: 0, // si no hay precio normal, pon 0 o deja este campo y no se mostrará tachado
+        normalPrice: 0,
         image: "img/prod-labial-matte-rouge.jpg",
         categories: ["Maquillaje", "Labios"],
         variants: [
@@ -975,20 +1137,24 @@
         id: 3,
         name: "Paleta de sombras Nude Glam",
         shortDescription: "Tonos neutros para looks de día y noche.",
-        fullDescription:
-          "Paleta de sombras con tonos cálidos y fríos en acabado mate y satinado. Perfecta para crear desde un look suave hasta un smokey eye intenso.",
+        descriptionLong:
+          "Paleta de sombras con tonos cálidos y fríos en acabado mate y satinado. Permite crear desde un look suave hasta un smokey eye intenso.",
+        usage:
+          "Aplicar los tonos claros en el párpado móvil y el lagrimal, y los tonos más oscuros en la cuenca y esquina externa para dar profundidad.",
         price: 89.90,
         normalPrice: 99.90,
         image: "img/prod-paleta-nude.jpg",
         categories: ["Maquillaje", "Ojos"],
-        variants: [], // sin variantes
+        variants: [],
       },
       {
         id: 4,
         name: "Máscara de pestañas Optimal Style",
         shortDescription: "Volumen y definición sin grumos.",
-        fullDescription:
-          "Máscara que aporta volumen, definición y curvatura a las pestañas. Cepillo diseñado para llegar a cada pestaña y dejar un acabado intenso.",
+        descriptionLong:
+          "Máscara que aporta volumen, definición y curvatura a las pestañas. Cepillo diseñado para llegar a cada pestaña.",
+        usage:
+          "Aplicar desde la raíz hacia las puntas con movimientos en zigzag. Añadir capas para un efecto más intenso.",
         price: 49.90,
         normalPrice: 0,
         image: "img/prod-mascara.jpg",
@@ -999,8 +1165,10 @@
         id: 5,
         name: "Rubor en polvo Blush Touch",
         shortDescription: "Toque de color saludable para tus mejillas.",
-        fullDescription:
+        descriptionLong:
           "Rubor en polvo de textura sedosa que se difumina fácilmente y aporta un acabado natural a las mejillas.",
+        usage:
+          "Aplicar con brocha en las mejillas, difuminando hacia las sienes. Ajustar la cantidad según la intensidad deseada.",
         price: 44.90,
         normalPrice: 0,
         image: "img/prod-blush.jpg",
@@ -1016,8 +1184,10 @@
         id: 6,
         name: "Serum de Vitamina C",
         shortDescription: "Ilumina la piel y ayuda a unificar el tono.",
-        fullDescription:
+        descriptionLong:
           "Serum concentrado con vitamina C que ayuda a mejorar la luminosidad, reducir la apariencia de manchas y dar uniformidad al tono de la piel.",
+        usage:
+          "Aplicar 3–4 gotas sobre el rostro limpio por la mañana, antes de la crema hidratante y el protector solar.",
         price: 79.90,
         normalPrice: 89.90,
         image: "img/prod-serum-vitc.jpg",
@@ -1028,8 +1198,10 @@
         id: 7,
         name: "Crema hidratante Aqua",
         shortDescription: "Hidratación ligera para uso diario.",
-        fullDescription:
+        descriptionLong:
           "Crema de textura ligera con efecto hidratante de larga duración. Ideal para piel normal a mixta.",
+        usage:
+          "Aplicar mañana y noche sobre el rostro limpio, masajeando suavemente hasta su completa absorción.",
         price: 69.90,
         normalPrice: 0,
         image: "img/prod-crema-aqua.jpg",
@@ -1040,8 +1212,10 @@
         id: 8,
         name: "Gel limpiador facial Pure Skin",
         shortDescription: "Limpia sin resecar, ideal para piel mixta.",
-        fullDescription:
-          "Gel limpiador suave que elimina impurezas y el exceso de grasa sin resecar la piel. Ideal para uso diario.",
+        descriptionLong:
+          "Gel limpiador suave que elimina impurezas y el exceso de grasa sin resecar la piel.",
+        usage:
+          "Aplicar sobre el rostro húmedo, masajear con movimientos circulares y enjuagar con abundante agua.",
         price: 49.90,
         normalPrice: 0,
         image: "img/prod-gel-limpiador.jpg",
@@ -1052,8 +1226,10 @@
         id: 9,
         name: "Contorno de ojos Revitalizing",
         shortDescription: "Ayuda a disminuir la apariencia de ojeras.",
-        fullDescription:
-          "Tratamiento para el contorno de ojos que ayuda a suavizar líneas finas y a mejorar la apariencia de ojeras.",
+        descriptionLong:
+          "Tratamiento para el contorno de ojos que ayuda a suavizar líneas finas y mejorar la apariencia de ojeras.",
+        usage:
+          "Aplicar una pequeña cantidad alrededor del contorno de ojos, dando toques suaves con el dedo anular.",
         price: 74.90,
         normalPrice: 0,
         image: "img/prod-contorno-ojos.jpg",
@@ -1064,8 +1240,10 @@
         id: 10,
         name: "Protector solar facial SPF50",
         shortDescription: "Protección diaria contra rayos UV.",
-        fullDescription:
+        descriptionLong:
           "Protector solar facial de amplio espectro con SPF50, ideal para uso diario antes del maquillaje.",
+        usage:
+          "Aplicar como último paso de la rutina de día, 15–20 minutos antes de la exposición al sol.",
         price: 59.90,
         normalPrice: 0,
         image: "img/prod-protector-solar.jpg",
@@ -1078,8 +1256,10 @@
         id: 11,
         name: "Perfume Femme Elegance",
         shortDescription: "Aroma floral con toques frutales.",
-        fullDescription:
+        descriptionLong:
           "Fragancia femenina elegante con notas florales y frutales, perfecta para uso diario o eventos especiales.",
+        usage:
+          "Rociar sobre los puntos de pulso: cuello, muñecas y detrás de las orejas.",
         price: 119.90,
         normalPrice: 129.90,
         image: "img/prod-perfume-femme.jpg",
@@ -1090,8 +1270,10 @@
         id: 12,
         name: "Perfume Homme Intense",
         shortDescription: "Fragancia masculina intensa y sofisticada.",
-        fullDescription:
-          "Fragancia masculina de carácter intenso con notas amaderadas y especiadas.",
+        descriptionLong:
+          "Fragancia masculina con notas amaderadas y especiadas, de carácter intenso y duradero.",
+        usage:
+          "Aplicar sobre piel limpia en el cuello y muñecas. Evitar frotar para no alterar el aroma.",
         price: 129.90,
         normalPrice: 139.90,
         image: "img/prod-perfume-homme.jpg",
@@ -1102,8 +1284,10 @@
         id: 13,
         name: "Body Mist Fresh Blossom",
         shortDescription: "Rocío corporal fresco para uso diario.",
-        fullDescription:
+        descriptionLong:
           "Body mist ligero y refrescante con aroma floral suave, ideal para reaplicar durante el día.",
+        usage:
+          "Vaporizar sobre el cuerpo a la distancia de un brazo. Reaplicar según necesidad.",
         price: 39.90,
         normalPrice: 0,
         image: "img/prod-body-mist.jpg",
@@ -1116,8 +1300,10 @@
         id: 14,
         name: "Shampoo Revitalizante",
         shortDescription: "Fortalece y da brillo al cabello.",
-        fullDescription:
+        descriptionLong:
           "Shampoo de uso frecuente que ayuda a revitalizar el cabello apagado, aportando brillo y suavidad.",
+        usage:
+          "Aplicar sobre el cabello húmedo, masajear el cuero cabelludo y enjuagar con abundante agua.",
         price: 34.90,
         normalPrice: 0,
         image: "img/prod-shampoo.jpg",
@@ -1128,8 +1314,10 @@
         id: 15,
         name: "Acondicionador Nutritivo",
         shortDescription: "Suaviza y desenreda sin dejar pesado.",
-        fullDescription:
+        descriptionLong:
           "Acondicionador nutritivo que ayuda a desenredar y suavizar el cabello sin aportar peso extra.",
+        usage:
+          "Aplicar de medios a puntas después del shampoo, dejar actuar unos minutos y enjuagar.",
         price: 34.90,
         normalPrice: 0,
         image: "img/prod-acondicionador.jpg",
@@ -1140,8 +1328,10 @@
         id: 16,
         name: "Crema corporal NutriCare",
         shortDescription: "Hidratación profunda para todo el cuerpo.",
-        fullDescription:
+        descriptionLong:
           "Crema corporal de rápida absorción que deja la piel suave, hidratada y con un aroma agradable.",
+        usage:
+          "Aplicar sobre la piel limpia, realizando masajes circulares hasta su completa absorción.",
         price: 44.90,
         normalPrice: 0,
         image: "img/prod-crema-corporal.jpg",
@@ -1152,8 +1342,10 @@
         id: 17,
         name: "Jabón líquido Soft Touch",
         shortDescription: "Limpieza suave con aroma delicado.",
-        fullDescription:
+        descriptionLong:
           "Jabón líquido para manos y cuerpo con espuma suave y aroma delicado.",
+        usage:
+          "Aplicar sobre la piel húmeda, masajear suavemente y enjuagar.",
         price: 24.90,
         normalPrice: 0,
         image: "img/prod-jabon-liquido.jpg",
@@ -1166,8 +1358,10 @@
         id: 18,
         name: "Set Maquillaje Día Perfecto",
         shortDescription: "Base + labial + máscara de pestañas.",
-        fullDescription:
+        descriptionLong:
           "Set ideal para un look completo de día: base, labial y máscara seleccionados para complementar entre sí.",
+        usage:
+          "Utiliza la base para unificar el tono, la máscara para resaltar las pestañas y el labial para completar el look.",
         price: 149.90,
         normalPrice: 169.90,
         image: "img/prod-set-dia.jpg",
@@ -1178,8 +1372,10 @@
         id: 19,
         name: "Set Skincare Rutina Básica",
         shortDescription: "Limpiador + crema hidratante + protector solar.",
-        fullDescription:
+        descriptionLong:
           "Pack básico para una rutina sencilla de cuidado de la piel: limpieza, hidratación y protección.",
+        usage:
+          "Paso 1: limpiar. Paso 2: hidratar. Paso 3: aplicar protector solar por la mañana.",
         price: 159.90,
         normalPrice: 179.90,
         image: "img/prod-set-skincare.jpg",
@@ -1190,8 +1386,10 @@
         id: 20,
         name: "Set Regalo Fragancias",
         shortDescription: "Mini perfumes para sorprender.",
-        fullDescription:
+        descriptionLong:
           "Set de mini fragancias perfectas para probar diferentes aromas o para regalar.",
+        usage:
+          "Utiliza cada fragancia según la ocasión, aplicando en puntos de pulso.",
         price: 99.90,
         normalPrice: 0,
         image: "img/prod-set-fragancias.jpg",
@@ -1206,10 +1404,10 @@
     let searchTerm = "";
     let currentVariantProduct = null;
     let currentVariant = null;
-    let lastClickPosition = { x: 0, y: 0 };
 
     const productsGrid = document.getElementById("productsGrid");
     const cartCountEl = document.getElementById("cartCount");
+    const cartAmountEl = document.getElementById("cartAmount");
     const cartBackdrop = document.getElementById("cartBackdrop");
     const cartItemsEl = document.getElementById("cartItems");
     const cartTotalEl = document.getElementById("cartTotal");
@@ -1219,14 +1417,16 @@
     const payOnlineBtn = document.getElementById("payOnlineBtn");
     const categoriesContainer = document.getElementById("categories");
     const searchInput = document.getElementById("searchInput");
+    const whatsappFloat = document.getElementById("whatsappFloat");
 
     const productModal = document.getElementById("productModal");
     const modalCloseBtn = document.getElementById("modalCloseBtn");
     const modalTitle = document.getElementById("modalTitle");
-    const modalDescription = document.getElementById("modalDescription");
     const modalImage = document.getElementById("modalImage");
     const modalPrice = document.getElementById("modalPrice");
     const modalNormalPrice = document.getElementById("modalNormalPrice");
+    const modalLongDesc = document.getElementById("modalLongDesc");
+    const modalUsage = document.getElementById("modalUsage");
 
     const variantBackdrop = document.getElementById("variantBackdrop");
     const variantTitle = document.getElementById("variantTitle");
@@ -1249,12 +1449,10 @@
       localStorage.setItem("farmasi_cart", JSON.stringify(cart));
     }
 
-    // Construir chips de categorías (a partir de todos los arrays 'categories')
+    // Categorías a partir de 'categories'
     function renderCategories() {
       const set = new Set();
-      products.forEach(p => {
-        (p.categories || []).forEach(c => set.add(c));
-      });
+      products.forEach(p => (p.categories || []).forEach(c => set.add(c)));
       const cats = Array.from(set).sort();
       categoriesContainer.innerHTML = "";
 
@@ -1282,7 +1480,6 @@
       });
     }
 
-    // Render productos con filtros
     function renderProducts() {
       productsGrid.innerHTML = "";
 
@@ -1294,13 +1491,10 @@
         const text = [
           p.name || "",
           p.shortDescription || "",
-          p.fullDescription || ""
-        ]
-          .join(" ")
-          .toLowerCase();
-
+          p.descriptionLong || "",
+          p.usage || ""
+        ].join(" ").toLowerCase();
         const matchSearch = term === "" || text.includes(term);
-
         return matchCategory && matchSearch;
       });
 
@@ -1345,14 +1539,11 @@
         productsGrid.appendChild(card);
       });
 
-      // eventos botones
       document.querySelectorAll(".btn-add").forEach((btn) => {
         btn.addEventListener("click", (e) => {
           const id = parseInt(btn.getAttribute("data-id"), 10);
           const product = products.find((p) => p.id === id);
           if (!product) return;
-
-          lastClickPosition = { x: e.clientX, y: e.clientY };
 
           if (product.variants && product.variants.length > 0) {
             openVariantModal(product);
@@ -1397,67 +1588,70 @@
 
       saveCart();
       updateCartUI();
+      bumpCartButton();
     }
 
     function updateCartUI() {
       const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+
       cartCountEl.textContent = totalItems;
+      cartTotalEl.textContent = `S/ ${total.toFixed(2)}`;
+      cartAmountEl.textContent = `S/ ${total.toFixed(2)}`;
 
       cartItemsEl.innerHTML = "";
       if (cart.length === 0) {
         cartItemsEl.innerHTML =
           "<p style='font-size:0.86rem;color:#6b7280;'>Tu carrito está vacío por ahora.</p>";
-      } else {
-        cart.forEach((item) => {
-          const row = document.createElement("div");
-          row.className = "cart-item";
-
-          const variantHtml = item.variant
-            ? `
-              <div class="cart-item-variant">
-                <span class="variant-dot-small" style="background:${item.variant.color};"></span>
-                <span>${item.variant.label}</span>
-              </div>
-            `
-            : "";
-
-          row.innerHTML = `
-            <img src="${item.image}" alt="${item.name}" onerror="this.src='img/farmasi-logo-redondo.jpg'" />
-            <div class="cart-item-main">
-              <div class="cart-item-name">${item.name}</div>
-              ${variantHtml}
-              <div class="cart-item-price">S/ ${item.price.toFixed(2)} c/u</div>
-            </div>
-            <div class="cart-item-actions">
-              <div class="qty-controls">
-                <button class="qty-btn" data-key="${item.key}" data-action="minus">-</button>
-                <span class="qty-number">${item.qty}</span>
-                <button class="qty-btn" data-key="${item.key}" data-action="plus">+</button>
-              </div>
-              <button class="remove-btn" data-key="${item.key}">Quitar</button>
-            </div>
-          `;
-          cartItemsEl.appendChild(row);
-        });
-
-        document.querySelectorAll(".qty-btn").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const key = btn.getAttribute("data-key");
-            const action = btn.getAttribute("data-action");
-            updateQty(key, action === "plus" ? 1 : -1);
-          });
-        });
-
-        document.querySelectorAll(".remove-btn").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const key = btn.getAttribute("data-key");
-            removeFromCart(key);
-          });
-        });
+        return;
       }
 
-      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-      cartTotalEl.textContent = `S/ ${total.toFixed(2)}`;
+      cart.forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "cart-item";
+
+        const variantHtml = item.variant
+          ? `
+            <div class="cart-item-variant">
+              <span class="variant-dot-small" style="background:${item.variant.color};"></span>
+              <span>${item.variant.label}</span>
+            </div>
+          `
+          : "";
+
+        row.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" onerror="this.src='img/farmasi-logo-redondo.jpg'" />
+          <div class="cart-item-main">
+            <div class="cart-item-name">${item.name}</div>
+            ${variantHtml}
+            <div class="cart-item-price">S/ ${item.price.toFixed(2)} c/u</div>
+          </div>
+          <div class="cart-item-actions">
+            <div class="qty-controls">
+              <button class="qty-btn" data-key="${item.key}" data-action="minus">-</button>
+              <span class="qty-number">${item.qty}</span>
+              <button class="qty-btn" data-key="${item.key}" data-action="plus">+</button>
+            </div>
+            <button class="remove-btn" data-key="${item.key}">Quitar</button>
+          </div>
+        `;
+        cartItemsEl.appendChild(row);
+      });
+
+      document.querySelectorAll(".qty-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const key = btn.getAttribute("data-key");
+          const action = btn.getAttribute("data-action");
+          updateQty(key, action === "plus" ? 1 : -1);
+        });
+      });
+
+      document.querySelectorAll(".remove-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const key = btn.getAttribute("data-key");
+          removeFromCart(key);
+        });
+      });
     }
 
     function updateQty(key, diff) {
@@ -1477,61 +1671,81 @@
       updateCartUI();
     }
 
+    function bumpCartButton() {
+      openCartBtn.classList.remove("bump");
+      void openCartBtn.offsetWidth; // reflow para reiniciar animación
+      openCartBtn.classList.add("bump");
+    }
+
     // Abrir / cerrar carrito
     openCartBtn.addEventListener("click", () => {
       cartBackdrop.classList.add("open");
       openCartBtn.classList.add("hidden");
+      if (whatsappFloat) whatsappFloat.classList.add("hidden");
+      // Empujar estado para que el botón atrás cierre el carrito primero
+      history.pushState({ cartOpen: true }, "");
     });
 
     closeCartBtn.addEventListener("click", () => {
       cartBackdrop.classList.remove("open");
       openCartBtn.classList.remove("hidden");
+      if (whatsappFloat) whatsappFloat.classList.remove("hidden");
     });
 
     cartBackdrop.addEventListener("click", (e) => {
       if (e.target === cartBackdrop) {
         cartBackdrop.classList.remove("open");
         openCartBtn.classList.remove("hidden");
+        if (whatsappFloat) whatsappFloat.classList.remove("hidden");
+      }
+    });
+
+    // Botón atrás del navegador: si el carrito está abierto, lo cerramos
+    window.addEventListener("popstate", () => {
+      if (cartBackdrop.classList.contains("open")) {
+        cartBackdrop.classList.remove("open");
+        openCartBtn.classList.remove("hidden");
+        if (whatsappFloat) whatsappFloat.classList.remove("hidden");
       }
     });
 
     // Checkout: Continuar por WhatsApp
-    checkoutBtn.addEventListener("click", () => {
+    function buildCartMessage(prefix) {
       if (cart.length === 0) {
-        alert("Tu carrito está vacío.");
-        return;
+        return null;
       }
-      let message = "Hola Yeliber, quiero hacer este pedido:%0A%0A";
+      let message = prefix + "%0A%0A";
       cart.forEach((item) => {
         const variantText = item.variant ? ` (${item.variant.label})` : "";
         message += `• ${item.name}${variantText} (x${item.qty}) - S/ ${item.price.toFixed(2)}%0A`;
       });
       const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
       message += `%0ATotal estimado: S/ ${total.toFixed(2)}%0A%0A`;
-      message += "¿Me ayudas con las opciones de pago y entrega, por favor?";
+      return message;
+    }
 
+    checkoutBtn.addEventListener("click", () => {
+      const base = "Hola Yeliber, quiero hacer este pedido:";
+      const message = buildCartMessage(base);
+      if (!message) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
       const phone = "51922740544";
-      const waUrl = `https://wa.me/${phone}?text=${message}`;
+      const waUrl = `https://wa.me/${phone}?text=${message}¿Me ayudas con las opciones de pago y entrega, por favor?`;
       window.open(waUrl, "_blank");
     });
 
     // Botón Pagar online
     payOnlineBtn.addEventListener("click", () => {
-      if (cart.length === 0) {
+      const base = "Hola Yeliber, quiero pagar ONLINE este pedido:";
+      const message = buildCartMessage(base);
+      if (!message) {
         alert("Tu carrito está vacío.");
         return;
       }
-      let message = "Hola Yeliber, quiero pagar ONLINE este pedido:%0A%0A";
-      cart.forEach((item) => {
-        const variantText = item.variant ? ` (${item.variant.label})` : "";
-        message += `• ${item.name}${variantText} (x${item.qty}) - S/ ${item.price.toFixed(2)}%0A`;
-      });
-      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-      message += `%0ATotal estimado: S/ ${total.toFixed(2)}%0A%0A`;
-      message += "Por favor envíame el link de pago (Mercado Pago / Izipay).";
-
       const phone = "51922740544";
-      const waUrl = `https://wa.me/${phone}?text=${message}`;
+      const waUrl = `https://wa.me/${phone}?text=${message}Por%20favor%20env%C3%ADame%20el%20link%20de%20pago%20(Mercado%20Pago%20/%20Izipay).`;
       window.open(waUrl, "_blank");
     });
 
@@ -1544,7 +1758,8 @@
     // MODAL DETALLES
     function openProductModal(product) {
       modalTitle.textContent = product.name;
-      modalDescription.textContent = product.fullDescription || "";
+      modalLongDesc.textContent = product.descriptionLong || "";
+      modalUsage.textContent = product.usage || "";
       modalImage.src = product.image;
       modalImage.onerror = () => {
         modalImage.src = "img/farmasi-logo-redondo.jpg";
@@ -1612,23 +1827,28 @@
     variantConfirmBtn.addEventListener("click", () => {
       if (!currentVariantProduct || !currentVariant) return;
       addToCart(currentVariantProduct.id, currentVariant);
+
+      // destello desde el botón de confirmar
+      const rect = variantConfirmBtn.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      createBurst(cx, cy);
+
       variantBackdrop.classList.remove("open");
-      // destello al confirmar
-      createBurst(lastClickPosition.x, lastClickPosition.y);
     });
 
-    // ✨ Función para crear destellos tipo fuegos artificiales
+    // ✨ Destellos (más grandes y con colores dorado/morado/rosado)
     function createBurst(x, y) {
       const burst = document.createElement("div");
       burst.className = "burst";
       burst.style.left = x + "px";
       burst.style.top = y + "px";
 
-      const particles = 22;
+      const particles = 24;
       for (let i = 0; i < particles; i++) {
         const p = document.createElement("span");
         const angle = (2 * Math.PI / particles) * i;
-        const distance = 70 + Math.random() * 50; // radio más grande
+        const distance = 80 + Math.random() * 70; // radio más grande
         const tx = Math.cos(angle) * distance;
         const ty = Math.sin(angle) * distance;
         p.style.setProperty("--tx", tx + "px");
@@ -1647,9 +1867,7 @@
       }
 
       document.body.appendChild(burst);
-      setTimeout(() => {
-        burst.remove();
-      }, 750);
+      setTimeout(() => burst.remove(), 750);
     }
 
     // Inicializar
