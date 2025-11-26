@@ -300,6 +300,33 @@
       color: var(--muted);
       font-size: 0.8rem;
       min-height: 32px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .price-row {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+
+    .product-price {
+      font-weight: 600;
+      color: #9f1239;
+      font-size: 0.9rem;
+    }
+
+    .product-price.offer {
+      color: #b91c1c;
+    }
+
+    .product-price-normal {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: line-through;
     }
 
     .product-footer {
@@ -308,12 +335,6 @@
       justify-content: space-between;
       gap: 8px;
       margin-top: 4px;
-    }
-
-    .product-price {
-      font-weight: 600;
-      color: #9f1239;
-      font-size: 0.9rem;
     }
 
     .btn-add {
@@ -337,6 +358,30 @@
     .btn-add:hover {
       filter: brightness(1.05);
       transform: translateY(-1px);
+    }
+
+    .btn-more {
+      border-radius: 999px;
+      border: 1px solid #fecdd3;
+      background: #fff;
+      color: #9f1239;
+      padding: 4px 8px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: 0.18s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-more:hover {
+      background: #fff1f2;
+      transform: translateY(-1px);
+    }
+
+    .product-actions-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
     }
 
     /* CARRITO LATERAL */
@@ -419,6 +464,23 @@
     .cart-item-name {
       font-weight: 500;
       margin-bottom: 2px;
+    }
+
+    .cart-item-variant {
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .variant-dot-small {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      flex-shrink: 0;
     }
 
     .cart-item-price {
@@ -537,6 +599,187 @@
       transform: translateY(-1px);
     }
 
+    /* MODAL DETALLES PRODUCTO */
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      border-radius: 18px;
+      padding: 16px 18px 18px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      position: relative;
+      font-size: 0.9rem;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      border: none;
+      background: transparent;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .modal-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .modal-image {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      background: #fdf2f8;
+    }
+
+    .modal-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .modal-price-row {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      margin-bottom: 8px;
+    }
+
+    /* MODAL VARIANTES (COLORES) */
+
+    .variant-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10001;
+    }
+
+    .variant-backdrop.open {
+      display: flex;
+    }
+
+    .variant-box {
+      width: 100%;
+      max-width: 360px;
+      background: #fff;
+      border-radius: 18px;
+      padding: 14px 16px 16px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      font-size: 0.9rem;
+    }
+
+    .variant-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .variant-title {
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+
+    .variant-close {
+      border: none;
+      background: transparent;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .variant-help {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .variant-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .variant-option {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: 0.18s ease-out;
+    }
+
+    .variant-option:hover {
+      border-color: #f9a8d4;
+      background: #fff7fb;
+    }
+
+    .variant-option.selected {
+      border-color: #ec407a;
+      background: #fff1f5;
+      box-shadow: 0 0 0 1px #fecdd3;
+    }
+
+    .variant-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      flex-shrink: 0;
+    }
+
+    .variant-confirm {
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ec407a, #f9739b);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(236,64,122,0.45);
+    }
+
+    .variant-confirm:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
     /* ✨ ANIMACIÓN DE DESTELLOS / FUEGOS ARTIFICIALES */
 
     .burst {
@@ -551,16 +794,24 @@
 
     .burst span {
       position: absolute;
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 999px;
       background: radial-gradient(circle, #fde7f3 0, #ec407a 60%, transparent 100%);
-      animation: particle 0.6s ease-out forwards;
+      animation: particle 0.7s ease-out forwards;
       opacity: 0;
+    }
+
+    .burst span.gold {
+      background: radial-gradient(circle, #fef3c7 0, #f59e0b 60%, transparent 100%);
     }
 
     .burst span.purple {
       background: radial-gradient(circle, #ede9fe 0, #8b5cf6 60%, transparent 100%);
+    }
+
+    .burst span.pink {
+      background: radial-gradient(circle, #fce7f3 0, #ec4899 60%, transparent 100%);
     }
 
     @keyframes particle {
@@ -585,7 +836,6 @@
       </div>
       <div class="header-actions">
         <a href="index.html" class="btn-link">Volver a la página principal</a>
-        <!-- El botón carrito se posiciona flotante con CSS -->
         <button class="cart-button" id="openCartBtn">
           🛒 Carrito
           <span class="cart-count" id="cartCount">0</span>
@@ -628,9 +878,7 @@
         <h2>Tu carrito</h2>
         <button class="cart-close" id="closeCartBtn">&times;</button>
       </div>
-      <div class="cart-items" id="cartItems">
-        <!-- Items del carrito -->
-      </div>
+      <div class="cart-items" id="cartItems"></div>
       <div class="cart-footer">
         <div class="cart-total-row">
           <span class="cart-total-label">Total estimado:</span>
@@ -652,177 +900,301 @@
     </div>
   </div>
 
+  <!-- MODAL DETALLES PRODUCTO -->
+  <div class="modal-backdrop" id="productModal">
+    <div class="modal-box">
+      <button class="modal-close" id="modalCloseBtn">&times;</button>
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <div class="modal-image" id="modalImageWrapper">
+        <img id="modalImage" src="" alt="" />
+      </div>
+      <div class="modal-price-row">
+        <span class="product-price offer" id="modalPrice"></span>
+        <span class="product-price-normal" id="modalNormalPrice"></span>
+      </div>
+      <p class="modal-desc" id="modalDescription"></p>
+    </div>
+  </div>
+
+  <!-- MODAL VARIANTES (COLORES) -->
+  <div class="variant-backdrop" id="variantBackdrop">
+    <div class="variant-box">
+      <div class="variant-header">
+        <span class="variant-title" id="variantTitle">Elige un color</span>
+        <button class="variant-close" id="variantCloseBtn">&times;</button>
+      </div>
+      <p class="variant-help">
+        Selecciona el tono que deseas y luego agrégalo al carrito.
+      </p>
+      <div class="variant-list" id="variantList"></div>
+      <button class="variant-confirm" id="variantConfirmBtn" disabled>
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+
   <script>
-    // 1) Catálogo de productos (20 con categorías)
+    // 1) Catálogo de productos con campos extra
     const products = [
       // Maquillaje
       {
         id: 1,
         name: "Base líquida Stay Matte",
-        description: "Control de brillo y acabado natural para todo el día.",
-        price: 59.90,
+        shortDescription: "Control de brillo y acabado natural para todo el día.",
+        fullDescription:
+          "Base líquida de alta cobertura con acabado mate, ideal para piel mixta o grasa. Ayuda a controlar el brillo durante el día sin resecar la piel. Se difumina fácilmente y deja un acabado suave y uniforme.",
+        price: 49.90,           // precio oferta
+        normalPrice: 59.90,     // precio normal (tachado)
         image: "img/prod-base-stay-matte.jpg",
-        category: "Maquillaje",
+        categories: ["Maquillaje", "Rostro"],
+        variants: [
+          { label: "01 Porcelain", color: "#fce0d3" },
+          { label: "02 Natural", color: "#f2c3a0" },
+          { label: "03 Beige", color: "#d79c70" }
+        ],
       },
       {
         id: 2,
         name: "Labial líquido Matte Rouge",
-        description: "Color intenso, larga duración y sensación ligera.",
+        shortDescription: "Color intenso, larga duración y sensación ligera.",
+        fullDescription:
+          "Labial líquido con acabado mate aterciopelado. Fórmula cómoda que no reseca los labios y mantiene el color por horas. Ideal para looks de día y noche.",
         price: 39.90,
+        normalPrice: 0, // si no hay precio normal, pon 0 o deja este campo y no se mostrará tachado
         image: "img/prod-labial-matte-rouge.jpg",
-        category: "Maquillaje",
+        categories: ["Maquillaje", "Labios"],
+        variants: [
+          { label: "Rojo clásico", color: "#b91c1c" },
+          { label: "Rosa nude", color: "#f4b4b8" },
+          { label: "Vino", color: "#58111a" }
+        ],
       },
       {
         id: 3,
         name: "Paleta de sombras Nude Glam",
-        description: "Tonos neutros para looks de día y noche.",
+        shortDescription: "Tonos neutros para looks de día y noche.",
+        fullDescription:
+          "Paleta de sombras con tonos cálidos y fríos en acabado mate y satinado. Perfecta para crear desde un look suave hasta un smokey eye intenso.",
         price: 89.90,
+        normalPrice: 99.90,
         image: "img/prod-paleta-nude.jpg",
-        category: "Maquillaje",
+        categories: ["Maquillaje", "Ojos"],
+        variants: [], // sin variantes
       },
       {
         id: 4,
         name: "Máscara de pestañas Optimal Style",
-        description: "Volumen y definición sin grumos.",
+        shortDescription: "Volumen y definición sin grumos.",
+        fullDescription:
+          "Máscara que aporta volumen, definición y curvatura a las pestañas. Cepillo diseñado para llegar a cada pestaña y dejar un acabado intenso.",
         price: 49.90,
+        normalPrice: 0,
         image: "img/prod-mascara.jpg",
-        category: "Maquillaje",
+        categories: ["Maquillaje", "Ojos"],
+        variants: [],
       },
       {
         id: 5,
         name: "Rubor en polvo Blush Touch",
-        description: "Toque de color saludable para tus mejillas.",
+        shortDescription: "Toque de color saludable para tus mejillas.",
+        fullDescription:
+          "Rubor en polvo de textura sedosa que se difumina fácilmente y aporta un acabado natural a las mejillas.",
         price: 44.90,
+        normalPrice: 0,
         image: "img/prod-blush.jpg",
-        category: "Maquillaje",
+        categories: ["Maquillaje", "Rostro"],
+        variants: [
+          { label: "Coral suave", color: "#f8b4a0" },
+          { label: "Rosa suave", color: "#f9a8d4" }
+        ],
       },
 
       // Cuidado de la piel
       {
         id: 6,
         name: "Serum de Vitamina C",
-        description: "Ilumina la piel y ayuda a unificar el tono.",
+        shortDescription: "Ilumina la piel y ayuda a unificar el tono.",
+        fullDescription:
+          "Serum concentrado con vitamina C que ayuda a mejorar la luminosidad, reducir la apariencia de manchas y dar uniformidad al tono de la piel.",
         price: 79.90,
+        normalPrice: 89.90,
         image: "img/prod-serum-vitc.jpg",
-        category: "Cuidado de la piel",
+        categories: ["Cuidado de la piel"],
+        variants: [],
       },
       {
         id: 7,
         name: "Crema hidratante Aqua",
-        description: "Hidratación ligera para uso diario.",
+        shortDescription: "Hidratación ligera para uso diario.",
+        fullDescription:
+          "Crema de textura ligera con efecto hidratante de larga duración. Ideal para piel normal a mixta.",
         price: 69.90,
+        normalPrice: 0,
         image: "img/prod-crema-aqua.jpg",
-        category: "Cuidado de la piel",
+        categories: ["Cuidado de la piel"],
+        variants: [],
       },
       {
         id: 8,
         name: "Gel limpiador facial Pure Skin",
-        description: "Limpia sin resecar, ideal para piel mixta.",
+        shortDescription: "Limpia sin resecar, ideal para piel mixta.",
+        fullDescription:
+          "Gel limpiador suave que elimina impurezas y el exceso de grasa sin resecar la piel. Ideal para uso diario.",
         price: 49.90,
+        normalPrice: 0,
         image: "img/prod-gel-limpiador.jpg",
-        category: "Cuidado de la piel",
+        categories: ["Cuidado de la piel"],
+        variants: [],
       },
       {
         id: 9,
         name: "Contorno de ojos Revitalizing",
-        description: "Ayuda a disminuir la apariencia de ojeras.",
+        shortDescription: "Ayuda a disminuir la apariencia de ojeras.",
+        fullDescription:
+          "Tratamiento para el contorno de ojos que ayuda a suavizar líneas finas y a mejorar la apariencia de ojeras.",
         price: 74.90,
+        normalPrice: 0,
         image: "img/prod-contorno-ojos.jpg",
-        category: "Cuidado de la piel",
+        categories: ["Cuidado de la piel"],
+        variants: [],
       },
       {
         id: 10,
         name: "Protector solar facial SPF50",
-        description: "Protección diaria contra rayos UV.",
+        shortDescription: "Protección diaria contra rayos UV.",
+        fullDescription:
+          "Protector solar facial de amplio espectro con SPF50, ideal para uso diario antes del maquillaje.",
         price: 59.90,
+        normalPrice: 0,
         image: "img/prod-protector-solar.jpg",
-        category: "Cuidado de la piel",
+        categories: ["Cuidado de la piel"],
+        variants: [],
       },
 
       // Fragancias
       {
         id: 11,
         name: "Perfume Femme Elegance",
-        description: "Aroma floral con toques frutales.",
+        shortDescription: "Aroma floral con toques frutales.",
+        fullDescription:
+          "Fragancia femenina elegante con notas florales y frutales, perfecta para uso diario o eventos especiales.",
         price: 119.90,
+        normalPrice: 129.90,
         image: "img/prod-perfume-femme.jpg",
-        category: "Fragancias",
+        categories: ["Fragancias"],
+        variants: [],
       },
       {
         id: 12,
         name: "Perfume Homme Intense",
-        description: "Fragancia masculina intensa y sofisticada.",
+        shortDescription: "Fragancia masculina intensa y sofisticada.",
+        fullDescription:
+          "Fragancia masculina de carácter intenso con notas amaderadas y especiadas.",
         price: 129.90,
+        normalPrice: 139.90,
         image: "img/prod-perfume-homme.jpg",
-        category: "Fragancias",
+        categories: ["Fragancias"],
+        variants: [],
       },
       {
         id: 13,
         name: "Body Mist Fresh Blossom",
-        description: "Rocío corporal fresco para uso diario.",
+        shortDescription: "Rocío corporal fresco para uso diario.",
+        fullDescription:
+          "Body mist ligero y refrescante con aroma floral suave, ideal para reaplicar durante el día.",
         price: 39.90,
+        normalPrice: 0,
         image: "img/prod-body-mist.jpg",
-        category: "Fragancias",
+        categories: ["Fragancias", "Cuidado personal"],
+        variants: [],
       },
 
       // Cuidado personal
       {
         id: 14,
         name: "Shampoo Revitalizante",
-        description: "Fortalece y da brillo al cabello.",
+        shortDescription: "Fortalece y da brillo al cabello.",
+        fullDescription:
+          "Shampoo de uso frecuente que ayuda a revitalizar el cabello apagado, aportando brillo y suavidad.",
         price: 34.90,
+        normalPrice: 0,
         image: "img/prod-shampoo.jpg",
-        category: "Cuidado personal",
+        categories: ["Cuidado personal"],
+        variants: [],
       },
       {
         id: 15,
         name: "Acondicionador Nutritivo",
-        description: "Suaviza y desenreda sin dejar pesado.",
+        shortDescription: "Suaviza y desenreda sin dejar pesado.",
+        fullDescription:
+          "Acondicionador nutritivo que ayuda a desenredar y suavizar el cabello sin aportar peso extra.",
         price: 34.90,
+        normalPrice: 0,
         image: "img/prod-acondicionador.jpg",
-        category: "Cuidado personal",
+        categories: ["Cuidado personal"],
+        variants: [],
       },
       {
         id: 16,
         name: "Crema corporal NutriCare",
-        description: "Hidratación profunda para todo el cuerpo.",
+        shortDescription: "Hidratación profunda para todo el cuerpo.",
+        fullDescription:
+          "Crema corporal de rápida absorción que deja la piel suave, hidratada y con un aroma agradable.",
         price: 44.90,
+        normalPrice: 0,
         image: "img/prod-crema-corporal.jpg",
-        category: "Cuidado personal",
+        categories: ["Cuidado personal"],
+        variants: [],
       },
       {
         id: 17,
         name: "Jabón líquido Soft Touch",
-        description: "Limpieza suave con aroma delicado.",
+        shortDescription: "Limpieza suave con aroma delicado.",
+        fullDescription:
+          "Jabón líquido para manos y cuerpo con espuma suave y aroma delicado.",
         price: 24.90,
+        normalPrice: 0,
         image: "img/prod-jabon-liquido.jpg",
-        category: "Cuidado personal",
+        categories: ["Cuidado personal"],
+        variants: [],
       },
 
       // Sets especiales
       {
         id: 18,
         name: "Set Maquillaje Día Perfecto",
-        description: "Base + labial + máscara de pestañas.",
+        shortDescription: "Base + labial + máscara de pestañas.",
+        fullDescription:
+          "Set ideal para un look completo de día: base, labial y máscara seleccionados para complementar entre sí.",
         price: 149.90,
+        normalPrice: 169.90,
         image: "img/prod-set-dia.jpg",
-        category: "Sets especiales",
+        categories: ["Sets especiales", "Maquillaje"],
+        variants: [],
       },
       {
         id: 19,
         name: "Set Skincare Rutina Básica",
-        description: "Limpiador + crema hidratante + protector solar.",
+        shortDescription: "Limpiador + crema hidratante + protector solar.",
+        fullDescription:
+          "Pack básico para una rutina sencilla de cuidado de la piel: limpieza, hidratación y protección.",
         price: 159.90,
+        normalPrice: 179.90,
         image: "img/prod-set-skincare.jpg",
-        category: "Sets especiales",
+        categories: ["Sets especiales", "Cuidado de la piel"],
+        variants: [],
       },
       {
         id: 20,
         name: "Set Regalo Fragancias",
-        description: "Mini perfumes para sorprender.",
+        shortDescription: "Mini perfumes para sorprender.",
+        fullDescription:
+          "Set de mini fragancias perfectas para probar diferentes aromas o para regalar.",
         price: 99.90,
+        normalPrice: 0,
         image: "img/prod-set-fragancias.jpg",
-        category: "Sets especiales",
+        categories: ["Sets especiales", "Fragancias"],
+        variants: [],
       },
     ];
 
@@ -830,6 +1202,9 @@
     let cart = [];
     let selectedCategory = "Todos";
     let searchTerm = "";
+    let currentVariantProduct = null;
+    let currentVariant = null;
+    let lastClickPosition = { x: 0, y: 0 };
 
     const productsGrid = document.getElementById("productsGrid");
     const cartCountEl = document.getElementById("cartCount");
@@ -842,6 +1217,20 @@
     const payOnlineBtn = document.getElementById("payOnlineBtn");
     const categoriesContainer = document.getElementById("categories");
     const searchInput = document.getElementById("searchInput");
+
+    const productModal = document.getElementById("productModal");
+    const modalCloseBtn = document.getElementById("modalCloseBtn");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDescription = document.getElementById("modalDescription");
+    const modalImage = document.getElementById("modalImage");
+    const modalPrice = document.getElementById("modalPrice");
+    const modalNormalPrice = document.getElementById("modalNormalPrice");
+
+    const variantBackdrop = document.getElementById("variantBackdrop");
+    const variantTitle = document.getElementById("variantTitle");
+    const variantList = document.getElementById("variantList");
+    const variantCloseBtn = document.getElementById("variantCloseBtn");
+    const variantConfirmBtn = document.getElementById("variantConfirmBtn");
 
     // LocalStorage
     function loadCart() {
@@ -858,9 +1247,13 @@
       localStorage.setItem("farmasi_cart", JSON.stringify(cart));
     }
 
-    // Construir chips de categorías
+    // Construir chips de categorías (a partir de todos los arrays 'categories')
     function renderCategories() {
-      const cats = Array.from(new Set(products.map(p => p.category))).sort();
+      const set = new Set();
+      products.forEach(p => {
+        (p.categories || []).forEach(c => set.add(c));
+      });
+      const cats = Array.from(set).sort();
       categoriesContainer.innerHTML = "";
 
       const allChip = document.createElement("button");
@@ -893,12 +1286,19 @@
 
       const filtered = products.filter(p => {
         const matchCategory =
-          selectedCategory === "Todos" || p.category === selectedCategory;
+          selectedCategory === "Todos" ||
+          (p.categories && p.categories.includes(selectedCategory));
         const term = searchTerm.trim().toLowerCase();
-        const matchSearch =
-          term === "" ||
-          p.name.toLowerCase().includes(term) ||
-          p.description.toLowerCase().includes(term);
+        const text = [
+          p.name || "",
+          p.shortDescription || "",
+          p.fullDescription || ""
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        const matchSearch = term === "" || text.includes(term);
+
         return matchCategory && matchSearch;
       });
 
@@ -911,46 +1311,88 @@
       filtered.forEach((p) => {
         const card = document.createElement("article");
         card.className = "product-card";
+        const hasOffer = p.normalPrice && p.normalPrice > 0 && p.normalPrice > p.price;
+
         card.innerHTML = `
           <div class="product-image">
             <img src="${p.image}" alt="${p.name}" onerror="this.src='img/farmasi-logo-redondo.jpg'" />
           </div>
           <h3 class="product-name">${p.name}</h3>
-          <p class="product-desc">${p.description}</p>
+          <p class="product-desc">${p.shortDescription}</p>
           <div class="product-footer">
-            <span class="product-price">S/ ${p.price.toFixed(2)}</span>
-            <button class="btn-add" data-id="${p.id}">
-              + Agregar
-            </button>
+            <div class="price-row">
+              <span class="product-price ${hasOffer ? "offer" : ""}">
+                S/ ${p.price.toFixed(2)}
+              </span>
+              ${
+                hasOffer
+                  ? `<span class="product-price-normal">S/ ${p.normalPrice.toFixed(2)}</span>`
+                  : ""
+              }
+            </div>
+            <div class="product-actions-stack">
+              <button class="btn-add" data-id="${p.id}">
+                + Agregar
+              </button>
+              <button class="btn-more" data-id="${p.id}">
+                Más detalles
+              </button>
+            </div>
           </div>
         `;
         productsGrid.appendChild(card);
       });
 
+      // eventos botones
       document.querySelectorAll(".btn-add").forEach((btn) => {
         btn.addEventListener("click", (e) => {
           const id = parseInt(btn.getAttribute("data-id"), 10);
-          addToCart(id);
-          createBurst(e.clientX, e.clientY); // ✨ animación de destello
+          const product = products.find((p) => p.id === id);
+          if (!product) return;
+
+          lastClickPosition = { x: e.clientX, y: e.clientY };
+
+          if (product.variants && product.variants.length > 0) {
+            openVariantModal(product);
+          } else {
+            addToCart(id, null);
+            createBurst(e.clientX, e.clientY);
+          }
+        });
+      });
+
+      document.querySelectorAll(".btn-more").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = parseInt(btn.getAttribute("data-id"), 10);
+          const product = products.find((p) => p.id === id);
+          if (!product) return;
+          openProductModal(product);
         });
       });
     }
 
-    function addToCart(productId) {
-      const existing = cart.find((item) => item.id === productId);
+    function addToCart(productId, variant) {
+      const product = products.find((p) => p.id === productId);
+      if (!product) return;
+
+      const key = variant ? `${productId}-${variant.label}` : `${productId}-__no_variant`;
+      let existing = cart.find((item) => item.key === key);
+
       if (existing) {
         existing.qty += 1;
       } else {
-        const product = products.find((p) => p.id === productId);
-        if (!product) return;
-        cart.push({
+        existing = {
+          key,
           id: product.id,
           name: product.name,
           price: product.price,
           image: product.image,
           qty: 1,
-        });
+          variant: variant || null,
+        };
+        cart.push(existing);
       }
+
       saveCart();
       updateCartUI();
     }
@@ -961,24 +1403,36 @@
 
       cartItemsEl.innerHTML = "";
       if (cart.length === 0) {
-        cartItemsEl.innerHTML = "<p style='font-size:0.86rem;color:#6b7280;'>Tu carrito está vacío por ahora.</p>";
+        cartItemsEl.innerHTML =
+          "<p style='font-size:0.86rem;color:#6b7280;'>Tu carrito está vacío por ahora.</p>";
       } else {
         cart.forEach((item) => {
           const row = document.createElement("div");
           row.className = "cart-item";
+
+          const variantHtml = item.variant
+            ? `
+              <div class="cart-item-variant">
+                <span class="variant-dot-small" style="background:${item.variant.color};"></span>
+                <span>${item.variant.label}</span>
+              </div>
+            `
+            : "";
+
           row.innerHTML = `
             <img src="${item.image}" alt="${item.name}" onerror="this.src='img/farmasi-logo-redondo.jpg'" />
             <div class="cart-item-main">
               <div class="cart-item-name">${item.name}</div>
+              ${variantHtml}
               <div class="cart-item-price">S/ ${item.price.toFixed(2)} c/u</div>
             </div>
             <div class="cart-item-actions">
               <div class="qty-controls">
-                <button class="qty-btn" data-id="${item.id}" data-action="minus">-</button>
+                <button class="qty-btn" data-key="${item.key}" data-action="minus">-</button>
                 <span class="qty-number">${item.qty}</span>
-                <button class="qty-btn" data-id="${item.id}" data-action="plus">+</button>
+                <button class="qty-btn" data-key="${item.key}" data-action="plus">+</button>
               </div>
-              <button class="remove-btn" data-id="${item.id}">Quitar</button>
+              <button class="remove-btn" data-key="${item.key}">Quitar</button>
             </div>
           `;
           cartItemsEl.appendChild(row);
@@ -986,16 +1440,16 @@
 
         document.querySelectorAll(".qty-btn").forEach((btn) => {
           btn.addEventListener("click", () => {
-            const id = parseInt(btn.getAttribute("data-id"), 10);
+            const key = btn.getAttribute("data-key");
             const action = btn.getAttribute("data-action");
-            updateQty(id, action === "plus" ? 1 : -1);
+            updateQty(key, action === "plus" ? 1 : -1);
           });
         });
 
         document.querySelectorAll(".remove-btn").forEach((btn) => {
           btn.addEventListener("click", () => {
-            const id = parseInt(btn.getAttribute("data-id"), 10);
-            removeFromCart(id);
+            const key = btn.getAttribute("data-key");
+            removeFromCart(key);
           });
         });
       }
@@ -1004,19 +1458,19 @@
       cartTotalEl.textContent = `S/ ${total.toFixed(2)}`;
     }
 
-    function updateQty(productId, diff) {
-      const item = cart.find((i) => i.id === productId);
+    function updateQty(key, diff) {
+      const item = cart.find((i) => i.key === key);
       if (!item) return;
       item.qty += diff;
       if (item.qty <= 0) {
-        cart = cart.filter((i) => i.id !== productId);
+        cart = cart.filter((i) => i.key !== key);
       }
       saveCart();
       updateCartUI();
     }
 
-    function removeFromCart(productId) {
-      cart = cart.filter((i) => i.id !== productId);
+    function removeFromCart(key) {
+      cart = cart.filter((i) => i.key !== key);
       saveCart();
       updateCartUI();
     }
@@ -1024,12 +1478,12 @@
     // Abrir / cerrar carrito
     openCartBtn.addEventListener("click", () => {
       cartBackdrop.classList.add("open");
-      openCartBtn.classList.add("hidden"); // ocultar botón flotante
+      openCartBtn.classList.add("hidden");
     });
 
     closeCartBtn.addEventListener("click", () => {
       cartBackdrop.classList.remove("open");
-      openCartBtn.classList.remove("hidden"); // mostrar botón flotante
+      openCartBtn.classList.remove("hidden");
     });
 
     cartBackdrop.addEventListener("click", (e) => {
@@ -1039,7 +1493,7 @@
       }
     });
 
-    // Checkout: Continuar por WhatsApp (igual que antes)
+    // Checkout: Continuar por WhatsApp
     checkoutBtn.addEventListener("click", () => {
       if (cart.length === 0) {
         alert("Tu carrito está vacío.");
@@ -1047,7 +1501,8 @@
       }
       let message = "Hola Yeliber, quiero hacer este pedido:%0A%0A";
       cart.forEach((item) => {
-        message += `• ${item.name} (x${item.qty}) - S/ ${item.price.toFixed(2)}%0A`;
+        const variantText = item.variant ? ` (${item.variant.label})` : "";
+        message += `• ${item.name}${variantText} (x${item.qty}) - S/ ${item.price.toFixed(2)}%0A`;
       });
       const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
       message += `%0ATotal estimado: S/ ${total.toFixed(2)}%0A%0A`;
@@ -1058,7 +1513,7 @@
       window.open(waUrl, "_blank");
     });
 
-    // Botón Pagar online (mensaje enfocado a pago online)
+    // Botón Pagar online
     payOnlineBtn.addEventListener("click", () => {
       if (cart.length === 0) {
         alert("Tu carrito está vacío.");
@@ -1066,7 +1521,8 @@
       }
       let message = "Hola Yeliber, quiero pagar ONLINE este pedido:%0A%0A";
       cart.forEach((item) => {
-        message += `• ${item.name} (x${item.qty}) - S/ ${item.price.toFixed(2)}%0A`;
+        const variantText = item.variant ? ` (${item.variant.label})` : "";
+        message += `• ${item.name}${variantText} (x${item.qty}) - S/ ${item.price.toFixed(2)}%0A`;
       });
       const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
       message += `%0ATotal estimado: S/ ${total.toFixed(2)}%0A%0A`;
@@ -1083,6 +1539,82 @@
       renderProducts();
     });
 
+    // MODAL DETALLES
+    function openProductModal(product) {
+      modalTitle.textContent = product.name;
+      modalDescription.textContent = product.fullDescription || "";
+      modalImage.src = product.image;
+      modalImage.onerror = () => {
+        modalImage.src = "img/farmasi-logo-redondo.jpg";
+      };
+      modalPrice.textContent = `S/ ${product.price.toFixed(2)}`;
+      if (product.normalPrice && product.normalPrice > 0 && product.normalPrice > product.price) {
+        modalNormalPrice.textContent = `S/ ${product.normalPrice.toFixed(2)}`;
+        modalNormalPrice.style.display = "inline";
+      } else {
+        modalNormalPrice.textContent = "";
+        modalNormalPrice.style.display = "none";
+      }
+      productModal.classList.add("open");
+    }
+
+    modalCloseBtn.addEventListener("click", () => {
+      productModal.classList.remove("open");
+    });
+
+    productModal.addEventListener("click", (e) => {
+      if (e.target === productModal) {
+        productModal.classList.remove("open");
+      }
+    });
+
+    // MODAL VARIANTES
+    function openVariantModal(product) {
+      currentVariantProduct = product;
+      currentVariant = null;
+      variantTitle.textContent = `Elige un color (${product.name})`;
+      variantList.innerHTML = "";
+      variantConfirmBtn.disabled = true;
+
+      (product.variants || []).forEach((v, index) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "variant-option";
+        btn.dataset.index = index;
+        btn.innerHTML = `
+          <span class="variant-dot" style="background:${v.color};"></span>
+          <span>${v.label}</span>
+        `;
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".variant-option").forEach(o => o.classList.remove("selected"));
+          btn.classList.add("selected");
+          currentVariant = v;
+          variantConfirmBtn.disabled = false;
+        });
+        variantList.appendChild(btn);
+      });
+
+      variantBackdrop.classList.add("open");
+    }
+
+    variantCloseBtn.addEventListener("click", () => {
+      variantBackdrop.classList.remove("open");
+    });
+
+    variantBackdrop.addEventListener("click", (e) => {
+      if (e.target === variantBackdrop) {
+        variantBackdrop.classList.remove("open");
+      }
+    });
+
+    variantConfirmBtn.addEventListener("click", () => {
+      if (!currentVariantProduct || !currentVariant) return;
+      addToCart(currentVariantProduct.id, currentVariant);
+      variantBackdrop.classList.remove("open");
+      // destello al confirmar
+      createBurst(lastClickPosition.x, lastClickPosition.y);
+    });
+
     // ✨ Función para crear destellos tipo fuegos artificiales
     function createBurst(x, y) {
       const burst = document.createElement("div");
@@ -1090,19 +1622,23 @@
       burst.style.left = x + "px";
       burst.style.top = y + "px";
 
-      const particles = 16; // más puntitos
+      const particles = 22;
       for (let i = 0; i < particles; i++) {
         const p = document.createElement("span");
         const angle = (2 * Math.PI / particles) * i;
-        const distance = 40 + Math.random() * 30;
+        const distance = 70 + Math.random() * 50; // radio más grande
         const tx = Math.cos(angle) * distance;
         const ty = Math.sin(angle) * distance;
         p.style.setProperty("--tx", tx + "px");
         p.style.setProperty("--ty", ty + "px");
 
-        // ~40% de puntitos morados
-        if (Math.random() < 0.4) {
+        const r = Math.random();
+        if (r < 0.33) {
+          p.classList.add("gold");
+        } else if (r < 0.66) {
           p.classList.add("purple");
+        } else {
+          p.classList.add("pink");
         }
 
         burst.appendChild(p);
@@ -1111,7 +1647,7 @@
       document.body.appendChild(burst);
       setTimeout(() => {
         burst.remove();
-      }, 650);
+      }, 750);
     }
 
     // Inicializar
